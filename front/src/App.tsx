@@ -10,6 +10,9 @@ function App() {
         <p>
           Templatka aplikacji napisana z użyciem <code>TypeScript</code> z biblioteką <code>React</code>.
         </p>
+        <p>
+          Używane narzędzia do zarządzania projektem: Github, Jira.
+        </p>
         <a
             className="App-link"
             href="https://www.filmweb.pl/"
