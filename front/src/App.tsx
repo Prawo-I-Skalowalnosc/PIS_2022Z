@@ -11,7 +11,7 @@ function App() {
           Templatka aplikacji napisana z użyciem <code>TypeScript</code> z biblioteką <code>React</code>.
         </p>
         <p>
-          Używane narzędzia do zarządzania projektem: Github, Jira.
+          Używane narzędzia do zarządzania projektem: Github, Jira, Jenkins.
         </p>
         <a
             className="App-link"
