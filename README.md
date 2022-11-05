@@ -1,1 +1,1 @@
-# Prawo i Skalowalność  (PIS 2022Z)
+# Prawo i Skalowalność - PIS 2022Z
