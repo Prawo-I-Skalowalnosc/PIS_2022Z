@@ -1,12 +1,11 @@
 package pis.skalowalnosc.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Movie {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int movieId;
+    private UUID movieId;
     private String title;
     private String author;
     private float rating;
@@ -20,7 +19,7 @@ public class Movie {
     protected Movie() {
     }
 
-    protected Movie(int movieId, String title, String author, float rating,
+    protected Movie(UUID movieId, String title, String author, float rating,
                  String genre, String country_of_origin, float budget,
                  String language, Date release_date, int length) {
         this.movieId = movieId;
@@ -35,11 +34,11 @@ public class Movie {
         this.length = length;
     }
 
-    public int getMovieId() {
+    public UUID getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(int movieId) {
+    public void setMovieId(UUID movieId) {
         this.movieId = movieId;
     }
 
