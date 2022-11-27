@@ -1,11 +1,19 @@
 package pis.skalowalnosc.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.UUID;
 
+@Entity
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    private UUID movieId;
+    // jeśli pole ma inną nazwę niż w DB, to należy dać @Column(name="nazwa_kolumny") i opcjonalnie inne parametry typu unikalność
     private String title;
     private String author;
     private float rating;
@@ -22,7 +30,7 @@ public class Movie {
     protected Movie(UUID movieId, String title, String author, float rating,
                  String genre, String country_of_origin, float budget,
                  String language, Date release_date, int length) {
-        this.movieId = movieId;
+        this.id = movieId;
         this.title = title;
         this.author = author;
         this.rating = rating;
@@ -35,11 +43,11 @@ public class Movie {
     }
 
     public UUID getMovieId() {
-        return movieId;
+        return id;
     }
 
     public void setMovieId(UUID movieId) {
-        this.movieId = movieId;
+        this.id = movieId;
     }
 
     public String getTitle() {
