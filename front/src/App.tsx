@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg'
 import './App.css';
+import {ExampleComponent} from "./ExampleComponent";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         >
           Kliknij tutaj
         </a>
+        <ExampleComponent></ExampleComponent> {/*do usunięcia potem, jest tutaj tylko testowo, żeby sprawdzić czy info z db dostaje się na front*/}
       </header>
     </div>
   );
