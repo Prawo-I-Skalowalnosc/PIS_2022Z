@@ -9,7 +9,7 @@ import pis.skalowalnosc.model.Movie;
 
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest(classes = BackApplication.class)
 class BackApplicationTests {
 
     @Autowired
