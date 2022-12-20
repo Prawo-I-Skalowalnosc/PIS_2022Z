@@ -13,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @IdClass(MovieRatingId.class)
+@Table(name = "movierating")
 public class MovieRating {
     @Id
     @ManyToOne
