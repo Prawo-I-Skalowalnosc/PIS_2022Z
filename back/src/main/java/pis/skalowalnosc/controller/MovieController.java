@@ -1,9 +1,8 @@
 package pis.skalowalnosc.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pis.skalowalnosc.service.MovieService;
 
@@ -13,11 +12,8 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @RequestMapping("/first")
+    @GetMapping("/first")
     public String firstTitle() {
-        var title = movieService.findAll().get(0).getTitle();
-        var json = new JSONObject();
-        json.put("result", title);
-        return json.toString();
+        return movieService.findAll().get(0).getTitle();
     }
 }
