@@ -9,6 +9,7 @@ import java.util.UUID;
 public class GlobalValues {
     public static final String title = "testowyTytuł";
     public static final String username = "testowyUżytkownik";
+    public static final String url = "http://localhost:";
 
     public static Movie getMovie() {
         return new Movie(new UUID(12, 34), null, null, title, "nobody",
