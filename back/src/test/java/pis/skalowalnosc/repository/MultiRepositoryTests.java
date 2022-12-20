@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.model.MovieRating;
+import pis.skalowalnosc.model.User;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public class MultiRepositoryTests {
         List<Movie> movies;
         if (!(movies = movieRepository.findByTitle(title)).isEmpty())
             movieRepository.deleteAll(movies);
+        List<User> users;
+        if (!(users = userRepository.findByUsername(username)).isEmpty())
+            userRepository.deleteAll(users);
     }
 
     @Test
