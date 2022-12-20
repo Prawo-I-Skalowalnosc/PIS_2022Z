@@ -14,14 +14,16 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+@Table(name = "PEOPLE")
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToMany(mappedBy = "rater")
-    private List<MovieRating> ratings;
+    @OneToMany(mappedBy = "person")
+    private List<PersonInMovie> movies;
 
-    private String username;
-    private Character role;
+
+    private String name;
+    private String last_name;
 }
