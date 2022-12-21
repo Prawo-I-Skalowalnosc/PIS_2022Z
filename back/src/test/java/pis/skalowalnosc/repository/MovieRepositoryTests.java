@@ -28,7 +28,7 @@ public class MovieRepositoryTests {
 
     private static void compareMovies(Movie movie, Movie DBMovie) {
         assertEquals(movie.getTitle(), DBMovie.getTitle());
-        assertEquals(movie.getAuthor(), DBMovie.getAuthor());
+        assertEquals(movie.getCountry_of_origin(), DBMovie.getCountry_of_origin());
         assertEquals(movie.getRating(), DBMovie.getRating());
         assertEquals(movie.getRelease_date(), DBMovie.getRelease_date());
         assertTrue(DBMovie.getPeople().isEmpty());
@@ -40,6 +40,7 @@ public class MovieRepositoryTests {
     @Test
     public void testAdd_Find() {
         var movie = getMovie();
+        movieRepository.save(movie);
         var movies = movieRepository.findByTitle(movie.getTitle());
 
         assertFalse(movies.isEmpty());

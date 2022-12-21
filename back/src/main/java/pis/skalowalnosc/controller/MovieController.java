@@ -19,7 +19,9 @@ public class MovieController {
 
     @GetMapping("/first")
     public String first() {
-        return movieService.findAll().get(0).getTitle();
+        if (movieService.findAll().size() > 0)
+            return movieService.findAll().get(0).getTitle();
+        return "";
     }
 
     @GetMapping("/all")

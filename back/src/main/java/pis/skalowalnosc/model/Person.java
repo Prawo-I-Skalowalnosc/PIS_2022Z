@@ -23,7 +23,6 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<PersonInMovie> movies;
 
-
     private String name;
     private String last_name;
 }

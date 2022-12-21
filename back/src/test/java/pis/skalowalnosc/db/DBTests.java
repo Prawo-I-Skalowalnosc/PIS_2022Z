@@ -10,6 +10,8 @@ import pis.skalowalnosc.model.Movie;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @SpringBootTest(classes = BackApplication.class)
 class DBTests {
     @Autowired
@@ -22,7 +24,6 @@ class DBTests {
         List<Movie> listMovies = jdbcTemplate.query(sql,
                 BeanPropertyRowMapper.newInstance(Movie.class));
 
-        assert listMovies.size() > 0;
+        assertTrue(listMovies.size() > 0);
     }
-
 }

@@ -28,7 +28,6 @@ public class Movie {
 
     // jeśli pole ma inną nazwę niż w DB, to należy dać @Column(name="nazwa_kolumny") i opcjonalnie inne parametry typu unikalność
     private String title;
-    private String author;
     private float rating;
     private String genre;
     private String country_of_origin;
@@ -36,4 +35,5 @@ public class Movie {
     private String language;
     private Date release_date;
     private int length;
+    private String poster_url;
 }

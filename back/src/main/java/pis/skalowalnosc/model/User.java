@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,4 +25,8 @@ public class User {
 
     private String username;
     private Character role;
+    private String email;
+    private Date join_date;
+    private String hash;
+    private String salt;
 }

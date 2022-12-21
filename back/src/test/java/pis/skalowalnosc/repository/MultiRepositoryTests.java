@@ -9,6 +9,7 @@ import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.model.MovieRating;
 import pis.skalowalnosc.model.User;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,7 +39,7 @@ public class MultiRepositoryTests {
         var movie = getMovie();
         var user = getUser();
 
-        var rating = new MovieRating(user, movie, 5);
+        var rating = new MovieRating(user, movie, 5, new Date());
         user.getRatings().add(rating);
 
         var DBMovie = movieRepository.save(movie);
