@@ -2,14 +2,13 @@ import {Global} from "../Config";
 import {MovieResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
 
-
-function fetchPost(body: any, url: string){
-    return fetch(Global.backendUrl + url, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(body)
-    })
-}
+// function fetchPost(body: any, url: string){
+//     return fetch(Global.backendUrl + url, {
+//         method: 'POST',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(body)
+//     })
+// }
 
 class GenericResponse <T>{
     res?: T = undefined
