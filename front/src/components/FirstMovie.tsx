@@ -26,7 +26,7 @@ export function FirstMovie(props: MovieProps) {
                 props.onSuccess(res.res);
             }
         });
-    }, [])
+    }, )
 
     return (
         <>
