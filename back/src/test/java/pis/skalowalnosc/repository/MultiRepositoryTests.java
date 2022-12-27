@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pis.skalowalnosc.GlobalValues.*;
+import static pis.skalowalnosc.GlobalTestValues.*;
 
 @SpringBootTest
 public class MultiRepositoryTests {
@@ -39,11 +39,16 @@ public class MultiRepositoryTests {
         var movie = getMovie();
         var user = getUser();
 
-        var rating = new MovieRating(user, movie, 5, new Date());
-        user.getRatings().add(rating);
-
         var DBMovie = movieRepository.save(movie);
         var DBUser = userRepository.save(user);
+
+        var rating = new MovieRating(DBUser, DBMovie, 5, new Date());
+
+        DBMovie.setRatings(List.of(rating));
+        DBMovie = movieRepository.save(DBMovie);
+
+        DBUser.setRatings(List.of(rating));
+        DBUser = userRepository.save(DBUser);
 
         assertEquals(1, DBUser.getRatings().size());
         assertEquals(1, DBMovie.getRatings().size());
@@ -51,7 +56,7 @@ public class MultiRepositoryTests {
         var DBRating = DBUser.getRatings().get(0);
 
         assertEquals(5, DBRating.getValue());
-        assertEquals(DBMovie, DBRating.getMovie());
-        assertEquals(DBUser, DBRating.getRater());
+        assertEquals(DBMovie.getId(), DBRating.getMovie().getId());
+        assertEquals(DBUser.getId(), DBRating.getRater().getId());
     }
 }

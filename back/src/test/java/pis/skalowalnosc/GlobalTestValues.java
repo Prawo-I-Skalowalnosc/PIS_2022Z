@@ -8,14 +8,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class GlobalValues {
+public class GlobalTestValues {
     public static final String title = "testowyTytuł";
     public static final String username = "testowyUżytkownik";
     public static final String url = "http://localhost:";
 
     public static Movie getMovie() {
         return new Movie(UUID.randomUUID(), List.of(), List.of(), title,
-                7, "horror", "USA", 123, "English",
+                0.7f, "horror", "USA", 123, "English",
                 new Date(), 12, "testowy.url");
     }
 

@@ -11,8 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pis.skalowalnosc.GlobalValues.getUser;
-import static pis.skalowalnosc.GlobalValues.username;
+import static pis.skalowalnosc.GlobalTestValues.getUser;
+import static pis.skalowalnosc.GlobalTestValues.username;
 
 @SpringBootTest
 public class UserRepositoryTests {

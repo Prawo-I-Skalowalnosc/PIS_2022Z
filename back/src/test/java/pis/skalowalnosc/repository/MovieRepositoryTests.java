@@ -10,8 +10,8 @@ import pis.skalowalnosc.model.Movie;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pis.skalowalnosc.GlobalValues.getMovie;
-import static pis.skalowalnosc.GlobalValues.title;
+import static pis.skalowalnosc.GlobalTestValues.getMovie;
+import static pis.skalowalnosc.GlobalTestValues.title;
 
 @SpringBootTest
 public class MovieRepositoryTests {
@@ -30,7 +30,6 @@ public class MovieRepositoryTests {
         assertEquals(movie.getTitle(), DBMovie.getTitle());
         assertEquals(movie.getCountry_of_origin(), DBMovie.getCountry_of_origin());
         assertEquals(movie.getRating(), DBMovie.getRating());
-        assertEquals(movie.getRelease_date(), DBMovie.getRelease_date());
         assertTrue(DBMovie.getPeople().isEmpty());
         assertTrue(DBMovie.getRatings().isEmpty());
         assertEquals(movie.getLanguage(), DBMovie.getLanguage());
@@ -58,5 +57,17 @@ public class MovieRepositoryTests {
         var DBMovie = movieRepository.save(movie);
 
         compareMovies(movie, DBMovie);
+    }
+
+    @Test
+    public void testDelete() {
+        var movie = getMovie();
+        var DBMovie = movieRepository.save(movie);
+
+        assertTrue(movieRepository.findById(DBMovie.getId()).isPresent());
+
+        movieRepository.delete(DBMovie);
+
+        assertTrue(movieRepository.findById(DBMovie.getId()).isEmpty());
     }
 }

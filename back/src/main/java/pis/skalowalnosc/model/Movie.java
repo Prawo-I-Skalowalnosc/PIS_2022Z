@@ -20,15 +20,15 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<MovieRating> ratings;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<PersonInMovie> people;
 
     // jeśli pole ma inną nazwę niż w DB, to należy dać @Column(name="nazwa_kolumny") i opcjonalnie inne parametry typu unikalność
     private String title;
-    private float rating;
+    private float rating; // 0 <= rating <= 1
     private String genre;
     private String country_of_origin;
     private float budget;

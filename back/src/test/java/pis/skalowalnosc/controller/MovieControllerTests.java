@@ -11,7 +11,7 @@ import pis.skalowalnosc.BackApplication;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pis.skalowalnosc.GlobalValues.url;
+import static pis.skalowalnosc.GlobalTestValues.url;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = BackApplication.class)
 public class MovieControllerTests {
