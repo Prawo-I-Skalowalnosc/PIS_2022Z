@@ -1,13 +1,11 @@
 import React from 'react';
-import logo from './logo.svg'
-import './App.css';
-import {ExampleComponent} from "./ExampleComponent";
+import '../style/App.css';
+import {FirstMovie} from "../components/FirstMovie";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" data-testid="App-logo" />
         <p>
           Templatka aplikacji napisana z użyciem <code>TypeScript</code> z biblioteką <code>React</code>.
         </p>
@@ -22,7 +20,8 @@ function App() {
         >
           Kliknij tutaj
         </a>
-        <ExampleComponent/> {/*do usunięcia potem, jest tutaj tylko testowo, żeby sprawdzić czy info z db dostaje się na front*/}
+        {/*do usunięcia potem, jest tutaj tylko testowo, żeby sprawdzić czy info z db dostaje się na front*/}
+        <FirstMovie onSuccess={() => {}} onError={() => {}}/>
       </header>
     </div>
   );
