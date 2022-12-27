@@ -8,7 +8,7 @@ export function ExampleComponent() {
         fetch("http://localhost:8090/movies/first")
             .then(res => res.json())
             .then(r => {
-                setTitle(r.result);
+                setTitle(r.title);
             })
     }, [])
 

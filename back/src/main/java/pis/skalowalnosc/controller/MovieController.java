@@ -17,10 +17,11 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping("/first")
-    public String first() {
-        if (movieService.findAll().size() > 0)
-            return movieService.findAll().get(0).getTitle();
-        return "";
+    public Movie first() throws AppException {
+        var movies = movieService.findAll();
+        if (movies.isEmpty())
+            throw new AppException("brak filmów w bazie");
+        return movies.get(0);
     }
 
     @GetMapping("/all")
