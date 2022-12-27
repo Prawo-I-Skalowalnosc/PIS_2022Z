@@ -1,4 +1,4 @@
-package pis.skalowalnosc.Errors;
+package pis.skalowalnosc.errors;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

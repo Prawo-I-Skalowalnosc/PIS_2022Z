@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pis.skalowalnosc.controller.api.CreateMovieRequest;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -36,4 +37,18 @@ public class Movie {
     private Date release_date;
     private int length;
     private String poster_url;
+
+    public Movie(CreateMovieRequest request) {
+        ratings = List.of();
+        people = List.of();
+
+        title = request.getTitle();
+        rating = request.getRating();
+        genre = request.getGenre();
+        country_of_origin = request.getCountry_of_origin();
+        language = request.getLanguage();
+        release_date = request.getRelease_date() != null ? request.getRelease_date() : new Date();
+        length = request.getLength();
+        poster_url = request.getPoster_url();
+    }
 }

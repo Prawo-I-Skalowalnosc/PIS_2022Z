@@ -1,4 +1,4 @@
-package pis.skalowalnosc.Errors;
+package pis.skalowalnosc.errors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,9 @@
 package pis.skalowalnosc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pis.skalowalnosc.controller.api.CreateMovieRequest;
+import pis.skalowalnosc.errors.AppException;
 import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.service.MovieService;
 
@@ -27,5 +26,10 @@ public class MovieController {
     @GetMapping("/all")
     public List<Movie> all() {
         return movieService.findAll();
+    }
+
+    @PostMapping("/create")
+    public Movie create(@RequestBody CreateMovieRequest request) throws AppException {
+        return movieService.create(request);
     }
 }
