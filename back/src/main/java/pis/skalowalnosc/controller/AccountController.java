@@ -6,15 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class ExampleController {
+@RequestMapping("/account")
+public class AccountController {
 
-    @RequestMapping
-    public String helloWorld() {
-        return "Hello World from Spring Boot";
-    }
-
-    @RequestMapping("/goodbye")
-    public String goodbye() {
-        return "Goodbye";
-    }
 }

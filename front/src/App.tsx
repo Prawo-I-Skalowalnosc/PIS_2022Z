@@ -22,7 +22,7 @@ function App() {
         >
           Kliknij tutaj
         </a>
-        <ExampleComponent></ExampleComponent> {/*do usunięcia potem, jest tutaj tylko testowo, żeby sprawdzić czy info z db dostaje się na front*/}
+        <ExampleComponent/> {/*do usunięcia potem, jest tutaj tylko testowo, żeby sprawdzić czy info z db dostaje się na front*/}
       </header>
     </div>
   );

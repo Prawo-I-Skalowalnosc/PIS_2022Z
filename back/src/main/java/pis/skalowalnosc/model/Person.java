@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,19 +14,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user", schema = "public")
-public class User {
+@Table(name = "PEOPLE")
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToMany(mappedBy = "rater")
-    private List<MovieRating> ratings;
+    @OneToMany(mappedBy = "person")
+    private List<PersonInMovie> movies;
 
-    private String username;
-    private Character role;
-    private String email;
-    private Date join_date;
-    private String hash;
-    private String salt;
+    private String name;
+    private String last_name;
 }
