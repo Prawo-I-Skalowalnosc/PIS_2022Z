@@ -11,6 +11,7 @@ import pis.skalowalnosc.model.User;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pis.skalowalnosc.GlobalTestValues.*;
@@ -29,9 +30,9 @@ public class MultiRepositoryTests {
         List<Movie> movies;
         if (!(movies = movieRepository.findByTitle(title)).isEmpty())
             movieRepository.deleteAll(movies);
-        List<User> users;
-        if (!(users = userRepository.findByUsername(username)).isEmpty())
-            userRepository.deleteAll(users);
+        Optional<User> user;
+        if ((user = userRepository.findByUsername(username)).isPresent())
+            userRepository.delete(user.get());
     }
 
     @Test

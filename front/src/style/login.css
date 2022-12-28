@@ -64,16 +64,16 @@
     animation-duration: 3000ms;
 }
 
-/*TODO: ogarnać dlaczego error ma dodatkowy padding-left 5%*/
 .pis-login-error{
-    align-items: center;
     position: fixed !important;
-    top: 5%;
+    top: 8%;
+    left: 0;
     margin: 0;
-    padding-left: 10%;
-    padding-right: 15%;
+    padding-left: 30%;
+    padding-right: 30%;
     width: 100%;
     z-index: 1;
+    word-wrap: anywhere;
     /*TODO: ładna animacja dla erroru, trigger - onError*/
     /*animation: shakeX;*/
 }

@@ -16,7 +16,7 @@ export default function RegisterPage() {
                     <div className="pis-register-error">
                         <ErrorAndInfo errorMsg={error} infoMsg={""}/>
                     </div>
-                    <RegisterForm onSuccess={() => navigate("/login")} onError={(res) => setError(res.message)}/>
+                    <RegisterForm onSuccess={() => navigate("/login")} onError={(res) => setError(res.infoMessage)}/>
                     <small className="pis-register-loglink-text">Masz już konto?
                         <Link className="pis-link pis-register-loglink" to="/login"> Zaloguj się</Link>
                     </small>
