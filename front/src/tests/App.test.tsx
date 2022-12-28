@@ -1,9 +1,9 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import App from '../pages/App';
 import '@testing-library/jest-dom'
+import {LoginForm} from "../components/LoginForm";
 
-test('renders learn react link', () => {
-  render(<App />);
-  expect(screen.getByText(/kliknij tutaj/i)).toBeInTheDocument();
+test('renders login form', () => {
+  render(<LoginForm  onError={()=>{}} onSuccess={()=>{}}/>);
+  expect(screen.getByText(/hasło/i)).toBeInTheDocument();
 });
