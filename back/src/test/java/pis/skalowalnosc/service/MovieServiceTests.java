@@ -20,10 +20,8 @@ import static pis.skalowalnosc.GlobalTestValues.title;
 public class MovieServiceTests {
     @Autowired
     private MovieRepository movieRepository;
-
     @Autowired
     private MovieService movieService;
-
     @BeforeEach
     @AfterEach
     public void clean() {
@@ -40,15 +38,15 @@ public class MovieServiceTests {
 
         assertEquals(1, movieRepository.findByTitle(addedMovie.getTitle()).size());
 
-        assertEquals(request.getTitle(), addedMovie.getTitle());
-        assertEquals(request.getLanguage(), addedMovie.getLanguage());
-        assertEquals(request.getLength(), addedMovie.getLength());
+        assertEquals(request.title, addedMovie.getTitle());
+        assertEquals(request.language, addedMovie.getLanguage());
+        assertEquals(request.length, addedMovie.getLength());
     }
 
     @Test
     public void testCreateNoTitle() {
         var request = getMovieRequest();
-        request.setTitle("");
+        request.title = "";
 
         assertThrows(AppException.class, () -> movieService.create(request));
     }

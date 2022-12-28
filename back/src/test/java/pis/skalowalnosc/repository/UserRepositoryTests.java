@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pis.skalowalnosc.model.User;
 
-import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,11 +22,10 @@ public class UserRepositoryTests {
     @BeforeEach
     @AfterEach
     public void clean() {
-        List<User> users;
-        if (!(users = userRepository.findByUsername(username)).isEmpty())
-            userRepository.deleteAll(users);
+        Optional<User> user;
+        if ((user = userRepository.findByUsername(username)).isPresent())
+            userRepository.delete(user.get());
     }
-
     @Test
     public void testAdd() {
         var user = getUser();

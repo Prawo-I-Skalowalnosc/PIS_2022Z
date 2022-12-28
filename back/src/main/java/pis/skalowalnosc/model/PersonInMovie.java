@@ -19,7 +19,6 @@ public class PersonInMovie {
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
-
     @Id
     @ManyToOne
     @JoinColumn(name = "people_id", referencedColumnName = "id")

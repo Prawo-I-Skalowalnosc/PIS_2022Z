@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DBTests {
     @Autowired
     JdbcTemplate jdbcTemplate;
-
     @Test
     void checkIfDatabaseNotEmpty(){
         String sql = "SELECT * FROM public.movie";

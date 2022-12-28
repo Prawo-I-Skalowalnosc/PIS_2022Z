@@ -1,6 +1,6 @@
 package pis.skalowalnosc.service;
 
-import pis.skalowalnosc.controller.api.CreateMovieRequest;
+import pis.skalowalnosc.controller.api.requests.CreateMovieRequest;
 import pis.skalowalnosc.errors.AppException;
 import pis.skalowalnosc.model.Movie;
 

@@ -1,7 +1,7 @@
 package pis.skalowalnosc;
 
 import net.bytebuddy.utility.RandomString;
-import pis.skalowalnosc.controller.api.CreateMovieRequest;
+import pis.skalowalnosc.controller.api.requests.CreateMovieRequest;
 import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.model.User;
 
@@ -27,6 +27,6 @@ public class GlobalTestValues {
 
     public static User getUser() {
         return new User(UUID.randomUUID(), List.of(), username,
-                '1', "test@gmail.com", new Date(), RandomString.make(32), RandomString.make(32));
+                '1', RandomString.make(32) + "@abcdef.pl", new Date(), RandomString.make(32), RandomString.make(32));
     }
 }

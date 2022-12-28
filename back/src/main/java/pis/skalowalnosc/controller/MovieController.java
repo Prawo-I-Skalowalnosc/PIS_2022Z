@@ -2,7 +2,7 @@ package pis.skalowalnosc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pis.skalowalnosc.controller.api.CreateMovieRequest;
+import pis.skalowalnosc.controller.api.requests.CreateMovieRequest;
 import pis.skalowalnosc.errors.AppException;
 import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.service.MovieService;
