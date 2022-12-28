@@ -15,20 +15,16 @@ import static pis.skalowalnosc.GlobalTestValues.url;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = BackApplication.class)
 public class MovieControllerTests {
-
     @LocalServerPort
     private int port;
-
     @Autowired
     private TestRestTemplate testRestTemplate;
     @Autowired
     private MovieController movieController;
-
     @Test
     public void testExists() {
         assertThat(movieController).isNotNull();
     }
-
     @Test
     public void testGetFirst() {
         var result = testRestTemplate.getForEntity(url + port + "/movies/first", String.class);

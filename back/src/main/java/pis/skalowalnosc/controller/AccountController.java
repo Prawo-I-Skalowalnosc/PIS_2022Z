@@ -3,10 +3,10 @@ package pis.skalowalnosc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pis.skalowalnosc.errors.AppException;
-import pis.skalowalnosc.model.api.requests.LoginRequest;
-import pis.skalowalnosc.model.api.requests.RegisterRequest;
-import pis.skalowalnosc.model.api.responses.LoginResponse;
-import pis.skalowalnosc.model.api.responses.RegisterResponse;
+import pis.skalowalnosc.controller.api.requests.LoginRequest;
+import pis.skalowalnosc.controller.api.requests.RegisterRequest;
+import pis.skalowalnosc.controller.api.responses.LoginResponse;
+import pis.skalowalnosc.controller.api.responses.RegisterResponse;
 import pis.skalowalnosc.service.UserService;
 
 @RestController

@@ -26,7 +26,6 @@ public class UserRepositoryTests {
         if ((user = userRepository.findByUsername(username)).isPresent())
             userRepository.delete(user.get());
     }
-
     @Test
     public void testAdd() {
         var user = getUser();

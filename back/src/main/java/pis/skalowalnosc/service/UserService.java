@@ -1,8 +1,8 @@
 package pis.skalowalnosc.service;
 
 import pis.skalowalnosc.errors.AppException;
-import pis.skalowalnosc.model.api.requests.LoginRequest;
-import pis.skalowalnosc.model.api.requests.RegisterRequest;
+import pis.skalowalnosc.controller.api.requests.LoginRequest;
+import pis.skalowalnosc.controller.api.requests.RegisterRequest;
 
 public interface UserService {
     boolean login(LoginRequest login) throws AppException;

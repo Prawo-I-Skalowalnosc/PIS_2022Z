@@ -1,7 +1,7 @@
 package pis.skalowalnosc;
 
 import net.bytebuddy.utility.RandomString;
-import pis.skalowalnosc.controller.api.CreateMovieRequest;
+import pis.skalowalnosc.controller.api.requests.CreateMovieRequest;
 import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.model.User;
 

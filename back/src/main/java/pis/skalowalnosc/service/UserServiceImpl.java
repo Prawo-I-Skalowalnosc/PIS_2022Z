@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pis.skalowalnosc.errors.AppException;
 import pis.skalowalnosc.model.User;
-import pis.skalowalnosc.model.api.requests.LoginRequest;
-import pis.skalowalnosc.model.api.requests.RegisterRequest;
+import pis.skalowalnosc.controller.api.requests.LoginRequest;
+import pis.skalowalnosc.controller.api.requests.RegisterRequest;
 import pis.skalowalnosc.repository.UserRepository;
 
 import javax.crypto.SecretKeyFactory;
@@ -36,7 +36,10 @@ public class UserServiceImpl implements UserService{
             var DBSalt = Hex.decodeHex(user.get().getSalt());
             var newHash = Hex.encodeHexString(hashPassword(login.password, DBSalt));
 
-            return newHash.equals(DBHash);
+            if (!newHash.equals(DBHash))
+                throw new AppException("Niepoprawne hasło");
+
+            return true;
         }
         catch (DecoderException e){
             throw new AppException("Błąd podczas kodowania/dekodowania hasła");
