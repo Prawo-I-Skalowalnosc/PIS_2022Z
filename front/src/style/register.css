@@ -1,0 +1,103 @@
+.pis-register-page{
+    height: 100vh;
+    /*TODO: znaleźć lepsze zdjęcie*/
+    background: url(../assets/auth-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pis-register-page-cont{
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.pis-register-cont{
+    width: 100%;
+}
+
+.pis-register-row{
+    justify-content: center;
+}
+
+.pis-register-card{
+    align-items: center;
+    padding: 10% 0;
+    animation: fadeIn;
+    animation-duration: 500ms;
+}
+
+.pis-register-user{
+    margin: 0 0 4%;
+    text-align: start;
+    width: 70%;
+    animation: fadeIn;
+    animation-duration: 1000ms;
+}
+
+.pis-register-email{
+    margin: 0 0 4%;
+    text-align: start;
+    width: 70%;
+    animation: fadeIn;
+    animation-duration: 1500ms;
+}
+
+.pis-register-pwd{
+    margin: 0 0 4%;
+    text-align: start;
+    width: 70%;
+    animation: fadeIn;
+    animation-duration: 2000ms;
+}
+
+.pis-register-pwdconf{
+    margin: 0 0 4%;
+    text-align: start;
+    width: 70%;
+    animation: fadeIn;
+    animation-duration: 2500ms;
+}
+
+.pis-register-badge{
+    font-size: calc(5px + 1vmin);
+    margin-top: 0;
+    background-color: #bc4749 !important;
+}
+
+.pis-register-submit{
+    justify-content: center;
+    margin-top: 5%;
+    animation: fadeIn;
+    animation-duration: 3000ms;
+}
+
+.pis-register-loglink-text{
+    animation: fadeIn;
+    animation-duration: 2500ms;
+    color: white
+}
+
+.pis-register-loglink{
+    animation: fadeIn;
+    animation-duration: 3000ms;
+}
+
+/*//TODO: ogarnać dlaczego error ma dodatkowy padding-left 5%*/
+.pis-register-error{
+    position: fixed !important;
+    top: 5%;
+    margin: 0;
+    padding-left: 10%;
+    padding-right: 15%;
+    width: 100%;
+    z-index: 1;
+    word-wrap: anywhere;
+    /*//TODO: - ładna animacja dla erroru, trigger- onError*/
+    /*animation: shakeX;*/
+}

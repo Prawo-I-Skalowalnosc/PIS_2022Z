@@ -1,0 +1,79 @@
+.pis-login-page{
+    height: 100vh;
+    /*TODO: znaleźć lepsze zdjęcie*/
+    background: url(../assets/auth-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pis-login-page-cont{
+    width: 100%;
+}
+
+.pis-login-cont{
+    width: 100%;
+}
+
+.pis-login-row{
+    justify-content: center;
+}
+
+.pis-login-card{
+    align-items: center;
+    padding: 10% 0;
+    animation: fadeIn;
+    animation-duration: 500ms;
+}
+
+.pis-login-user{
+    margin: 0 0 4%;
+    text-align: start;
+    width: 70%;
+    animation: fadeIn;
+    animation-duration: 1000ms;
+}
+
+.pis-login-pwd{
+    margin: 0 0 4%;
+    text-align: start;
+    width: 70%;
+    animation: fadeIn;
+    animation-duration: 1500ms;
+}
+
+.pis-login-submit{
+    justify-content: center;
+    margin-top: 5%;
+    animation: fadeIn;
+    animation-duration: 2000ms;
+}
+
+.pis-login-reglink-text{
+    animation: fadeIn;
+    animation-duration: 2500ms;
+    color: white;
+}
+
+.pis-login-reglink{
+    animation: fadeIn;
+    animation-duration: 3000ms;
+}
+
+/*TODO: ogarnać dlaczego error ma dodatkowy padding-left 5%*/
+.pis-login-error{
+    align-items: center;
+    position: fixed !important;
+    top: 5%;
+    margin: 0;
+    padding-left: 10%;
+    padding-right: 15%;
+    width: 100%;
+    z-index: 1;
+    /*TODO: ładna animacja dla erroru, trigger - onError*/
+    /*animation: shakeX;*/
+}

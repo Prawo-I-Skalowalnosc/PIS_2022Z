@@ -1,0 +1,21 @@
+.pis-navbar{
+    min-height: 5%;
+    margin: 0;
+    padding-left: 1%;
+    border-bottom: 2px solid white;
+    background-color: black;
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.pis-navbar-link{
+    font-weight: bold;
+}
+
+.pis-navbar-link:active{
+    font-weight: bold;
+    animation: pulse;
+    animation-duration: 500ms;
+}
