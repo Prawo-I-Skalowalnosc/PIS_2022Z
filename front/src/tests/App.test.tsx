@@ -4,6 +4,6 @@ import '@testing-library/jest-dom'
 import {LoginForm} from "../components/LoginForm";
 
 test('renders login form', () => {
-  render(<LoginForm  onError={()=>{}} onSuccess={()=>{}}/>);
-  expect(screen.getByText(/hasło/i)).toBeInTheDocument();
+    render(<LoginForm  onError={()=>{}} onSuccess={()=>{}}/>);
+    expect(screen.getByText(/hasło/i)).toBeInTheDocument();
 });

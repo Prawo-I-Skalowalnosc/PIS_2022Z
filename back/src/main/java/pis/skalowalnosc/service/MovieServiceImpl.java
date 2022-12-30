@@ -21,6 +21,23 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
+    public List<Movie> findUpcoming(){
+        return movieRepository.findFirst10ByReleaseDateAfterOrderByReleaseDateAsc(new java.sql.Date(System.currentTimeMillis()));
+    }
+
+    @Override
+    public List<Movie> findNewest() {
+        return movieRepository.findFirst10ByReleaseDateBeforeOrderByReleaseDateDesc(new java.sql.Date(System.currentTimeMillis()));
+    }
+
+    @Override
+    public List<Movie> findBest() {
+        //Filmy, które jeszcze nie wyszły nie mają ocen, więc zakładam, że default to 0
+        return movieRepository.findAllByRatingIsNotNullOrderByRatingsDesc();
+    }
+
+
+    @Override
     public Movie create(CreateMovieRequest request) throws AppException {
         if (request == null)
             throw new AppException("Nie podano danych nowego filmu");

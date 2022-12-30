@@ -29,6 +29,21 @@ public class MovieController {
         return movieService.findAll();
     }
 
+    @GetMapping("/upcoming")
+    public List<Movie> upcoming() {
+        return movieService.findUpcoming();
+    }
+
+    @GetMapping("/best")
+    public List<Movie> best() {
+        return movieService.findBest();
+    }
+
+    @GetMapping("/newest")
+    public List<Movie> newest() {
+        return movieService.findNewest();
+    }
+
     @PostMapping("/create")
     public Movie create(@RequestBody CreateMovieRequest request) throws AppException {
         return movieService.create(request);

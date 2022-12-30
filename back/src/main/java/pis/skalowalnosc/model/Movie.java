@@ -29,13 +29,15 @@ public class Movie {
 
     // jeśli pole ma inną nazwę niż w DB, to należy dać @Column(name="nazwa_kolumny") i opcjonalnie inne parametry typu unikalność
     private String title;
-    private float rating; // 0 <= rating <= 1
+    private Float rating; // 0 <= rating <= 1
     private String genre;
     private String country_of_origin;
-    private float budget;
+    private Float budget;
     private String language;
-    private Date release_date;
-    private int length;
+
+    @Column(name="release_date")
+    private Date releaseDate;
+    private Integer length;
     private String poster_url;
 
     public Movie(CreateMovieRequest request) {
@@ -47,7 +49,7 @@ public class Movie {
         genre = request.genre;
         country_of_origin = request.country_of_origin;
         language = request.language;
-        release_date = request.release_date != null ? request.release_date : new Date();
+        releaseDate = request.releaseDate != null ? request.releaseDate : new Date();
         length = request.length;
         poster_url = request.poster_url;
     }

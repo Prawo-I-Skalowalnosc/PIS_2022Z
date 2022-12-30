@@ -12,7 +12,7 @@ public class CreateMovieRequest {
     public String country_of_origin;
     public float budget;
     public String language;
-    public Date release_date;
+    public Date releaseDate;
     public int length;
     public String poster_url;
 }

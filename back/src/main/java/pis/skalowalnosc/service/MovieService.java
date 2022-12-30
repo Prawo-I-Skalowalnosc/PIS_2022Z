@@ -9,5 +9,13 @@ import java.util.List;
 public interface MovieService {
     List<Movie> findAll();
 
+    List<Movie> findUpcoming();
+
+    List<Movie> findNewest();
+
+    List<Movie> findBest();
+
     Movie create(CreateMovieRequest request) throws AppException;
+
+
 }

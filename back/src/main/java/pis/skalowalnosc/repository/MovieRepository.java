@@ -10,4 +10,11 @@ import java.util.UUID;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, UUID> {
     List<Movie> findByTitle(String title);
+
+    List<Movie> findFirst10ByReleaseDateAfterOrderByReleaseDateAsc(java.util.Date releaseDate);
+
+    List<Movie> findFirst10ByReleaseDateBeforeOrderByReleaseDateDesc(java.util.Date releaseDate);
+
+    List<Movie> findAllByRatingIsNotNullOrderByRatingsDesc();
+
 }
