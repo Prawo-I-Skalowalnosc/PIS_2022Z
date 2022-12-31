@@ -29,6 +29,12 @@ export class Requests {
         return setResponseOrError(response);
     }
 
+    static async movies(): Promise<GenericResponse<MovieResponse>> {
+        const response = await fetch(Global.backendUrl + "/movies/all")
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
     static async login(cred: Credentials): Promise<GenericResponse<LoginResponse>> {
         const response = await fetchPost(cred, "/account/login")
             .then(res => res.json())

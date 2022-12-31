@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import '../style/App.css';
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
-import {FirstMovie} from "../components/FirstMovie";
 import Layout from "../components/layout/Layout";
+import {MovieGrid} from "../components/MovieGrid";
 
 export default function MainMenuPage() {
     const [error, setError] = useState("");
@@ -10,7 +10,7 @@ export default function MainMenuPage() {
     return <>
         <Layout>
         <ErrorAndInfo infoMsg={""} errorMsg={error}/>
-        <FirstMovie onSuccess={() => {}} onError={(res) => setError(res.message)}/>
+        <MovieGrid onSuccess={() => {}} onError={(res) => setError(res.message)}/>
         </Layout>
     </>;
 }
