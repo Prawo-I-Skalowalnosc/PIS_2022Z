@@ -1,6 +1,6 @@
 .pis-navbar{
-    min-height: 5%;
     margin: 0;
+    padding-top: 0;
     padding-left: 1%;
     border-bottom: 2px solid white;
     background-color: black;
@@ -10,12 +10,49 @@
     z-index: 1;
 }
 
+.pis-nav-item{
+    display:inline-block;
+}
+
+.pis-navbar-nav{
+    display:inline-block;
+}
+
+li > .pis-navbar-link {
+    display: inline-block;
+}
+
 .pis-navbar-link{
-    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .pis-navbar-link:active{
-    font-weight: bold;
     animation: pulse;
     animation-duration: 500ms;
+}
+
+.pis-navbar-link-main{
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 5px;
+    color: #bc4749;
+}
+
+.pis-navbar-link-main:active{
+    font-weight: bold;
+    color: #bc4749;
+    animation: pulse;
+    animation-duration: 500ms;
+}
+
+.pis-navbar-link-main:hover{
+    font-weight: bold;
+    color: #bc4749;
+}
+
+.pis-navbar-link-main:focus{
+    font-weight: bold;
+    color: #bc4749;
 }

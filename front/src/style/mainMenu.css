@@ -12,6 +12,8 @@
     text-decoration-color: #bc4749;
     text-underline-offset: 10px;
     margin-bottom: 1%;
+    animation: fadeIn;
+    animation-duration: 500ms;
 }
 
 .pis-mainpage-upcomingtext{
@@ -22,6 +24,8 @@
     text-decoration-color: #bc4749;
     text-underline-offset: 10px;
     margin-bottom: 1%;
+    animation: fadeIn;
+    animation-duration: 500ms;
 }
 
 .pis-mainpage-besttext{
@@ -32,12 +36,16 @@
     text-decoration-color: #bc4749;
     text-underline-offset: 10px;
     margin-bottom: 1%;
+    animation: fadeIn;
+    animation-duration: 500ms;
 }
 
 .pis-mainpagelist-card-cont{
     overflow: auto;
     display: flex;
     width: 100%;
+    animation: fadeIn;
+    animation-duration: 500ms;
 }
 
 .pis-mainpagelist-card{
