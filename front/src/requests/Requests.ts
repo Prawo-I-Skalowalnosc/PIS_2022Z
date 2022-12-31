@@ -29,7 +29,7 @@ export class Requests {
         return setResponseOrError(response);
     }
 
-    static async movies(): Promise<GenericResponse<MovieResponse>> {
+    static async allMovies(): Promise<GenericResponse<MovieResponse[]>> {
         const response = await fetch(Global.backendUrl + "/movies/all")
             .then(res => res.json())
         return setResponseOrError(response);

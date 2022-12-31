@@ -2,23 +2,23 @@ import {useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {Box} from "@mui/material";
 import {MovieIcon} from "./MovieIcon";
-import {MovieResponse} from "../types/Movies";
+import {MoviesResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
 import {ErrorResponse} from "../types/ErrorResponse";
 
 interface MovieProps {
-    onSuccess: (response: MovieResponse) => void,
+    onSuccess: (response: MoviesResponse) => void,
     onError: (err: ErrorResponse) => void
 }
 
 export function MovieGrid(props: MovieProps) {
-    const [movies, setMovies] = useState({} as MovieResponse)
+    const [movies, setMovies] = useState([] as MoviesResponse)
     const [amount, setAmount] = useState(0);
 
     useEffect( () => {
-    Requests.movies().then(res => {
+    Requests.allMovies().then(res => {
         if (res.err) {
-            setMovies({} as MovieResponse);
+            setMovies({} as MoviesResponse);
             props.onError({
                 message: "",
                 infoMessage: "Brak filmów w bazie", status: 0, timestamp: new Date()
@@ -42,7 +42,6 @@ export function MovieGrid(props: MovieProps) {
                    margin={0}>
 
                 {Array.from({length: amount}, (_, idx) => {
-                    //@ts-ignore
                     return <Grid2 xs={"auto"} key={idx}><MovieIcon poster_url={movies[idx].poster_url}/></Grid2>;
                 })
                 }
