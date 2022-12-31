@@ -16,6 +16,4 @@ public interface MovieService {
     List<Movie> findBest();
 
     Movie create(CreateMovieRequest request) throws AppException;
-
-
 }

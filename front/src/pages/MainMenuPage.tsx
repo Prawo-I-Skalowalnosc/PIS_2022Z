@@ -29,8 +29,7 @@ export default function MainMenuPage() {
                 setUpcomingMovies(res.res);
             }
         });
-
-        //TODO: pobranie najwyżej ocenianych filmów (sort po ocenie)
+        
         Requests.bestMovies().then(res => {
             if (res.err) {
                 setBestMovies([] as MovieResponse[]);

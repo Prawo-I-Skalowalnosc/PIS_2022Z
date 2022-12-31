@@ -16,5 +16,4 @@ public interface MovieRepository extends JpaRepository<Movie, UUID> {
     List<Movie> findFirst10ByReleaseDateBeforeOrderByReleaseDateDesc(java.util.Date releaseDate);
 
     List<Movie> findAllByRatingIsNotNullOrderByRatingsDesc();
-
 }

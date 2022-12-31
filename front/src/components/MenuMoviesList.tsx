@@ -11,11 +11,11 @@ interface MoviesListProps {
 
 export function MenuMoviesList(props: MoviesListProps) {
     return <>
-        <div className="pis-card-cont">
+        <div className="pis-mainpagelist-card-cont">
         {props.movies && props.movies.map(movie => {
             return  <>
-                <div className="card pis-card has-bg-img" style={{backgroundImage: `url(${movie.poster_url})`}}>
-                    <div className="pis-card-title">{movie.title}</div>
+                <div className="card pis-mainpagelist-card" style={{backgroundImage: `url(${movie.poster_url})`}}>
+                    <div className="pis-mainpagelist-card-title">{movie.title}</div>
                 </div>
             </>
         })}

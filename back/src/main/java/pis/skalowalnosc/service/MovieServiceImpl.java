@@ -32,7 +32,6 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<Movie> findBest() {
-        //Filmy, które jeszcze nie wyszły nie mają ocen, więc zakładam, że default to 0
         return movieRepository.findAllByRatingIsNotNullOrderByRatingsDesc();
     }
 
