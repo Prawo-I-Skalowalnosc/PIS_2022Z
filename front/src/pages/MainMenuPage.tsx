@@ -45,19 +45,19 @@ export default function MainMenuPage() {
         <Layout>
             <div className="App container-fluid pis-mainpage-cont">
                 <ErrorAndInfo infoMsg={""} errorMsg={error}/>
-                {recentMovies.length != 0 &&
+                {recentMovies.length !== 0 &&
                 <>
                     <h4 className="pis-mainpage-newesttext">NAJNOWSZE FILMY</h4>
                     <MenuMoviesList movies={recentMovies}/>
                 </>}
 
-                {upcomingMovies.length != 0 &&
+                {upcomingMovies.length !== 0 &&
                 <>
                     <h4 className="pis-mainpage-upcomingtext">NAJBLIŻSZE PREMIERY</h4>
                     <MenuMoviesList movies={upcomingMovies}/>
                 </>}
 
-                {bestMovies.length != 0 &&
+                {bestMovies.length !== 0 &&
                 <>
                     <h4 className="pis-mainpage-besttext">NAJLEPSZE FILMY</h4>
                     <MenuMoviesList movies={bestMovies}/>
