@@ -1,18 +1,18 @@
 import {Card, CardMedia} from "@mui/material";
+import {MovieResponse} from "../types/Movies";
 
 interface movieIconProps {
-    poster_url: string
+    movie_info: MovieResponse
 }
 
 export function MovieIcon(props: movieIconProps) {
-// export function MovieIcon() {
     return (
         <Card
             sx={{ height: 300, width: 200 }}
         >
             <CardMedia
                 sx={{ height: 1}}
-                image={ props.poster_url }
+                image={ props.movie_info.poster_url }
                 title={ "star wars movie poster" }
             />
         </Card>

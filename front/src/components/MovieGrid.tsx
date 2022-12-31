@@ -42,7 +42,7 @@ export function MovieGrid(props: MovieProps) {
                    margin={0}>
 
                 {Array.from({length: amount}, (_, idx) => {
-                    return <Grid2 xs={"auto"} key={idx}><MovieIcon poster_url={movies[idx].poster_url}/></Grid2>;
+                    return <Grid2 xs={"auto"} key={idx}><MovieIcon movie_info={movies[idx]}/></Grid2>;
                 })
                 }
             </Grid2>
