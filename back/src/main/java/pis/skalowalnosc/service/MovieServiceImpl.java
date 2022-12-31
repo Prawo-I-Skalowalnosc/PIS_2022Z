@@ -2,6 +2,8 @@ package pis.skalowalnosc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pis.skalowalnosc.controller.api.requests.CreateMovieRequest;
+import pis.skalowalnosc.errors.AppException;
 import pis.skalowalnosc.model.Movie;
 import pis.skalowalnosc.repository.MovieRepository;
 
@@ -16,5 +18,22 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public List<Movie> findAll() {
         return movieRepository.findAll();
+    }
+
+    @Override
+    public Movie create(CreateMovieRequest request) throws AppException {
+        if (request == null)
+            throw new AppException("Nie podano danych nowego filmu");
+
+        try {
+            if (request.title.isBlank())
+                throw new AppException("Podano pusty tytuł");
+
+            var movie = new Movie(request);
+            return movieRepository.save(movie);
+        }
+        catch (Exception e) {
+            throw new AppException("Błąd podczas dodawania filmu");
+        }
     }
 }

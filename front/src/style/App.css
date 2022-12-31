@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #b6b6b6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+p {
+  color: #252424;
+}
+
+.pis-link{
+  text-decoration: none;
+  color: #a7c957
+}
+
+.pis-link:hover {
+  color: #6a994e;
+}
+
+textarea.form-control {
+  min-height: 200px;
+  color: #4a4a4a;
+  border-color: #000;
+}
+
+textarea.form-control:focus {
+  min-height: 200px;
+  color: black;
+  box-shadow: 0 5px 10px 0 black;
+  outline-color: black;
+  border: 1px solid #555;
+}
+
+select.form-select:focus {
+  color: black;
+  box-shadow: 0 5px 10px 0 black;
+  outline-color: black;
+  border: 1px solid #555;
+}
+
+input.form-control {
+  color: #4a4a4a;
+}
+
+input.form-control:focus {
+  color: black;
+  box-shadow: 0 5px 10px 0 black;
+  outline-color: #386641;
+  border: 1px solid #555;
+}
