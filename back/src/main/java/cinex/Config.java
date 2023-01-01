@@ -1,7 +1,16 @@
 package cinex;
 
+import cinex.security.TokenFilter;
+import cinex.security.UserRoles;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableJpaRepositories(
@@ -9,5 +18,35 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
                 "cinex.repository"
         }
 )
+@EnableWebSecurity
 public class Config {
+    @Bean
+    public TokenFilter getTokenFilter() {
+        return new TokenFilter();
+    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf().disable()
+            .cors().and()
+            .authorizeHttpRequests(authorize -> {
+                authorize.antMatchers(
+                        "/account/**"
+                ).permitAll();
+                authorize.antMatchers(
+                        HttpMethod.POST,
+                        "/account/**"
+                ).permitAll();
+                authorize.antMatchers(
+                        "/movies/**"
+                ).hasAuthority(UserRoles.USER.toString());
+                authorize.antMatchers(
+                        HttpMethod.POST,
+                        "/movies/create"
+                ).hasAuthority(UserRoles.ADMIN.toString());
+                authorize.anyRequest().authenticated();
+            })
+            .httpBasic(Customizer.withDefaults())
+            .addFilterBefore(getTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+            .build();
+    }
 }

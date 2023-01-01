@@ -18,10 +18,8 @@ public class AccountController {
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest login) throws AppException {
-        if (accountService.login(login))
-            return new LoginResponse(true, "this is supposed to be token", "Zalogowano");
-        return new LoginResponse(false, null, "Niepoprawne hasło");
-        // pis narazie tokeny są testowe
+        var user = accountService.login(login);
+        return new LoginResponse(true, accountService.generateToken(user), "Zalogowano");
     }
 
     @PostMapping("/register")

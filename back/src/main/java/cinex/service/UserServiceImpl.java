@@ -2,28 +2,33 @@ package cinex.service;
 
 import cinex.controller.api.requests.LoginRequest;
 import cinex.controller.api.requests.RegisterRequest;
+import cinex.errors.AppException;
 import cinex.model.User;
+import cinex.repository.UserRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import cinex.errors.AppException;
-import cinex.repository.UserRepository;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.SecureRandom;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
-public class UserServiceImpl implements UserService{
-
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public static final String tokenSecret = "b955425f49d35aec88860e0224e579e9";
+
     @Override
-    public boolean login(LoginRequest login) throws AppException {
+    public User login(LoginRequest login) throws AppException {
         if (login.password == null || login.password.isBlank())
             throw new AppException("Hasło nie jest podane lub jest puste");
         if (login.username == null || login.username.isBlank())
@@ -32,14 +37,14 @@ public class UserServiceImpl implements UserService{
         if (user.isEmpty())
             throw new AppException("Brak użytkownika o tej nazwie");
         try {
-            var DBHash = user.get().getPassword();
+            var DBHash = user.get().getHash();
             var DBSalt = Hex.decodeHex(user.get().getSalt());
             var newHash = Hex.encodeHexString(hashPassword(login.password, DBSalt));
 
             if (!newHash.equals(DBHash))
                 throw new AppException("Niepoprawne hasło");
 
-            return true;
+            return user.get();
         }
         catch (DecoderException e){
             throw new AppException("Błąd podczas kodowania/dekodowania hasła");
@@ -118,4 +123,24 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public Optional<User> loadByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public String generateToken(User user) {
+        return Jwts.builder()
+            .setIssuer("CINEX")
+            .setSubject(user.getUsername())
+            .claim("admin", user.isAdmin())
+            .claim("name", user.getUsername())
+            .claim("password", user.getHash())
+            .setIssuedAt(new Date())
+            .signWith(
+                SignatureAlgorithm.HS256,
+                tokenSecret.getBytes()
+            )
+            .compact();
+    }
 }
