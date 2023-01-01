@@ -38,7 +38,7 @@ public class Config {
                 ).permitAll();
                 authorize.antMatchers(
                         "/movies/**"
-                ).hasAuthority(UserRoles.USER.toString());
+                ).permitAll();
                 authorize.antMatchers(
                         HttpMethod.POST,
                         "/movies/create"
