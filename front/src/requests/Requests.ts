@@ -35,6 +35,18 @@ export class Requests {
         return setResponseOrError(response);
     }
 
+    static async getMovieById(id : string): Promise<GenericResponse<MovieResponse>> {
+        const response = await fetch(Global.backendUrl + `/movies/byID=${id}`)
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
+    static async getMovieByTitle(title : string): Promise<GenericResponse<MovieResponse>> {
+        const response = await fetch(Global.backendUrl + `/movies/byTitle=${title}`)
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
     static async upcomingMovies(): Promise<GenericResponse<MovieResponse[]>> {
         const response = await fetch(Global.backendUrl + "/movies/upcoming")
             .then(res => res.json())
