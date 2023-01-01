@@ -5,8 +5,6 @@ import cinex.controller.api.requests.RegisterRequest;
 import cinex.errors.AppException;
 import cinex.model.User;
 import cinex.repository.UserRepository;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +13,14 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.SecureRandom;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+    @
+            Autowired
     private UserRepository userRepository;
 
     public static final String tokenSecret = "b955425f49d35aec88860e0224e579e9";
@@ -126,21 +124,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> loadByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    @Override
-    public String generateToken(User user) {
-        return Jwts.builder()
-            .setIssuer("CINEX")
-            .setSubject(user.getUsername())
-            .claim("admin", user.isAdmin())
-            .claim("name", user.getUsername())
-            .claim("password", user.getHash())
-            .setIssuedAt(new Date())
-            .signWith(
-                SignatureAlgorithm.HS256,
-                tokenSecret.getBytes()
-            )
-            .compact();
     }
 }
