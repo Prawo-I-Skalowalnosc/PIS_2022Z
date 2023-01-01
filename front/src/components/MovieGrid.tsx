@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {Box, Stack} from "@mui/material";
 import {MovieIcon} from "./MovieIcon";
-import {MoviesResponse} from "../types/Movies";
+import {MovieResponse, MoviesResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
 import {ErrorResponse} from "../types/ErrorResponse";
 import {SearchField} from "./SearchField";
@@ -37,7 +37,13 @@ export function MovieGrid(props: MovieProps) {
         setInputText(childData);
     }
 
-    // const filterData = movies.filter()
+    const filterMovies = movies.filter((movie: MovieResponse) => {
+        if (inputText === '') {
+            return movie;
+        } else {
+            return movie.title.toLowerCase().includes(inputText);
+        }
+    })
 
     return (
         <Stack
@@ -51,11 +57,9 @@ export function MovieGrid(props: MovieProps) {
                    spacing={2}
                    direction="row"
                    margin={0}>
-
-                {Array.from({length: amount}, (_, idx) => {
-                    return <Grid2 xs={"auto"} key={idx}><MovieIcon movie_info={movies[idx]}/></Grid2>;
-                })
-                }
+                {filterMovies.map((movie: MovieResponse) => {
+                    return <Grid2 xs={"auto"} key={movie.id}><MovieIcon movie_info={movie}/></Grid2>;
+                })}
             </Grid2>
         </Stack>
     )
