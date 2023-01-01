@@ -1,5 +1,5 @@
 import {Card, CardMedia} from "@mui/material";
-import {MovieResponse} from "../types/Movies";
+import {MovieResponse} from "../../types/Movies";
 
 interface movieIconProps {
     movie_info: MovieResponse

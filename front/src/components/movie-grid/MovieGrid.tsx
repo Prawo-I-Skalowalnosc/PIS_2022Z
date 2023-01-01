@@ -2,9 +2,9 @@ import {useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {Box, Stack} from "@mui/material";
 import {MovieIcon} from "./MovieIcon";
-import {MovieResponse, MoviesResponse} from "../types/Movies";
-import {Requests} from "../requests/Requests";
-import {ErrorResponse} from "../types/ErrorResponse";
+import {MovieResponse, MoviesResponse} from "../../types/Movies";
+import {Requests} from "../../requests/Requests";
+import {ErrorResponse} from "../../types/ErrorResponse";
 import {SearchField} from "./SearchField";
 
 interface MovieProps {
