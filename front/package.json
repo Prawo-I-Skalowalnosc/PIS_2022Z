@@ -1,7 +1,7 @@
 {
   "name": "example-typescript",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -35,6 +35,9 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "publishConfig": {
+    "registry": "http://0.0.0.0:9081/repository/prawo-i-sprawiedliwosc-react/"
   },
   "browserslist": {
     "production": [

@@ -35,6 +35,24 @@ export class Requests {
         return setResponseOrError(response);
     }
 
+    static async upcomingMovies(): Promise<GenericResponse<MovieResponse[]>> {
+        const response = await fetch(Global.backendUrl + "/movies/upcoming")
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
+    static async bestMovies(): Promise<GenericResponse<MovieResponse[]>> {
+        const response = await fetch(Global.backendUrl + "/movies/best")
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
+    static async newestMovies(): Promise<GenericResponse<MovieResponse[]>> {
+        const response = await fetch(Global.backendUrl + "/movies/newest")
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
     static async login(cred: Credentials): Promise<GenericResponse<LoginResponse>> {
         const response = await fetchPost(cred, "/account/login")
             .then(res => res.json())
