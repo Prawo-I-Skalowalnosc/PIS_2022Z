@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box} from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import {MovieIcon} from "./MovieIcon";
 import {MoviesResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
 import {ErrorResponse} from "../types/ErrorResponse";
+import {SearchField} from "./SearchField";
 
 interface MovieProps {
     onSuccess: (response: MoviesResponse) => void,
@@ -14,6 +15,7 @@ interface MovieProps {
 export function MovieGrid(props: MovieProps) {
     const [movies, setMovies] = useState([] as MoviesResponse)
     const [amount, setAmount] = useState(0);
+    const [inputText, setInputText] = useState("");
 
     useEffect( () => {
     Requests.allMovies().then(res => {
@@ -31,10 +33,19 @@ export function MovieGrid(props: MovieProps) {
     })
     }, [props])
 
+    const handleCallback = (childData: any) => {
+        setInputText(childData);
+    }
+
+    // const filterData = movies.filter()
+
     return (
-        <Box>
+        <Stack
+            margin={0}
+            sx={{height: 1, marginTop: 0}}
+            >
+            <SearchField inputHandler={handleCallback}/>
             <Grid2 container
-                   alignItems="center"
                    justifyContent="center"
                    display="flex"
                    spacing={2}
@@ -46,6 +57,6 @@ export function MovieGrid(props: MovieProps) {
                 })
                 }
             </Grid2>
-        </Box>
+        </Stack>
     )
 }
