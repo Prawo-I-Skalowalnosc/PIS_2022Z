@@ -44,7 +44,9 @@ export default function MainMenuPage() {
     return <>
         <Layout>
             <div className="App container-fluid pis-mainpage-cont">
-                <ErrorAndInfo infoMsg={""} errorMsg={error}/>
+                <div className="pis-mainpage-error">
+                    <ErrorAndInfo errorMsg={error} infoMsg={""}/>
+                </div>
                 {recentMovies.length !== 0 &&
                 <>
                     <h4 className="pis-mainpage-newesttext">NAJNOWSZE FILMY</h4>

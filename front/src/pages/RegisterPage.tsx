@@ -1,13 +1,20 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import '../style/App.css';
 import {Link, useNavigate} from "react-router-dom";
 import { RegisterForm } from "../components/RegisterForm";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import Layout from "../components/layout/Layout";
+import {TokenHelper} from "../helpers/TokenHelper";
 
 export default function RegisterPage() {
     const [error, setError] = useState("");
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (TokenHelper.amILogged()){
+            navigate("/", {replace: true});
+        }
+    })
 
     return <>
         <Layout>
