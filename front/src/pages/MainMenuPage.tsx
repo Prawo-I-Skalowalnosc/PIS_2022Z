@@ -5,6 +5,7 @@ import {MenuMoviesList} from "../components/MenuMoviesList";
 import Layout from "../components/layout/Layout";
 import {MovieResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
+import { Helmet } from 'react-helmet';
 
 export default function MainMenuPage() {
     const [error, setError] = useState("");
@@ -42,6 +43,9 @@ export default function MainMenuPage() {
     }, [])
 
     return <>
+        <Helmet>
+            <title>Cinex ∙ Strona główna</title>
+        </Helmet>
         <Layout>
             <div className="App container-fluid pis-mainpage-cont">
                 <div className="pis-mainpage-error">

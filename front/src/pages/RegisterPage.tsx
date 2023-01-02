@@ -5,6 +5,8 @@ import { RegisterForm } from "../components/RegisterForm";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import Layout from "../components/layout/Layout";
 import {TokenHelper} from "../helpers/TokenHelper";
+import { Helmet } from 'react-helmet';
+
 
 export default function RegisterPage() {
     const [error, setError] = useState("");
@@ -17,6 +19,9 @@ export default function RegisterPage() {
     })
 
     return <>
+        <Helmet>
+            <title>Cinex ∙ Zarejestruj się</title>
+        </Helmet>
         <Layout>
             <div className="container-fluid pis-register-page">
                 <div className="App pis-register-page-cont">

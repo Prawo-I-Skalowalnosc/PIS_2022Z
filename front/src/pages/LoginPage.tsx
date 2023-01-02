@@ -5,6 +5,7 @@ import { LoginForm } from "../components/LoginForm";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import Layout from "../components/layout/Layout";
 import {TokenHelper} from "../helpers/TokenHelper";
+import {Helmet} from "react-helmet";
 
 export default function LoginPage() {
     const [error, setError] = useState("");
@@ -17,6 +18,9 @@ export default function LoginPage() {
     })
 
     return <>
+        <Helmet>
+            <title>Cinex ∙ Zaloguj się</title>
+        </Helmet>
         <Layout>
             <div className="App container-fluid pis-login-page">
                 <div className="App pis-login-page-cont">
