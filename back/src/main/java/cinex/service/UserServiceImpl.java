@@ -19,8 +19,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @
-            Autowired
+    @Autowired
     private UserRepository userRepository;
 
     public static final String tokenSecret = "b955425f49d35aec88860e0224e579e9";

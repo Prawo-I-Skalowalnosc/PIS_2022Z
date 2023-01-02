@@ -23,14 +23,23 @@ const NavBar = () => {
                     <Link onClick={() => {
                         TokenHelper.deleteToken();
                         window.location.reload();
-                    }} className="nav-link pis-navbar-link" to="/">Wyloguj się</Link>
+                    }} className="nav-link pis-navbar-link" to="/">
+                        <i className="bi bi-box-arrow-right"/> Wyloguj się
+                    </Link>
                 </li>}
-                <li className="nav-item pis-nav-item">
-                    <Link className="nav-link pis-navbar-link" to="/login">Zaloguj się</Link>
-                </li>
-                <li className="nav-item pis-nav-item">
-                    <Link className="nav-link pis-navbar-link" to="/register">Zarejestruj się</Link>
-                </li>
+
+                {!TokenHelper.amILogged() && <li className="nav-item pis-nav-item">
+                    <Link className="nav-link pis-navbar-link" to="/login">
+                        <i className="bi bi-box-arrow-in-right"/> Zaloguj się
+                    </Link>
+                </li>}
+
+                {!TokenHelper.amILogged() && <li className="nav-item pis-nav-item">
+                    <Link className="nav-link pis-navbar-link" to="/register">
+                    <i className="bi bi-person-add"/> Zarejestruj się
+                    </Link>
+                </li>}
+
             </ul>
         </nav>
     </div>

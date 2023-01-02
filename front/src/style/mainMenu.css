@@ -40,6 +40,22 @@
     animation-duration: 500ms;
 }
 
+.pis-mainpage-error{
+    position: fixed !important;
+    font-size: calc(10px + 1vmin);
+    top: 8%;
+    left: 0;
+    margin: 0;
+    padding-left: 35%;
+    padding-right: 35%;
+    width: 100%;
+    z-index: 1;
+    word-wrap: anywhere;
+    animation: fadeOut forwards;
+    animation-duration: 500ms;
+    animation-delay: 2000ms;
+}
+
 .pis-mainpagelist-card-cont{
     overflow: auto;
     display: flex;
@@ -87,3 +103,4 @@
     font-size: 2rem;
     font-weight: 600;
 }
+

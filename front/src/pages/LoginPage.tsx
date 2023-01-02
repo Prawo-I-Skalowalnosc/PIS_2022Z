@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import '../style/App.css';
 import {Link, useNavigate} from "react-router-dom";
 import { LoginForm } from "../components/LoginForm";
@@ -9,6 +9,12 @@ import {TokenHelper} from "../helpers/TokenHelper";
 export default function LoginPage() {
     const [error, setError] = useState("");
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (TokenHelper.amILogged()){
+            navigate("/", {replace: true});
+        }
+    },[])
 
     return <>
         <Layout>
