@@ -14,7 +14,7 @@ export default function RegisterPage() {
         if (TokenHelper.amILogged()){
             navigate("/", {replace: true});
         }
-    },[])
+    })
 
     return <>
         <Layout>

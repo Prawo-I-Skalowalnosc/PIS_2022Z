@@ -14,7 +14,7 @@ export default function LoginPage() {
         if (TokenHelper.amILogged()){
             navigate("/", {replace: true});
         }
-    },[])
+    })
 
     return <>
         <Layout>
