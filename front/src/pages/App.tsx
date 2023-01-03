@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import MainMenuPage from "./MainMenuPage";
+import { StarRating, StarShow } from '../components/Stars';
 
 export default function App() {
   return (
