@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import cinex.errors.AppException;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -28,7 +29,7 @@ public class MovieController {
     public List<Movie> all() {
         return movieService.findAll();
     }
-
+    
     @GetMapping("/upcoming")
     public List<Movie> upcoming() {
         return movieService.findUpcoming();

@@ -1,5 +1,7 @@
 package cinex.model;
 
+import cinex.controller.api.requests.CreateMovieRequest;
+import cinex.controller.api.requests.CreateRatingRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+
 
 @Getter
 @Setter
@@ -28,4 +31,10 @@ public class MovieRating {
 
     private Integer value;
     private Date date_rated;
+    public MovieRating(Movie movie, User user, Integer rating){
+        this.movie = movie;
+        this.rater = user;
+        this.value = rating;
+        this.date_rated = new Date();
+    }
 }
