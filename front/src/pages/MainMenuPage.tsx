@@ -5,6 +5,7 @@ import {MenuMoviesList} from "../components/MenuMoviesList";
 import Layout from "../components/layout/Layout";
 import {MovieResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
+import { Helmet } from 'react-helmet';
 
 export default function MainMenuPage() {
     const [error, setError] = useState("");
@@ -42,9 +43,14 @@ export default function MainMenuPage() {
     }, [])
 
     return <>
+        <Helmet>
+            <title>Cinex ∙ Strona główna</title>
+        </Helmet>
         <Layout>
             <div className="App container-fluid pis-mainpage-cont">
-                <ErrorAndInfo infoMsg={""} errorMsg={error}/>
+                <div className="pis-mainpage-error">
+                    <ErrorAndInfo errorMsg={error} infoMsg={""}/>
+                </div>
                 {recentMovies.length !== 0 &&
                 <>
                     <h4 className="pis-mainpage-newesttext">NAJNOWSZE FILMY</h4>

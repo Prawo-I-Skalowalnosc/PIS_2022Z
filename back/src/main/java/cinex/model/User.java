@@ -41,12 +41,8 @@ public class User {
         this.salt = Hex.encodeHexString(salt);
     }
 
-    public String getPassword() {
-        return hash;
-    }
-
-    public String getSalt() {
-        return salt;
+    public boolean isAdmin() {
+        return role != 'U';
     }
 
 }
