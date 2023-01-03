@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, Stack} from "@mui/material";
+import {Stack} from "@mui/material";
 import {MovieCard} from "./MovieCard";
 import {MovieResponse, MoviesResponse} from "../../types/Movies";
 import {Requests} from "../../requests/Requests";
