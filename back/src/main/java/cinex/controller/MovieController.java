@@ -1,6 +1,7 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreateMovieRequest;
+import cinex.controller.api.responses.MovieResponse;
 import cinex.model.Movie;
 import cinex.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import cinex.errors.AppException;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,35 +20,43 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping("/first")
-    public Movie first() throws AppException {
+    public MovieResponse first() throws AppException {
         var movies = movieService.findAll();
         if (movies.isEmpty())
             throw new AppException("brak filmów w bazie");
-        return movies.get(0);
+        return new MovieResponse(movies.get(0));
     }
 
     @GetMapping("/all")
-    public List<Movie> all() {
-        return movieService.findAll();
+    public List<MovieResponse> all() {
+        return movieService.findAll().stream()
+                .map(MovieResponse::new)
+                .collect(Collectors.toList());
     }
     
     @GetMapping("/upcoming")
-    public List<Movie> upcoming() {
-        return movieService.findUpcoming();
+    public List<MovieResponse> upcoming() {
+        return  movieService.findUpcoming().stream()
+                .map(MovieResponse::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/best")
-    public List<Movie> best() {
-        return movieService.findBest();
+    public List<MovieResponse> best() {
+        return movieService.findBest().stream()
+                .map(MovieResponse::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/newest")
-    public List<Movie> newest() {
-        return movieService.findNewest();
+    public List<MovieResponse> newest() {
+        return movieService.findNewest().stream()
+                .map(MovieResponse::new)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/create")
-    public Movie create(@RequestBody CreateMovieRequest request) throws AppException {
-        return movieService.create(request);
+    public MovieResponse create(@RequestBody CreateMovieRequest request) throws AppException {
+        return new MovieResponse(movieService.create(request));
     }
 }
