@@ -79,7 +79,7 @@ export class Requests {
     }
 
     static async sendRate(rate : Rate): Promise<GenericResponse<RateResponse>> {
-        const response = await fetchPut(rate, "movieRatings/addRating")
+        const response = await fetchPut(rate, "/movieRatings/addRating")
             .then(res => res.json())
         return setResponseOrError(response);
     }
