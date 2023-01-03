@@ -1,4 +1,4 @@
-import {Stack, SvgIcon, TextField} from "@mui/material";
+import {InputAdornment, Stack, SvgIcon, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
 export function SearchField(props: {inputHandler: any}) {
@@ -8,16 +8,25 @@ export function SearchField(props: {inputHandler: any}) {
     }
 
     return (
-    <Stack sx={{marginLeft: "5vw"}}
+    <Stack sx={{margin: "0 auto",
+            border: "1px solid #000000",
+            borderRadius: 1,
+            width: 0.8,
+            backgroundColor: "white"}}
         direction="row"
         justifyContent="flex-start"
         alignItems="center"
         spacing={0}>
-        <SvgIcon component={SearchIcon} fontSize="large"/>
-        <TextField sx={{width: "90%", marginLeft: "1rem", backgroundColor: "white", borderRadius: "5px"}}
+        <TextField sx={{width: 1}}
         id="outlined-basic"
-        label="Search"
+        label=""
         variant="outlined"
+        InputProps={{
+            startAdornment: (
+                <InputAdornment position={"start"}>
+                    <SvgIcon component={SearchIcon} fontSize="large"/>
+                </InputAdornment>
+            ),}}
         onChange={sendData}/>
     </Stack>
 )
