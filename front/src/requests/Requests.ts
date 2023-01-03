@@ -3,6 +3,7 @@ import {MovieResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
 import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
 import {TokenHelper} from "../helpers/TokenHelper";
+import { Rate, RateResponse } from "../types/Rate";
 
 function fetchPost(body: any, url: string){
     return fetch(Global.backendUrl + url, {
@@ -21,6 +22,17 @@ function fetchGet(url: string) {
             'Content-Type': 'application/json',
             'Authorization': `${TokenHelper.getToken()}`
         }
+    })
+}
+
+function fetchPut(body: any, url: string){
+    return fetch(Global.backendUrl + url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${TokenHelper.getToken()}`
+        },
+        body: JSON.stringify(body)
     })
 }
 
@@ -62,6 +74,12 @@ export class Requests {
 
     static async newestMovies(): Promise<GenericResponse<MovieResponse[]>> {
         const response = await fetchGet("/movies/newest")
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
+    static async sendRate(rate : Rate): Promise<GenericResponse<RateResponse>> {
+        const response = await fetchPut(rate, "movieRatings/addRating")
             .then(res => res.json())
         return setResponseOrError(response);
     }
