@@ -10,6 +10,13 @@ function fetchPost(body: any, url: string){
         body: JSON.stringify(body)
     })
 }
+function fetchGet(url: string) {
+    return fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+}
 
 class GenericResponse <T>{
     res?: T = undefined
@@ -24,43 +31,43 @@ function setResponseOrError(response: any) {
 
 export class Requests {
     static async firstMovie(): Promise<GenericResponse<MovieResponse>> {
-        const response = await fetch(Global.backendUrl + "/movies/first")
+        const response = await fetchGet(Global.backendUrl + "/movies/first")
             .then(res => res.json())
         return setResponseOrError(response);
     }
 
     static async allMovies(): Promise<GenericResponse<MovieResponse[]>> {
-        const response = await fetch(Global.backendUrl + "/movies/all")
+        const response = await fetchGet(Global.backendUrl + "/movies/all")
             .then(res => res.json())
         return setResponseOrError(response);
     }
 
     static async getMovieById(id : string): Promise<GenericResponse<MovieResponse>> {
-        const response = await fetch(Global.backendUrl + `/movies/byID=${id}`)
+        const response = await fetchGet(Global.backendUrl + `/movies/byID?id=${id}`)
             .then(res => res.json())
         return setResponseOrError(response);
     }
 
     static async getMovieByTitle(title : string): Promise<GenericResponse<MovieResponse>> {
-        const response = await fetch(Global.backendUrl + `/movies/byTitle=${title}`)
+        const response = await fetchGet(Global.backendUrl + `/movies/byTitle=${title}`)
             .then(res => res.json())
         return setResponseOrError(response);
     }
 
     static async upcomingMovies(): Promise<GenericResponse<MovieResponse[]>> {
-        const response = await fetch(Global.backendUrl + "/movies/upcoming")
+        const response = await fetchGet(Global.backendUrl + "/movies/upcoming")
             .then(res => res.json())
         return setResponseOrError(response);
     }
 
     static async bestMovies(): Promise<GenericResponse<MovieResponse[]>> {
-        const response = await fetch(Global.backendUrl + "/movies/best")
+        const response = await fetchGet(Global.backendUrl + "/movies/best")
             .then(res => res.json())
         return setResponseOrError(response);
     }
 
     static async newestMovies(): Promise<GenericResponse<MovieResponse[]>> {
-        const response = await fetch(Global.backendUrl + "/movies/newest")
+        const response = await fetchGet(Global.backendUrl + "/movies/newest")
             .then(res => res.json())
         return setResponseOrError(response);
     }
