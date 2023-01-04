@@ -2,6 +2,7 @@ package cinex;
 
 import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.model.Movie;
+import cinex.model.MovieRating;
 import cinex.model.User;
 import cinex.service.UserService;
 import net.bytebuddy.utility.RandomString;
@@ -33,5 +34,9 @@ public class GlobalTestValues {
     public static User getUser() {
         return new User(UUID.randomUUID(), List.of(), username,
                 '1', RandomString.make(32) + "@abcdef.pl", new Date(), RandomString.make(32), RandomString.make(32));
+    }
+
+    public static MovieRating getMovieRating(Movie m, User u, Integer value){
+        return new MovieRating(m, u, value);
     }
 }
