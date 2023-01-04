@@ -2,14 +2,12 @@ package cinex.controller;
 
 import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.controller.api.responses.MovieResponse;
-import cinex.model.Movie;
 import cinex.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import cinex.errors.AppException;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController

@@ -1,7 +1,5 @@
 package cinex.model;
 
-import cinex.controller.api.requests.CreateMovieRequest;
-import cinex.controller.api.requests.CreateRatingRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

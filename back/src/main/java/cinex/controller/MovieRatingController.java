@@ -2,7 +2,6 @@ package cinex.controller;
 
 import cinex.controller.api.requests.CreateRatingRequest;
 import cinex.controller.api.responses.MovieRatingResponse;
-import cinex.model.MovieRating;
 import cinex.service.MovieService;
 import cinex.service.UserService;
 import cinex.service.MovieRatingService;
@@ -31,13 +30,13 @@ public class MovieRatingController {
             if (opt_rating.isPresent()) {
                 var rating = opt_rating.get();
                 rating.setValue(request.rating);
-                return new MovieRatingResponse(true, "Edycja recenzji");
+                return new MovieRatingResponse(true, "Rating edition");
             } else{
                 movieRatingService.create(movie, user, request.rating);
-                return new MovieRatingResponse(true, "Nowa recenzja");
+                return new MovieRatingResponse(true, "New rating");
             }
         }
-        return new MovieRatingResponse(false, "Nie przesłane");
+        return new MovieRatingResponse(false, "Incorrect rating");
     }
 
 }
