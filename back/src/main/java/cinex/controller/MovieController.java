@@ -32,8 +32,10 @@ public class MovieController {
     }
 
     @GetMapping("/byID")
-    public Optional<Movie> byID(@RequestParam UUID id){
-    	return movieService.findById(id);
+    public Movie byID(@RequestParam UUID id) throws AppException{
+        var movie = movieService.findById(id);
+        if(!movie.isPresent()) throw new AppException("Brak filmu w bazie");
+    	return movie.get();
     }
     
     @GetMapping("/byTitle")
