@@ -30,6 +30,7 @@ class GenericResponse <T>{
 }
 
 function setResponseOrError(response: any) {
+    SecurityHelper.refreshContext()
     if (response.status && response.status !== 200)
         return {err: response};
     return {res: response};
@@ -69,6 +70,8 @@ export class Requests {
     static async login(cred: Credentials): Promise<GenericResponse<LoginResponse>> {
         const response = await fetchPost(cred, "/account/login")
             .then(res => res.json())
+        if (response.status !== 200)
+            SecurityHelper.deleteContext()
         return setResponseOrError(response);
     }
 
