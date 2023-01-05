@@ -23,8 +23,10 @@ export class SecurityHelper {
 
     static refreshContext() {
         const context = SecurityHelper.getContext();
-        SecurityHelper.deleteContext();
-        SecurityHelper.setContext(context);
+        if (!!context.token && !!context.username && context.isAdmin){
+            SecurityHelper.deleteContext();
+            SecurityHelper.setContext(context)
+        }
     }
 
     static amILogged() : boolean {
