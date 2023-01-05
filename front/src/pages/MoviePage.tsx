@@ -5,6 +5,8 @@ import Layout from "../components/layout/Layout";
 import {Requests} from "../requests/Requests";
 import {MovieResponse} from "../types/Movies";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
+import {Helmet} from "react-helmet";
+
 
 export default function MoviePage() {
     const [error, setError] = useState("");
@@ -20,6 +22,9 @@ export default function MoviePage() {
         });
     },[])
     return <>
+        <Helmet>
+            <title>Cinex ∙ Opis filmu</title>
+        </Helmet>
         <Layout>
             <div className="conatiner-fluid-pis-movie-page">
                 <ErrorAndInfo infoMsg={""} errorMsg={error}/>
