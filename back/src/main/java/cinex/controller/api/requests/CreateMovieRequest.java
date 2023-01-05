@@ -15,6 +15,5 @@ public class CreateMovieRequest {
     public Date releaseDate;
     public int length;
     public String poster_url;
-
     public String author;
 }
