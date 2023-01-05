@@ -42,8 +42,11 @@ public class MovieServiceImpl implements MovieService{
             throw new AppException("Nie podano danych nowego filmu");
 
         try {
-            if (request.title.isBlank())
+            if (request.title == null || request.title.isBlank())
                 throw new AppException("Podano pusty tytuł");
+
+            if (request.genre == null)
+                throw new AppException("Nie podano garunku");
 
             var movie = new Movie(request);
             return movieRepository.save(movie);

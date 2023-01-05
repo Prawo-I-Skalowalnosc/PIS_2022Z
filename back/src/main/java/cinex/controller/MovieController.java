@@ -2,12 +2,14 @@ package cinex.controller;
 
 import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.model.Movie;
+import cinex.security.SecurityHelper;
 import cinex.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import cinex.errors.AppException;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -46,6 +48,8 @@ public class MovieController {
 
     @PostMapping("/create")
     public Movie create(@RequestBody CreateMovieRequest request) throws AppException {
+        if (!Objects.requireNonNull(SecurityHelper.getLoggedUser()).isAdmin())
+            throw new AppException("Nie masz uprawnień, aby dodać film");
         return movieService.create(request);
     }
 }

@@ -5,7 +5,7 @@ import {MenuMoviesList} from "../components/MenuMoviesList";
 import Layout from "../components/layout/Layout";
 import {MovieResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
-import { Helmet } from 'react-helmet';
+import {Helmet} from "react-helmet";
 
 export default function MainMenuPage() {
     const [error, setError] = useState("");
