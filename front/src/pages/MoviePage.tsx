@@ -49,7 +49,7 @@ export default function MoviePage() {
                         <h4 className={'pis-movie-page-data-content'}>{movieData.language}</h4>
 
                         <h2 className='pis-movie-page-data-headers'>Premiera</h2>
-                        <h4 className={'pis-movie-page-data-content'}>{movieData.release_date}</h4>
+                        <h4 className={'pis-movie-page-data-content'}>{movieData.releaseDate?.substring(0, 10)}</h4>
 
                         <h2 className='pis-movie-page-data-headers'>Czas trwania</h2>
                         <h4 className={'pis-movie-page-data-content'}>{movieData.length} min</h4>
