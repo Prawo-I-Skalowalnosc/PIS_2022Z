@@ -3,6 +3,7 @@ package cinex;
 import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.model.Movie;
 import cinex.model.User;
+import cinex.service.UserService;
 import net.bytebuddy.utility.RandomString;
 
 import java.util.Date;
@@ -23,6 +24,10 @@ public class GlobalTestValues {
     public static CreateMovieRequest getMovieRequest() {
         return new CreateMovieRequest(title, 0.6f, "sci-fi", "Canada", 321f,
                 "Francuski",  new Date(), 85, "testowy.url.pl");
+    }
+
+    public static String getToken() {
+        return UserService.generateToken(getUser());
     }
 
     public static User getUser() {

@@ -10,11 +10,8 @@ import './style/index.css';
 import App from './pages/App';
 
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+document.title = "Cinex";
 root.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );

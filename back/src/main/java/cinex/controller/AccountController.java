@@ -14,19 +14,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/account")
 public class AccountController {
     @Autowired
-    private UserService accountService;
+    private UserService userService;
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest login) throws AppException {
-        if (accountService.login(login))
-            return new LoginResponse(true, "this is supposed to be token", "Zalogowano");
-        return new LoginResponse(false, null, "Niepoprawne hasło");
-        // pis narazie tokeny są testowe
+        var user = userService.login(login);
+        return new LoginResponse(true, UserService.generateToken(user), "Zalogowano");
     }
 
     @PostMapping("/register")
     public RegisterResponse register(@RequestBody RegisterRequest register) throws AppException {
-        if (accountService.register(register))
+        if (userService.register(register))
             return new RegisterResponse(true, null, "Utworzono konto");
         return new RegisterResponse(false, null, "Nieudana rejestracja");
     }
