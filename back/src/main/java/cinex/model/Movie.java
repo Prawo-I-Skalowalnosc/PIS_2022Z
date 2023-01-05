@@ -40,8 +40,6 @@ public class Movie {
     private Integer length;
     private String poster_url;
 
-    private String author;
-
     public Movie(CreateMovieRequest request) {
         ratings = List.of();
         people = List.of();
@@ -54,6 +52,5 @@ public class Movie {
         releaseDate = request.releaseDate != null ? request.releaseDate : new Date();
         length = request.length;
         poster_url = request.poster_url;
-        author = request.author;
     }
 }
