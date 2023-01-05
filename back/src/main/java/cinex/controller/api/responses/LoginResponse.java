@@ -9,4 +9,6 @@ public class LoginResponse {
     public boolean success;
     public String token;
     public String message;
+    public String username;
+    public boolean isAdmin;
 }
