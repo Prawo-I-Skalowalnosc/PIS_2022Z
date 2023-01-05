@@ -9,6 +9,7 @@ import cinex.errors.AppException;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -28,6 +29,20 @@ public class MovieController {
     @GetMapping("/all")
     public List<MovieResponse> all() {
         return movieService.findAll().stream()
+                .map(MovieResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/byID")
+    public MovieResponse byID(@RequestParam UUID id) throws AppException{
+        var movie = movieService.findById(id);
+        if(!movie.isPresent()) throw new AppException("Brak filmu w bazie");
+    	return new MovieResponse(movie.get());
+    }
+    
+    @GetMapping("/byTitle")
+    public List<MovieResponse> byTitle(@RequestParam String title){
+        return movieService.findByTitle(title).stream()
                 .map(MovieResponse::new)
                 .collect(Collectors.toList());
     }

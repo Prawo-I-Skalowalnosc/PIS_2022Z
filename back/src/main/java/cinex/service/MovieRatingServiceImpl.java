@@ -1,6 +1,5 @@
 package cinex.service;
 
-import cinex.controller.api.requests.CreateRatingRequest;
 import cinex.model.Movie;
 import cinex.model.MovieRating;
 import cinex.model.User;

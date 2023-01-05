@@ -1,0 +1,16 @@
+.pis-movie-page-static-content h2{
+    padding-top: 5px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    color: #723434;
+}
+
+.pis-movie-page-static-content h1{
+    color: rgba(196, 39, 66, 0.99);
+    font-style: italic;
+}
+
+main{
+    margin-top: 100px;
+}
+

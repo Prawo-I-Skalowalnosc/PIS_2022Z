@@ -29,6 +29,12 @@ public class MovieServiceImpl implements MovieService{
     }
     
     @Override
+    public List<Movie> findByTitle(String title) {
+
+        return movieRepository.findByTitle(title);
+    }
+
+    @Override
     public List<Movie> findUpcoming(){
         return movieRepository.findFirst10ByReleaseDateAfterOrderByReleaseDateAsc(new java.sql.Date(System.currentTimeMillis()));
     }

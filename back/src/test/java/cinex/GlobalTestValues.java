@@ -19,12 +19,12 @@ public class GlobalTestValues {
     public static Movie getMovie() {
         return new Movie(UUID.randomUUID(), List.of(), List.of(), title,
                 0.7f, "horror", "USA", 123f, "English",
-                new Date(), 12, "testowy.url");
+                new Date(), 12, "testowy.url", "testowy.autor");
     }
 
     public static CreateMovieRequest getMovieRequest() {
         return new CreateMovieRequest(title, 0.6f, "sci-fi", "Canada", 321f,
-                "Francuski",  new Date(), 85, "testowy.url.pl");
+                "Francuski",  new Date(), 85, "testowy.url.pl","testowy autor");
     }
 
     public static String getToken() {

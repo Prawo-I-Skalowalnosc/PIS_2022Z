@@ -2,7 +2,6 @@ package cinex.service;
 
 import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.model.Movie;
-import cinex.model.User;
 import cinex.errors.AppException;
 
 import java.util.List;
@@ -12,7 +11,9 @@ import java.util.Optional;
 public interface MovieService {
     List<Movie> findAll();
     
-    public Optional<Movie> findById(UUID id);
+    List<Movie> findByTitle(String title);
+    
+    Optional<Movie> findById(UUID id);
     
     List<Movie> findUpcoming();
 

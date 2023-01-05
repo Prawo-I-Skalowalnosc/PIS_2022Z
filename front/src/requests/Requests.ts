@@ -60,6 +60,18 @@ export class Requests {
         return setResponseOrError(response);
     }
 
+    static async getMovieById(id : string): Promise<GenericResponse<MovieResponse>> {
+        const response = await fetchGet(`/movies/byID?id=${id}`)
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
+    static async getMovieByTitle(title : string): Promise<GenericResponse<MovieResponse>> {
+        const response = await fetchGet(`/movies/byTitle=${title}`)
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
     static async upcomingMovies(): Promise<GenericResponse<MovieResponse[]>> {
         const response = await fetchGet("/movies/upcoming")
             .then(res => res.json())
