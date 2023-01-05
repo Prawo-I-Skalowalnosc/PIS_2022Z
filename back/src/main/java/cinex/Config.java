@@ -26,8 +26,7 @@ public class Config {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
-            .cors().and()
+        return http.csrf().disable().cors().and()
             .authorizeHttpRequests(authorize -> {
                 authorize.antMatchers(
                         "/account/**"
