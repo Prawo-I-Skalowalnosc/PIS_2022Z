@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import { LoginForm } from "../components/LoginForm";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import Layout from "../components/layout/Layout";
-import {TokenHelper} from "../helpers/TokenHelper";
+import {SecurityHelper} from "../helpers/SecurityHelper";
 import {Helmet} from "react-helmet";
 
 export default function LoginPage() {
@@ -12,7 +12,7 @@ export default function LoginPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (TokenHelper.amILogged()){
+        if (SecurityHelper.amILogged()){
             navigate("/", {replace: true});
         }
     })
@@ -28,7 +28,7 @@ export default function LoginPage() {
                         <ErrorAndInfo errorMsg={error} infoMsg={""}/>
                     </div>
                     <LoginForm onSuccess={(res) => {
-                        TokenHelper.setToken(res.token)
+                        SecurityHelper.setContext({token: res.token, username: res.username, isAdmin: res.isAdmin})
                         navigate("/")
                     }} onError={(res) => setError(res.infoMessage)}/>
                     <small className="pis-login-reglink-text">
