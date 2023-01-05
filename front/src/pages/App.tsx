@@ -20,7 +20,6 @@ export default function App() {
             </Routes>
           </BrowserRouter>
         </header>
-        <StarRating rater_id={"a45da728-3a40-4c2c-8028-946ca33be960"} movie_id = {"c2d29867-3d0b-d497-9191-18a9d8ee7830"}size={24} maxRating={5} onSuccess={(a : any) => {}} onError={(a : any) => {}}></StarRating>
       </div>
   );
 }

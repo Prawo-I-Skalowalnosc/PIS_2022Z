@@ -14,8 +14,9 @@ interface StarShowProps {
 export function StarShow(props : StarShowProps) {
   return (
     <ReactStars 
+      className='pis-stars' 
       count={props.maxRating}
-      value={props.rating * props.maxRating}
+      value={props.rating}
       size={props.size}
       color2="#ffb400"
       edit={false}
@@ -50,7 +51,9 @@ export function StarRating(props : StarRatingProps) {
   }
   
   return (
-    <ReactStars onChange={handleClick}
+    <ReactStars
+      className='pis-stars' 
+      onChange={handleClick}
       count={props.maxRating}
       value={rankValue}
       size={props.size}

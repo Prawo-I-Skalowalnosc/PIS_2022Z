@@ -10,6 +10,22 @@
     font-style: italic;
 }
 
+.pis-movie-page-ratings{
+    font-size: large;
+}
+
+.pis-stars-text{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.pis-stars{    
+    display: inline-block;
+    vertical-align: middle;
+}
+
 main{
     margin-top: 100px;
 }
