@@ -11,4 +11,5 @@ export type MovieResponse = {
     release_date: string
     length: number
     poster_url: string
+    author: string
 }

@@ -37,7 +37,7 @@ export default function MoviePage() {
                         <h1 className={'pis-movie-page-data-content'}>{movieData.title}</h1>
 
                         <h2 className='pis-movie-page-data-headers'>Autor</h2>
-                        <h4 className={'pis-movie-page-data-content'}>{movieData.people}</h4>
+                        <h4 className={'pis-movie-page-data-content'}>{movieData.author}</h4>
 
                         <h2 className='pis-movie-page-data-headers'>Gatunek</h2>
                         <h4 className={'pis-movie-page-data-content'}>{movieData.genre}</h4>
