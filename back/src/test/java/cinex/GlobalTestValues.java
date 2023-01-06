@@ -32,6 +32,6 @@ public class GlobalTestValues {
 
     public static User getUser() {
         return new User(UUID.randomUUID(), List.of(), username,
-                '1', RandomString.make(32) + "@abcdef.pl", new Date(), RandomString.make(32), RandomString.make(32));
+                'A', RandomString.make(32) + "@abcdef.pl", new Date(), RandomString.make(32), RandomString.make(32));
     }
 }
