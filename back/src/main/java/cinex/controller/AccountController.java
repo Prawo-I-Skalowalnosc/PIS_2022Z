@@ -19,14 +19,15 @@ public class AccountController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest login) throws AppException {
         var user = userService.login(login);
-        return new LoginResponse(true, UserService.generateToken(user), "Zalogowano");
+        return new LoginResponse(true, UserService.generateToken(user),
+                "Zalogowano", user.getUsername(), user.isAdmin());
     }
 
     @PostMapping("/register")
     public RegisterResponse register(@RequestBody RegisterRequest register) throws AppException {
         if (userService.register(register))
-            return new RegisterResponse(true, null, "Utworzono konto");
-        return new RegisterResponse(false, null, "Nieudana rejestracja");
+            return new RegisterResponse(true, "Utworzono konto");
+        return new RegisterResponse(false, "Nieudana rejestracja");
     }
 
 }

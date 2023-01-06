@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import "../../style/layout.css"
-import {TokenHelper} from "../../helpers/TokenHelper";
+import {SecurityHelper} from "../../helpers/SecurityHelper";
 
 const NavBar = () => {
     return <div>
@@ -17,27 +17,24 @@ const NavBar = () => {
                 <li className="nav-item pis-nav-item">
                 <Link className="nav-link pis-navbar-link" to="/movies/rankings">RANKINGI</Link>
                 </li>
-                <li className="nav-item pis-nav-item">
-                    <Link className="nav-link pis-navbar-link" to="/addmovie">DODAJ FILM</Link>
-                </li>
             </ul>
             <ul className="navbar-nav pis-navbar-nav ms-auto">
-                {TokenHelper.amILogged() && <li className="nav-item pis-nav-item">
+                {SecurityHelper.amILogged() && <li className="nav-item pis-nav-item">
                     <Link onClick={() => {
-                        TokenHelper.deleteToken();
+                        SecurityHelper.deleteContext();
                         window.location.reload();
                     }} className="nav-link pis-navbar-link" to="/">
                         <i className="bi bi-box-arrow-right"/> Wyloguj się
                     </Link>
                 </li>}
 
-                {!TokenHelper.amILogged() && <li className="nav-item pis-nav-item">
+                {!SecurityHelper.amILogged() && <li className="nav-item pis-nav-item">
                     <Link className="nav-link pis-navbar-link" to="/login">
                         <i className="bi bi-box-arrow-in-right"/> Zaloguj się
                     </Link>
                 </li>}
 
-                {!TokenHelper.amILogged() && <li className="nav-item pis-nav-item">
+                {!SecurityHelper.amILogged() && <li className="nav-item pis-nav-item">
                     <Link className="nav-link pis-navbar-link" to="/register">
                     <i className="bi bi-person-add"/> Zarejestruj się
                     </Link>
@@ -47,4 +44,4 @@ const NavBar = () => {
         </nav>
     </div>
 }
-export default NavBar
+export default NavBar;
