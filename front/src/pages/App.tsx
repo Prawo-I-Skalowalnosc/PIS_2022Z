@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import MainMenuPage from "./MainMenuPage";
+import NewMovieForm from "../components/NewMovieForm";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<MainMenuPage />} />
+              <Route path="/addmovie" element={<NewMovieForm />} />
               <Route path="/login" element={<LoginPage/>} />
               <Route path="/register" element={<RegisterPage />} />
             </Routes>
