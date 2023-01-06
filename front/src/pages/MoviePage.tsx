@@ -33,30 +33,46 @@ export default function MoviePage() {
                 {!error && movieData.length > 0 &&
                     <>
                     <div className="pis-movie-page-cont">
-                        <div className='pis-movie-page-picture'>
-                            <img src={movieData.poster_url} alt={movieData.title}/>
+                        <h1 className={'pis-movie-page-data-content'} id='movie-title'>{movieData.title}</h1>
+                        <div className='pis-movie-page-main-info'>
+                            <div className='pis-movie-page-picture'>
+                                <img src={movieData.poster_url} alt={movieData.title}/>
+                            </div>
+                            <div className='pis-movie-page-static-content'>
+
+                                <div className='pis-movie-page-data-section'>
+                                    <p className='pis-movie-page-data-headers'>Gatunek</p>
+                                    <p className={'pis-movie-page-data-content'}>{movieData.genre}</p>
+                                </div>
+
+                                <div className='pis-movie-page-data-section'>
+                                    <p className='pis-movie-page-data-headers'>Kraj wydania</p>
+                                    <p className={'pis-movie-page-data-content'}>{movieData.country_of_origin}</p>
+                                </div>
+
+                                <div className='pis-movie-page-data-section'>
+                                    <p className='pis-movie-page-data-headers'>Język</p>
+                                    <p className={'pis-movie-page-data-content'}>{movieData.language}</p>
+                                </div>
+
+                                <div className='pis-movie-page-data-section'>
+                                    <p className='pis-movie-page-data-headers'>Premiera</p>
+                                    <p className={'pis-movie-page-data-content'}>{movieData.releaseDate?.substring(0, 10)}</p>
+                                </div>
+
+                                <div className='pis-movie-page-data-section'>
+                                    <p className='pis-movie-page-data-headers'>Czas trwania</p>
+                                    <p className={'pis-movie-page-data-content'}>{movieData.length} min</p>
+                                </div>
+
+                                <div className='pis-movie-page-data-section'>
+                                    <p className='pis-movie-page-data-headers'>Budżet</p>
+                                    <p className={'pis-movie-page-data-content'}>{movieData.budget}$</p>
+                                </div>
+
+                            </div>
                         </div>
-                        <div className='pis-movie-page-static-content'>
-                            <h1 className={'pis-movie-page-data-content'}>{movieData.title}</h1>
 
-                            <h2 className='pis-movie-page-data-headers'>Gatunek</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.genre}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Kraj wydania</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.country_of_origin}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Język</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.language}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Premiera</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.releaseDate?.substring(0, 10)}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Czas trwania</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.length} min</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Budżet</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.budget}$</h4>
-                        </div>
                         <div className='pis-movie-page-ratings'>
 
                         </div>
