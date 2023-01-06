@@ -5,7 +5,6 @@ import cinex.model.MovieRating;
 import cinex.model.User;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -40,13 +39,13 @@ public class MovieRatingRepositoryTests {
     }
 
     @Test
-    public void testFindByUser(){
+    public void testFindByRaterAndMovie(){
         var movie = getMovie();
         var rater = getUser();
         var rating = getMovieRating(movie, rater, 3);
         movieRepository.save(movie);
-        userRepository.save(rater);
         movieRatingRepository.save(rating);
+        userRepository.save(rater);
 
         var ratingDB = movieRatingRepository.findByRaterAndMovie(rater, movie);
         ratingDB.ifPresent(movieRating -> compareMovieRatings(rating, movieRating));
