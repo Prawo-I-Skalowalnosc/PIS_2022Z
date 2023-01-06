@@ -12,3 +12,5 @@ export type MovieResponse = {
     length: number
     poster_url: string
 }
+
+export type MoviesResponse = MovieResponse[]
