@@ -101,3 +101,18 @@
     /*//TODO: - ładna animacja dla erroru, trigger- onError*/
     /*animation: shakeX;*/
 }
+
+.pis-newmovie-card {
+    padding: 1rem;
+    width: 40%;
+    /*height: 80%;*/
+    margin: auto;
+}
+
+.pis-newmovie-form {
+    text-align: left;
+}
+
+.pis-newmovie-input-field {
+    margin: 10px;
+}
