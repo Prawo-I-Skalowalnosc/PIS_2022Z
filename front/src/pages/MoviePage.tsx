@@ -13,6 +13,7 @@ export default function MoviePage() {
     let { id } = useParams();
     const [error, setError] = useState("");
     const [movieData, setMovieData] = useState<MovieResponse>({} as MovieResponse);
+
     useEffect(() => {
         Requests.getMovieById(id ?? '').then(res => {
             if (res.err) {
@@ -23,6 +24,7 @@ export default function MoviePage() {
             }
         });
     },[id])
+
     return <>
         <Helmet>
             <title>Cinex ∙ Opis filmu</title>
@@ -30,7 +32,7 @@ export default function MoviePage() {
         <Layout>
             <div className="conatiner-fluid-pis-movie-page">
                 <ErrorAndInfo infoMsg={""} errorMsg={error}/>
-                {!error && movieData.length > 0 &&
+                {!error && movieData &&
                     <>
                     <div className="pis-movie-page-cont">
                         <div className='pis-movie-page-picture'>
@@ -64,7 +66,6 @@ export default function MoviePage() {
                         </div>
                     </div>
                 </>}
-
             </div>
         </Layout>
     </>;
