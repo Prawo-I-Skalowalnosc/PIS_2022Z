@@ -7,7 +7,6 @@ import java.util.UUID;
 
 @AllArgsConstructor
 public class CreateRatingRequest {
-    public UUID raterId;
     public UUID movieId;
     public Integer rating;
 }
