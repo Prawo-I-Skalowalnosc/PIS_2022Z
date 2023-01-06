@@ -15,13 +15,14 @@ export function MovieGrid() {
     const navigate = useNavigate()
 
     useEffect( () => {
-    Requests.allMovies().then(res => {
-        if (res.err) {
-            setMovies([] as MoviesResponse);
-        } else if (res.res) {
-            setMovies(res.res);
-        }})
-    })
+        Requests.allMovies().then(res => {
+            if (res.err) {
+                setMovies([] as MoviesResponse);
+            } else if (res.res) {
+                setMovies(res.res);
+            }
+        })
+    }, [])
 
     const handleCallback = (childData: any) => {
         setInputText(childData);
