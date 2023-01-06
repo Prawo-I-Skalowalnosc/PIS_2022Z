@@ -19,7 +19,6 @@ public class MovieResponse {
     public Date releaseDate;
     public Integer length;
     public String poster_url;
-    public String author;
 
     public MovieResponse(Movie movie){
         this.id = movie.getId();
@@ -33,7 +32,6 @@ public class MovieResponse {
         this.releaseDate = movie.getReleaseDate();
         this.length = movie.getLength();
         this.poster_url = movie.getPoster_url();
-        this.author = movie.getAuthor();
     }
 
     private Float countUserRating(List<MovieRating> ratings) {
