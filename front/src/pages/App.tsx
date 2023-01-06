@@ -7,8 +7,8 @@ import MainMenuPage from "./MainMenuPage";
 import {MovieGrid} from "../components/movie-grid/MovieGrid";
 
 export default function App() {
-  return (
-      <div className="App">
+    return (
+    <div className="App">
         <header className="App-header">
           <BrowserRouter>
             <Routes>
@@ -19,6 +19,5 @@ export default function App() {
             </Routes>
           </BrowserRouter>
         </header>
-      </div>
-  );
+    </div>);
 }
