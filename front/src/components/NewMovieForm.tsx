@@ -1,16 +1,17 @@
 import {useState} from "react";
 import {Helmet} from "react-helmet";
-import {Card, MenuItem, TextField} from "@mui/material";
+import {Button, Card, Grid, MenuItem, TextField} from "@mui/material";
 import Stack from "@mui/material/Stack";
 import FormControl from '@mui/material/FormControl';
 import Layout from "./layout/Layout";
 import {MovieResponse} from "../types/Movies";
 import {COUNTRIES} from "../helpers/CountryList";
+import {GENRES} from "../helpers/GenreList";
+import SendIcon from '@mui/icons-material/Send'
 import "../style/register.css"
 
 export function NewMovieForm() {
     const [movieData, setMovieData] = useState({} as MovieResponse);
-    const exampleArray: string[] = ["1", "2", "3"];
 
     return (
         <>
@@ -32,8 +33,8 @@ export function NewMovieForm() {
                                 select
                                 label={"Gatunek"}
                                 sx={{mt: "1rem"}}>
-                                {exampleArray.map((country: string) => {
-                                    return <MenuItem value={country}>{country}</MenuItem>
+                                {GENRES.map((genre: string) => {
+                                    return <MenuItem value={genre}>{genre}</MenuItem>
                                 })}
                             </TextField>
                             <TextField
@@ -61,6 +62,14 @@ export function NewMovieForm() {
                                 label={"Długość trwania filmu (w minutach)"}
                                 sx={{mt: "1rem"}}/>
                         </FormControl>
+                            <Grid sx={{mt: "1rem"}}>
+                                <Button variant="contained" color="error" sx={{m: "0 10px"}}>
+                                    Cancel
+                                </Button>
+                                <Button variant="contained" endIcon={<SendIcon />} sx={{m: "0 10px"}}>
+                                    Add movie
+                                </Button>
+                            </Grid>
                         </Stack>
                 </Card>
                 </main>
