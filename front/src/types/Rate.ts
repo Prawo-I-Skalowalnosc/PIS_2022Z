@@ -1,5 +1,4 @@
 export type Rate = {
-    raterId : string
     movieId : string
     rating : number
 }

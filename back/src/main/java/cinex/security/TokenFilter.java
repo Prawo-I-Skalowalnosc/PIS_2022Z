@@ -36,8 +36,9 @@ public class TokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         final String token = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (token == null || token.isBlank() || token.equals("undefined")) {
-            filterChain.doFilter(request, response);
+
+        if (request.getMethod().equals("GET") || request.getRequestURI().startsWith("/account/")) {
+            doFilter(request, response, filterChain);
             return;
         }
 
@@ -46,7 +47,7 @@ public class TokenFilter extends OncePerRequestFilter {
 
         var chunks = token.split("\\.");
         if (chunks.length != 3) {
-            filterChain.doFilter(request, response);
+            unauthorizedResponse(response);
             return;
         }
 
@@ -54,7 +55,7 @@ public class TokenFilter extends OncePerRequestFilter {
         var validator = new DefaultJwtSignatureValidator(SignatureAlgorithm.HS256, secretKeySpec);
 
         if (!validator.isValid(chunks[0] + '.' + chunks[1], chunks[2])){
-            filterChain.doFilter(request, response);
+            unauthorizedResponse(response);
             return;
         }
 
@@ -71,23 +72,23 @@ public class TokenFilter extends OncePerRequestFilter {
             isAdmin = json.getBoolean("admin");
 
             if (name.isBlank() || password.isBlank()) {
-                filterChain.doFilter(request, response);
+                unauthorizedResponse(response);
                 return;
             }
         }
         catch (JSONException e) {
-            filterChain.doFilter(request, response);
+            unauthorizedResponse(response);
             return;
         }
 
         var user = userService.loadByUsername(name);
         if (user.isEmpty()) {
-            filterChain.doFilter(request, response);
+            unauthorizedResponse(response);
             return;
         }
 
         if (!password.equals(user.get().getHash())) {
-            filterChain.doFilter(request, response);
+            unauthorizedResponse(response);
             return;
         }
 
@@ -99,5 +100,9 @@ public class TokenFilter extends OncePerRequestFilter {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
+    }
+
+    private void unauthorizedResponse(HttpServletResponse response) {
+        response.setStatus(401);
     }
 }

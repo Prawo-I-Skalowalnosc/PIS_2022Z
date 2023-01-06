@@ -26,7 +26,6 @@ export function StarShow(props : StarShowProps) {
 
 
 interface StarRatingProps {
-  rater_id: string;
   movie_id: string;
   maxRating: number;
   size: number;
@@ -38,14 +37,14 @@ export function StarRating(props : StarRatingProps) {
   const [rankValue, setRankValue] = useState<number>(props.maxRating); 
   const handleClick = (new_rating : number) => {
     setRankValue(new_rating)
-    Requests.sendRate({raterId : props.rater_id, movieId : props.movie_id, rating : new_rating}).then(res => {
-      console.log(res)
-      if (res.err) {
-          props.onError(res.err);
-      }
-      else if (res.res){
-          props.onSuccess(res.res)
-
+    Requests.sendRate({
+          movieId : props.movie_id,
+          rating : new_rating
+    }).then( res =>{
+      if (res.res){
+        props.onSuccess(res.res)
+      } else if (res.err){
+        props.onError(res.err)
       }
     });
   }

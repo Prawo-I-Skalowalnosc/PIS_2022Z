@@ -55,8 +55,8 @@ export default function MoviePage() {
                             <h4 className={'pis-movie-page-data-content'}>{movieData.budget}$</h4>
                         </div>
                         <div className='pis-movie-page-ratings'>
-                            <div className='pis-stars-text'>Your rating:</div><StarRating rater_id={"a45da728-3a40-4c2c-8028-946ca33be960"} 
-                                movie_id = {movieData.id} size={20} maxRating={5} onSuccess={(a : any) => {}} onError={(a : any) => {}} />
+                            <div className='pis-stars-text'>Your rating:</div><StarRating
+                                movie_id = {movieData.id} size={20} maxRating={5} onSuccess={(res : any) => {}} onError={(err : any) =>{"Dodanie recenzji nieudane."}}/>
                             <div className='pis-stars-text'>Critics rating:</div><StarShow rating= {movieData.rating * 5} size={20} maxRating={5} />
                             <div className='pis-stars-text'>Users rating:</div><StarShow rating= {movieData.userRating} size={20} maxRating={5} />
                         </div>

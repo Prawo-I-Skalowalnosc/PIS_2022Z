@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 import java.util.Optional;
 
 import static cinex.GlobalTestValues.*;

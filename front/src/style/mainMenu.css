@@ -104,3 +104,6 @@
     font-weight: 600;
 }
 
+.pis-moviegrid-card:hover {
+    cursor: pointer;
+}

@@ -2,15 +2,15 @@ import {Global} from "../Config";
 import {MovieResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
 import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
-import {TokenHelper} from "../helpers/TokenHelper";
-import { Rate, RateResponse } from "../types/Rate";
+import {Rate, RateResponse} from "../types/Rate";
+import {SecurityHelper} from "../helpers/SecurityHelper";
 
 function fetchPost(body: any, url: string){
     return fetch(Global.backendUrl + url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${TokenHelper.getToken()}`
+            'Authorization': `${SecurityHelper.getToken()}`
         },
         body: JSON.stringify(body)
     })
@@ -20,7 +20,7 @@ function fetchGet(url: string) {
     return fetch(Global.backendUrl + url, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${TokenHelper.getToken()}`
+            'Authorization': `${SecurityHelper.getToken()}`
         }
     })
 }
@@ -30,7 +30,7 @@ function fetchPut(body: any, url: string){
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${TokenHelper.getToken()}`
+            'Authorization': `${SecurityHelper.getToken()}`
         },
         body: JSON.stringify(body)
     })
@@ -42,6 +42,7 @@ class GenericResponse <T>{
 }
 
 function setResponseOrError(response: any) {
+    SecurityHelper.refreshContext()
     if (response.status && response.status !== 200)
         return {err: response};
     return {res: response};
@@ -99,6 +100,8 @@ export class Requests {
     static async login(cred: Credentials): Promise<GenericResponse<LoginResponse>> {
         const response = await fetchPost(cred, "/account/login")
             .then(res => res.json())
+        if (response.status !== 200)
+            SecurityHelper.deleteContext()
         return setResponseOrError(response);
     }
 

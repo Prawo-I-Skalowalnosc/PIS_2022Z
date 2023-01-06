@@ -5,7 +5,6 @@ import cinex.controller.api.responses.MovieRatingResponse;
 import cinex.model.Movie;
 import cinex.security.SecurityHelper;
 import cinex.service.MovieService;
-import cinex.service.UserService;
 import cinex.service.MovieRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +16,12 @@ public class MovieRatingController {
     @Autowired
     private MovieService movieService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private MovieRatingService movieRatingService;
 
     @PutMapping("/addRating")
     public MovieRatingResponse addRating(@RequestBody CreateRatingRequest request){
-
         var opt_movie = movieService.findById(request.movieId);
+
         Movie movie;
         if (opt_movie.isPresent()) {
             movie = opt_movie.get();

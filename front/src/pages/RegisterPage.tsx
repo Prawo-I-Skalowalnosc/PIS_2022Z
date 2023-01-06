@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/App.css';
 import {Link, useNavigate} from "react-router-dom";
 import { RegisterForm } from "../components/RegisterForm";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import Layout from "../components/layout/Layout";
-import {TokenHelper} from "../helpers/TokenHelper";
-import { Helmet } from 'react-helmet';
+import {SecurityHelper} from "../helpers/SecurityHelper";
+import {Helmet} from "react-helmet";
 
 
 export default function RegisterPage() {
@@ -13,7 +13,7 @@ export default function RegisterPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (TokenHelper.amILogged()){
+        if (SecurityHelper.amILogged()){
             navigate("/", {replace: true});
         }
     })

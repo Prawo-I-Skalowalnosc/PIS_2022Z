@@ -26,8 +26,6 @@ public class Movie {
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<PersonInMovie> people;
-
-    // jeśli pole ma inną nazwę niż w DB, to należy dać @Column(name="nazwa_kolumny") i opcjonalnie inne parametry typu unikalność
     private String title;
     private Float rating; // 0 <= rating <= 1
     private String genre;

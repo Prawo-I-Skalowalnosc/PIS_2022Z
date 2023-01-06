@@ -2,6 +2,7 @@ package cinex.controller;
 
 import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.controller.api.responses.MovieResponse;
+import cinex.security.SecurityHelper;
 import cinex.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import cinex.errors.AppException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.UUID;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -36,7 +38,7 @@ public class MovieController {
     @GetMapping("/byID")
     public MovieResponse byID(@RequestParam UUID id) throws AppException{
         var movie = movieService.findById(id);
-        if(!movie.isPresent()) throw new AppException("Brak filmu w bazie");
+        if(movie.isEmpty()) throw new AppException("Brak filmu w bazie");
     	return new MovieResponse(movie.get());
     }
     
@@ -70,6 +72,8 @@ public class MovieController {
 
     @PostMapping("/create")
     public MovieResponse create(@RequestBody CreateMovieRequest request) throws AppException {
+        if (!Objects.requireNonNull(SecurityHelper.getLoggedUser()).isAdmin())
+            throw new AppException("Nie masz uprawnień, aby dodać film");
         return new MovieResponse(movieService.create(request));
     }
 }

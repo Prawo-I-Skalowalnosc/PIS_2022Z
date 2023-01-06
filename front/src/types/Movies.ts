@@ -12,3 +12,5 @@ export type MovieResponse = {
     poster_url: string
     author: string
 }
+
+export type MoviesResponse = MovieResponse[]
