@@ -6,13 +6,15 @@ import {Requests} from "../requests/Requests";
 import {MovieResponse} from "../types/Movies";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import {Helmet} from "react-helmet";
+import {useParams} from "react-router-dom";
 
 
 export default function MoviePage() {
+    let { id } = useParams();
     const [error, setError] = useState("");
     const [movieData, setMovieData] = useState<MovieResponse>({} as MovieResponse);
     useEffect(() => {
-        Requests.getMovieById(window.location.href.split('/')[4]).then(res => {
+        Requests.getMovieById(id ?? '').then(res => {
             if (res.err) {
                 setMovieData({} as MovieResponse)
                 setError("Brak filmu w bazie");
@@ -20,7 +22,7 @@ export default function MoviePage() {
                 setMovieData(res.res);
             }
         });
-    },[])
+    },[id])
     return <>
         <Helmet>
             <title>Cinex ∙ Opis filmu</title>
