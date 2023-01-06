@@ -41,7 +41,7 @@ public class Config {
                 authorize.antMatchers(
                         HttpMethod.POST,
                         "/movies/create"
-                ).hasAuthority(UserRoles.ADMIN.toString());
+                ).hasAuthority(UserRoles.MODERATOR.toString());
                 authorize.anyRequest().authenticated();
             })
             .httpBasic(Customizer.withDefaults())

@@ -29,7 +29,7 @@ public interface UserService {
         return Jwts.builder()
             .setIssuer("CINEX")
             .setSubject(user.getUsername())
-            .claim("admin", user.isAdmin())
+            .claim("admin", user.getUserRoles().toString())
             .claim("name", user.getUsername())
             .claim("password", user.getHash())
             .setIssuedAt(new Date())

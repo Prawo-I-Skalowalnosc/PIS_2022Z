@@ -5,6 +5,7 @@ import cinex.controller.api.requests.RegisterRequest;
 import cinex.controller.api.responses.LoginResponse;
 import cinex.controller.api.responses.RegisterResponse;
 import cinex.errors.AppException;
+import cinex.security.UserRoles;
 import cinex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,8 @@ public class AccountController {
     public LoginResponse login(@RequestBody LoginRequest login) throws AppException {
         var user = userService.login(login);
         return new LoginResponse(true, UserService.generateToken(user),
-                "Zalogowano", user.getUsername(), user.isAdmin());
+                "Zalogowano", user.getUsername(),
+                user.getUserRoles().stream().map(UserRoles::toString).toList());
     }
 
     @PostMapping("/register")
