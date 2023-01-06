@@ -1,8 +1,8 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreateRatingRequest;
-import cinex.controller.api.responses.MovieRatingResponse;
-import cinex.model.Movie;
+import cinex.errors.AppException;
+import cinex.model.MovieRating;
 import cinex.security.SecurityHelper;
 import cinex.service.MovieService;
 import cinex.service.MovieRatingService;
@@ -19,31 +19,23 @@ public class MovieRatingController {
     private MovieRatingService movieRatingService;
 
     @PutMapping("/addRating")
-    public MovieRatingResponse addRating(@RequestBody CreateRatingRequest request){
+    public void addRating(@RequestBody CreateRatingRequest request) throws AppException {
         var opt_movie = movieService.findById(request.movieId);
 
-        Movie movie;
-        if (opt_movie.isPresent()) {
-            movie = opt_movie.get();
-        } else {
-            return new MovieRatingResponse(false, "There is no such film.");
-        }
+        if (opt_movie.isEmpty())
+            throw new AppException("Nie ma takiego filmu");
+
+        var movie = opt_movie.get();
 
         var user = SecurityHelper.getLoggedUser();
-        if (user == null){
-            return new MovieRatingResponse(false, "You are not logged in");
-        }
+        if (user == null)
+            throw new AppException("Nie jesteś zalogowany");
 
-        var opt_rating = movieRatingService.getRating(user, movie);
-        if (opt_rating.isPresent()) {
-            var rating = opt_rating.get();
-            rating.setValue(request.rating);
-            movieRatingService.create(movie, user, request.rating);
-            return new MovieRatingResponse(true, "Rating edition");
-        } else {
-            movieRatingService.create(movie, user, request.rating);
-            return new MovieRatingResponse(true, "New rating");
-        }
+        movieRatingService.updateOrCreateRating(new MovieRating(
+                movie,
+                user,
+                request.rating)
+        );
 
     }
 

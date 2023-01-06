@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface MovieRatingService {
     Optional<MovieRating> getRating(User rater, Movie movie);
     MovieRating create(Movie movie, User user, Integer rating);
+
+    MovieRating updateOrCreateRating(MovieRating movie_rating);
 }

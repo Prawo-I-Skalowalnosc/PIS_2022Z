@@ -18,9 +18,12 @@ public class MovieRatingServiceImpl implements MovieRatingService{
         return movieRatingRepository.findByRaterAndMovie(rater, movie);
     }
     @Override
+    public MovieRating updateOrCreateRating(MovieRating movie_rating){
+        return movieRatingRepository.save(movie_rating);
+    }
+
+    @Override
     public MovieRating create(Movie movie, User user, Integer rating){
-        var movie_rating = new MovieRating(movie, user, rating);
-        movieRatingRepository.save(movie_rating);
-        return movie_rating;
+        return movieRatingRepository.save(new MovieRating(movie, user, rating));
     }
 }

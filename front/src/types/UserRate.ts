@@ -1,9 +1,9 @@
-export type Rate = {
+export type UserRate = {
     movieId : string
     rating : number
 }
 
-export type RateResponse = {
+export type UserRateResponse = {
     success : boolean
     message : string
 }

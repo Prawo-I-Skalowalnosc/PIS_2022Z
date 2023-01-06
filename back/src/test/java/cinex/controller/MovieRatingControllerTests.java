@@ -1,8 +1,6 @@
 package cinex.controller;
 
 import cinex.BackApplication;
-import cinex.GlobalTestValues;
-import cinex.controller.api.responses.MovieRatingResponse;
 import cinex.repository.MovieRepository;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -12,14 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.*;
 
 
 import java.util.Collections;
 
 import static cinex.GlobalTestValues.getToken;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = BackApplication.class)

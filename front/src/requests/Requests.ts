@@ -2,7 +2,7 @@ import {Global} from "../Config";
 import {MovieResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
 import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
-import {Rate, RateResponse} from "../types/Rate";
+import {UserRate, UserRateResponse} from "../types/UserRate";
 import {SecurityHelper} from "../helpers/SecurityHelper";
 
 function fetchPost(body: any, url: string){
@@ -91,7 +91,7 @@ export class Requests {
         return setResponseOrError(response);
     }
 
-    static async sendRate(rate : Rate): Promise<GenericResponse<RateResponse>> {
+    static async sendRate(rate : UserRate): Promise<GenericResponse<UserRateResponse>> {
         const response = await fetchPut(rate, "/movieRatings/addRating")
             .then(res => res.json())
         return setResponseOrError(response);
