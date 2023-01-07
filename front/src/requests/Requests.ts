@@ -1,7 +1,7 @@
 import {Global} from "../Config";
 import {MovieResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
-import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
+import {Credentials, LoginResponse, RegisterCredentials, RegisterResponse} from "../types/Credentials";
 import {SecurityHelper} from "../helpers/SecurityHelper";
 
 function fetchPost(body: any, url: string){
@@ -77,6 +77,12 @@ export class Requests {
 
     static async register(cred: RegisterCredentials): Promise<GenericResponse<LoginResponse>> {
         const response = await fetchPost(cred, "/account/register")
+            .then(res => res.json())
+        return setResponseOrError(response);
+    }
+
+    static async addMovie(request: MovieResponse): Promise<any> {
+        const response = await fetchPost(request, "/movies/create")
             .then(res => res.json())
         return setResponseOrError(response);
     }

@@ -1,24 +1,27 @@
-import {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import {FormEvent, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
-import {Button, Card, Grid, MenuItem, TextField} from "@mui/material";
-import Stack from "@mui/material/Stack";
-import FormControl from '@mui/material/FormControl';
+import {Button, Stack, Grid, FormControl, MenuItem, TextField, Paper} from "@mui/material";
+import SendIcon from '@mui/icons-material/Send'
 import Layout from "./layout/Layout";
 import {MovieResponse} from "../types/Movies";
+import {Requests} from "../requests/Requests";
 import {COUNTRIES} from "../helpers/CountryList";
 import {GENRES} from "../helpers/GenreList";
-import SendIcon from '@mui/icons-material/Send'
 import "../style/register.css"
+
 
 export function NewMovieForm() {
     const defaultDate = new Date().toISOString().split('T')[0];
-    const [movieData, setMovieData] = useState({release_date: defaultDate} as MovieResponse);
+    const [movieData, setMovieData] = useState({release_date: defaultDate, rating: 0} as MovieResponse);
     let navigate = useNavigate();
 
-    const handleInput = () => {
-        setMovieData({...movieData, rating: 0});
-        console.log(movieData);
+    const handleInput = (e: FormEvent) => {
+        e.preventDefault();
+        if (movieData.title && movieData.genre) {
+            Requests.addMovie(movieData).then( res => {
+                // TO BE ADDED
+            })}
     }
 
     const goToMainPage = () => {
@@ -33,7 +36,7 @@ export function NewMovieForm() {
             </Helmet>
             <Layout>
                 <main className={"pis-register-page"}>
-                    <Card className={"pis-newmovie-card"}>
+                    <Paper className={"pis-newmovie-card"}>
                         <Stack>
                             Dodaj nowy film
                         <FormControl className={"pis-newmovie-form"}>
@@ -97,6 +100,12 @@ export function NewMovieForm() {
                                 sx={{mt: "1rem"}}
                                 onChange={(e) =>
                                     setMovieData({...movieData, length: parseInt(e.target.value, 10)})}/>
+                            <TextField
+                                name={"poster_url"}
+                                label={"Adres URL plakatu filmu"}
+                                sx={{mt: "1rem"}}
+                                onChange={(e) =>
+                                    setMovieData({...movieData, poster_url: e.target.value})}/>
                             <Grid sx={{mt: "1rem", textAlign: "center"}}>
                                 <Button
                                     type="button"
@@ -118,7 +127,7 @@ export function NewMovieForm() {
                             </Grid>
                         </FormControl>
                         </Stack>
-                </Card>
+                </Paper>
                 </main>
             </Layout>
         </>

@@ -18,7 +18,7 @@ const NavBar = () => {
                 <Link className="nav-link pis-navbar-link" to="/movies/rankings">RANKINGI</Link>
                 </li>
                 <li className="nav-item pis-nav-item">
-                    <Link className="nav-link pis-navbar-link" to="/addmovie">DODAJ FILM</Link>
+                    <Link className="nav-link pis-navbar-link" to="/create">DODAJ FILM</Link>
                 </li>
             </ul>
             <ul className="navbar-nav pis-navbar-nav ms-auto">

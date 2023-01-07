@@ -15,7 +15,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<MainMenuPage />} />
               <Route path="/movies" element={<MovieGrid />}/>
-              <Route path="/addmovie" element={<NewMovieForm />} />
+              <Route path="/create" element={<NewMovieForm />} />
               <Route path="/login" element={<LoginPage/>} />
               <Route path="/register" element={<RegisterPage />} />
             </Routes>
