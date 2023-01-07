@@ -8,7 +8,7 @@ export type MovieResponse = {
     country_of_origin: string
     budget: number
     language: string
-    release_date: string
+    releaseDate: string
     length: number
     poster_url: string
 }
