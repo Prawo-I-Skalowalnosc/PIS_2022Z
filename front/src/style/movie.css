@@ -1,16 +1,58 @@
-.pis-movie-page-static-content h2{
-    padding-top: 5px;
+.pis-movie-page-data-section {
+    display: flex;
+}
+
+.pis-movie-page-data-headers {
+    font-weight: 700;
+    color: #525151;
+    flex: 0.2;
+    text-align: left;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.pis-movie-page-data-content {
+    font-weight: 600;
+    text-align: center;
+    flex: 0.2;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.pis-movie-page-main-info {
+    display: flex;
+}
+
+.pis-movie-page-picture {
+    box-sizing: border-box;
+    padding-top: 50px;
+    height: 500px;
+    flex: 1.6;
+    text-align: right;
+    padding-right: 30px;
+}
+.pis-movie-page-picture img {
+    border: white 10px solid;
+    height: 370px;
+}
+
+.pis-movie-page-static-content {
+    flex: 2;
+    text-align: left;
+    box-sizing: border-box;
+    height: 500px;
+    padding-top: 81px;
+    padding-left: 30px;
+}
+
+#movie-title {
+    color: black;
     font-weight: bold;
-    margin-bottom: 0px;
-    color: #723434;
+    text-transform: uppercase;
 }
 
-.pis-movie-page-static-content h1{
-    color: rgba(196, 39, 66, 0.99);
-    font-style: italic;
+.pis-movie-page-cont {
+    padding-top: 65px;
 }
 
-main{
-    margin-top: 100px;
-}
 
