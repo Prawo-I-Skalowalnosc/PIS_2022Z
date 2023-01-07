@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import MainMenuPage from "./MainMenuPage";
 import {MovieGrid} from "../components/movie-grid/MovieGrid";
-import NewMovieForm from "../components/NewMovieForm";
+import {NewMoviePage} from "./NewMoviePage";
 
 export default function App() {
     return (
@@ -15,7 +15,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<MainMenuPage />} />
               <Route path="/movies" element={<MovieGrid />}/>
-              <Route path="/create" element={<NewMovieForm />} />
+              <Route path="/create" element={<NewMoviePage />} />
               <Route path="/login" element={<LoginPage/>} />
               <Route path="/register" element={<RegisterPage />} />
             </Routes>

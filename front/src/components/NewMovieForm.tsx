@@ -1,15 +1,12 @@
 import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Helmet} from "react-helmet";
 import {Button, Stack, Grid, FormControl, MenuItem, TextField, Paper} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send'
-import Layout from "./layout/Layout";
 import {MovieResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
 import {COUNTRIES} from "../helpers/CountryList";
 import {GENRES} from "../helpers/GenreList";
 import "../style/register.css"
-
 
 export function NewMovieForm() {
     const defaultDate = new Date().toISOString().split('T')[0];
@@ -20,8 +17,12 @@ export function NewMovieForm() {
         e.preventDefault();
         if (movieData.title && movieData.genre) {
             Requests.addMovie(movieData).then( res => {
-                // TO BE ADDED
-            })}
+                // TODO: error handling
+            if (res.err) {}
+            else {
+                navigate("/movies");
+                }})
+        }
     }
 
     const goToMainPage = () => {
@@ -31,14 +32,10 @@ export function NewMovieForm() {
 
     return (
         <>
-            <Helmet>
-                <title>Cinex ∙ Dodaj film</title>
-            </Helmet>
-            <Layout>
-                <main className={"pis-register-page"}>
-                    <Paper className={"pis-newmovie-card"}>
-                        <Stack>
-                            Dodaj nowy film
+            <main className={"pis-register-page"}>
+                <Paper className={"pis-newmovie-card"}>
+                    <Stack>
+                        Dodaj nowy film
                         <FormControl className={"pis-newmovie-form"}>
                             <TextField
                                 required
@@ -126,10 +123,9 @@ export function NewMovieForm() {
                                 </Button>
                             </Grid>
                         </FormControl>
-                        </Stack>
+                    </Stack>
                 </Paper>
-                </main>
-            </Layout>
+            </main>
         </>
     )
 
