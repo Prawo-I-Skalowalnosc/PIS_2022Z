@@ -34,7 +34,7 @@ public class UserRepositoryTests {
 
         assertEquals(DBUser.getUsername(), user.getUsername());
         assertTrue(DBUser.getRatings().isEmpty());
-        assertEquals('1', DBUser.getRole());
+        assertEquals('A', DBUser.getRole());
         assertEquals(user.getHash(), DBUser.getHash());
         assertEquals(user.getSalt(), DBUser.getSalt());
     }

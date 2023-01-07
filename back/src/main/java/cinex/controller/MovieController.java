@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import cinex.errors.AppException;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.Objects;
 
 @RestController
@@ -31,6 +32,19 @@ public class MovieController {
         return movieService.findAll();
     }
 
+    @GetMapping("/byID")
+    public Movie byID(@RequestParam UUID id) throws AppException{
+        var movie = movieService.findById(id);
+        if(movie.isEmpty())
+            throw new AppException("Brak filmu w bazie");
+    	return movie.get();
+    }
+    
+    @GetMapping("/byTitle")
+    public List<Movie> byTitle(@RequestParam String title){
+    	return movieService.findByTitle(title);
+    }
+    
     @GetMapping("/upcoming")
     public List<Movie> upcoming() {
         return movieService.findUpcoming();
