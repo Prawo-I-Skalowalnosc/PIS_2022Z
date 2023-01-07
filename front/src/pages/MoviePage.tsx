@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/App.css';
-import '../style/movie.css';
+import '../style/moviePage.css';
 import Layout from "../components/layout/Layout";
 import {Requests} from "../requests/Requests";
 import {MovieResponse} from "../types/Movies";
@@ -8,67 +8,65 @@ import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import { StarRating, StarShow } from '../components/Stars';
 import {Helmet} from "react-helmet";
 import {useParams} from "react-router-dom";
+import {MovieInfo} from "../components/movie-page/MovieInfo";
+import {MoviePeople} from "../components/movie-page/MoviePeople";
 
 
 export default function MoviePage() {
     let { id } = useParams();
     const [error, setError] = useState("");
-    const [movieData, setMovieData] = useState<MovieResponse>({} as MovieResponse);
+    const [movie, setMovie] = useState<MovieResponse>({} as MovieResponse);
+    const [people, setPeople] = useState({});
+    const [rating, setRating] = useState({});
+
     useEffect(() => {
         Requests.getMovieById(id ?? '').then(res => {
             if (res.err) {
-                setMovieData({} as MovieResponse)
-                setError("Brak filmu w bazie");
+                setMovie({} as MovieResponse)
+                setError(res.err.infoMessage);
             } else if (res.res) {
-                setMovieData(res.res);
+                setMovie(res.res);
             }
         });
+        // TODO pobieranie z bazy ludzi
+        setPeople({});
+
+        // TODO wyliczenie oceny użytkowników
+        setRating({});
     },[id])
+
     return <>
         <Helmet>
             <title>Cinex ∙ Opis filmu</title>
         </Helmet>
         <Layout>
-            <div className="conatiner-fluid-pis-movie-page">
-                <ErrorAndInfo infoMsg={""} errorMsg={error}/>
-                {!error && movieData.length > 0 &&
-                    <>
-                    <div className="pis-movie-page-cont">
-                        <div className='pis-movie-page-picture'>
-                            <img src={movieData.poster_url} alt={movieData.title}/>
+            <div className="App container-fluid pis-moviepage-cont">
+                <div className="pis-moviepage-error">
+                    <ErrorAndInfo errorMsg={error} infoMsg={""}/>
+                </div>
+                {movie.length && <div className="container-fluid pis-moviepage-info-cont">
+                    <div className="row align-items-center">
+                        <div className="col-lg-2 col-md-2 col-sm-12 pis-moviepage-poster-col">
+                            <div className="card pis-moviepage-card" style={{backgroundImage: `url(${movie.poster_url})`}}/>
                         </div>
-                        <div className='pis-movie-page-static-content'>
-                            <h1 className={'pis-movie-page-data-content'}>{movieData.title}</h1>
-
-                            <h2 className='pis-movie-page-data-headers'>Gatunek</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.genre}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Kraj wydania</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.country_of_origin}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Język</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.language}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Premiera</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.releaseDate?.substring(0, 10)}</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Czas trwania</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.length} min</h4>
-
-                            <h2 className='pis-movie-page-data-headers'>Budżet</h2>
-                            <h4 className={'pis-movie-page-data-content'}>{movieData.budget}$</h4>
-                        </div>
-                        <div className='pis-movie-page-ratings'>
-                            <div className='pis-stars-text'>Your rating:</div><StarRating
-                                movie_id = {movieData.id} size={20} maxRating={5} onSuccess={(res : any) => {}} onError={(err : any) =>{"Dodanie recenzji nieudane."}}/>
-                            <div className='pis-stars-text'>Critics rating:</div><StarShow rating= {movieData.rating * 5} size={20} maxRating={5} />
-                            <div className='pis-stars-text'>Users rating:</div><StarShow rating= {movieData.userRating} size={20} maxRating={5} />
-                        </div>
-                        <div className='pis-movie-page-comments'>
+                        <div className="col-lg-4 col-md-6 col-sm-12">
+                            <div className="container pis-moviepage-data-cont">
+                                <MovieInfo movie={movie}/>
+                            </div>
                         </div>
                     </div>
-                </>}
-
+                </div>}
+                {movie.length && people && <div className="container-fluid pis-moviepage-people-cont">
+                    <MoviePeople /*people={{}}*//>
+                </div>}
+                {movie.length && people && rating && <div className="container-fluid pis-moviepage-rating-cont">
+                    <div className='pis-movie-page-ratings'>
+                            <div className='pis-stars-text'>Twoja ocena</div><StarRating
+                                movie_id = {movie.id} size={20} maxRating={5} onSuccess={(res : any) => {}} onError={(err : any) =>{"Dodanie recenzji nieudane."}}/>
+                            <div className='pis-stars-text'>Ocena krytyków</div><StarShow rating= {movie.rating * 5} size={20} maxRating={5} />
+                            <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {movie.userRating} size={20} maxRating={5} />
+                        </div>
+                </div>}
             </div>
         </Layout>
     </>;

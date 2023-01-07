@@ -26,8 +26,7 @@ public class MovieRatingControllerTests {
     private TestRestTemplate testRestTemplate;
     @Autowired
     private MovieController movieController;
-    @Autowired
-    private MovieRepository movieRepository;
+
 
     @Before
     public void setup() {

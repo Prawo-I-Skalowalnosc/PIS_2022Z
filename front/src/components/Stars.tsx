@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {Requests} from '../requests/Requests'
 import {UserRateResponse} from '../types/UserRate';
 import {ErrorResponse} from "../types/ErrorResponse";
+import '../style/UserRating.css'
 
 interface StarShowProps {
     rating: number;
