@@ -15,7 +15,7 @@ export function MenuMoviesList(props: MoviesListProps) {
         <div className="pis-mainpagelist-card-cont">
         {props.movies && props.movies.map(movie => {
             return  <>
-                <div className="card pis-mainpagelist-card" style={{backgroundImage: `url(${movie.poster_url})`}}
+                <div key={movie.id} className="card pis-mainpagelist-card" style={{backgroundImage: `url(${movie.poster_url})`}}
                 onClick={() => navigate(`/movies/${movie.id}`)}>
                     <div key={movie.id} className="pis-mainpagelist-card-title">{movie.title}</div>
                 </div>

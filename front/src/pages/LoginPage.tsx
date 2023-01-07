@@ -28,7 +28,7 @@ export default function LoginPage() {
                         <ErrorAndInfo errorMsg={error} infoMsg={""}/>
                     </div>
                     <LoginForm onSuccess={(res) => {
-                        SecurityHelper.setContext({token: res.token, username: res.username, isAdmin: res.isAdmin})
+                        SecurityHelper.setContext(res)
                         navigate("/")
                     }} onError={(res) => setError(res.infoMessage)}/>
                     <small className="pis-login-reglink-text">
