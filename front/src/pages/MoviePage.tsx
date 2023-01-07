@@ -56,7 +56,7 @@ export default function MoviePage() {
                     </div>
                 </div>}
                 {movie.length && people && <div className="container-fluid pis-moviepage-people-cont">
-                    <MoviePeople people={{}}/>
+                    <MoviePeople /*people={{}}*//>
                 </div>}
                 {movie.length && people && rating && <div className="container-fluid pis-moviepage-rating-cont">
                     Ocena użytkowników: TODO
