@@ -10,7 +10,7 @@ import "../style/register.css"
 
 export function NewMovieForm() {
     const defaultDate = new Date().toISOString().split('T')[0];
-    const [movieData, setMovieData] = useState({release_date: defaultDate, rating: 0} as MovieResponse);
+    const [movieData, setMovieData] = useState({releaseDate: defaultDate, rating: 0} as MovieResponse);
     let navigate = useNavigate();
 
     const handleInput = (e: FormEvent) => {
@@ -89,7 +89,7 @@ export function NewMovieForm() {
                                 defaultValue={defaultDate}
                                 sx={{mt: "1rem"}}
                                 onChange={(e) =>
-                                    setMovieData({...movieData, release_date: e.target.value})}/>
+                                    setMovieData({...movieData, releaseDate: e.target.value})}/>
                             <TextField
                                 name={"length"}
                                 type={"number"}
