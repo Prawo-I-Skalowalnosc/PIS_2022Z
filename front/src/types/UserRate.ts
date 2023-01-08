@@ -3,7 +3,6 @@ export type UserRate = {
     rating : number
 }
 
-export type UserRateResponse = {
-    success : boolean
-    message : string
+export type UserRateResponse = UserRate & {
+    isNew : boolean
 }

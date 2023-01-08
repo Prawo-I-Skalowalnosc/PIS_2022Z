@@ -15,9 +15,10 @@ import {MoviePeople} from "../components/movie-page/MoviePeople";
 export default function MoviePage() {
     let { id } = useParams();
     const [error, setError] = useState("");
+    const [info, setInfo] = useState("");
     const [movie, setMovie] = useState<MovieResponse>({} as MovieResponse);
     const [people, setPeople] = useState({});
-    const [rating, setRating] = useState({});
+    const [userRating, setUserRating] = useState(1);
 
     useEffect(() => {
         Requests.getMovieById(id ?? '').then(res => {
@@ -26,14 +27,19 @@ export default function MoviePage() {
                 setError(res.err.infoMessage);
             } else if (res.res) {
                 setMovie(res.res);
+                setUserRating(res.res.userRating);
             }
         });
         // TODO pobieranie z bazy ludzi
         setPeople({});
-
-        // TODO wyliczenie oceny użytkowników
-        setRating({});
     },[id])
+
+    const getUserRating = () => {
+        Requests.getUserRating(movie.id).then(r => {
+            if (r.res)
+                setUserRating(r.res)
+        })
+    }
 
     return <>
         <Helmet>
@@ -42,7 +48,7 @@ export default function MoviePage() {
         <Layout>
             <div className="App container-fluid pis-moviepage-cont">
                 <div className="pis-moviepage-error">
-                    <ErrorAndInfo errorMsg={error} infoMsg={""}/>
+                    <ErrorAndInfo errorMsg={error} infoMsg={info}/>
                 </div>
                 {movie.length && <div className="container-fluid pis-moviepage-info-cont">
                     <div className="row align-items-center">
@@ -59,12 +65,20 @@ export default function MoviePage() {
                 {movie.length && people && <div className="container-fluid pis-moviepage-people-cont">
                     <MoviePeople /*people={{}}*//>
                 </div>}
-                {movie.length && people && rating && <div className="container-fluid pis-moviepage-rating-cont">
+                {movie.length && people && <div className="container-fluid pis-moviepage-rating-cont">
                     <div className='pis-movie-page-ratings'>
-                            <div className='pis-stars-text'>Twoja ocena</div><StarRating
-                                movie_id = {movie.id} size={20} maxRating={5} onSuccess={(res : any) => {}} onError={(err : any) =>{"Dodanie recenzji nieudane."}}/>
-                            <div className='pis-stars-text'>Ocena krytyków</div><StarShow rating= {movie.rating * 5} size={20} maxRating={5} />
-                            <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {movie.userRating} size={20} maxRating={5} />
+                        <div className='pis-stars-text'>Twoja ocena</div>
+                            <StarRating
+                                movie_id = {movie.id} size={20} maxRating={5}
+                                onSuccess={(response) => {
+                                    getUserRating();
+                                    response.isNew ? setInfo("Dodano nową ocenę") : setInfo("Zaktualizowano ocenę")
+                                }}
+                                onError={(response) => setError(response.infoMessage)}
+                                resetInfo={() => {setInfo(""); setError("")}}
+                            />
+                            <div className='pis-stars-text'>Ocena krytyków</div><StarShow rating={movie.rating * 5} size={20} maxRating={5} />
+                            <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {userRating} size={20} maxRating={5} />
                         </div>
                 </div>}
             </div>

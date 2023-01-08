@@ -31,22 +31,26 @@ interface StarRatingProps {
     size: number;
     onSuccess: (response: UserRateResponse) => void,
     onError: (err: ErrorResponse) => void
+    resetInfo: () => void
 }
 
 export function StarRating(props : StarRatingProps) {
     const [rankValue, setRankValue] = useState<number>(props.maxRating); 
     const handleClick = (new_rating : number) => {
-    setRankValue(new_rating)
-    Requests.sendRate({
-          movieId : props.movie_id,
-          rating : new_rating
-    }).then( res =>{
-        if (res.res){
-            props.onSuccess(res.res)
-        } else if (res.err){
-            props.onError(res.err)
+        if (new_rating !== rankValue) {
+            setRankValue(new_rating)
+            Requests.sendRate({
+                movieId : props.movie_id,
+                rating : new_rating
+            }).then( res =>{
+                if (res.res){
+                    props.onSuccess(res.res)
+                } else if (res.err){
+                    props.onError(res.err)
+                }
+            });
         }
-    });
+        else props.resetInfo()
     }
   
   return (
