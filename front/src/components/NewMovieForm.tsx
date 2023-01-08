@@ -7,8 +7,14 @@ import {Requests} from "../requests/Requests";
 import {COUNTRIES} from "../helpers/CountryList";
 import {GENRES} from "../helpers/GenreList";
 import "../style/register.css"
+import {ErrorResponse} from "../types/ErrorResponse";
 
-export function NewMovieForm() {
+interface NewMovieProps {
+    onSuccess: (response: MovieResponse) => void,
+    onError: (err: ErrorResponse) => void
+}
+
+export function NewMovieForm(props: NewMovieProps) {
     const defaultDate = new Date().toISOString().split('T')[0];
     const [movieData, setMovieData] = useState({releaseDate: defaultDate, rating: 0} as MovieResponse);
     let navigate = useNavigate();
@@ -17,10 +23,11 @@ export function NewMovieForm() {
         e.preventDefault();
         if (movieData.title && movieData.genre) {
             Requests.addMovie(movieData).then( res => {
-                // TODO: error handling
-            if (res.err) {}
-            else {
-                navigate("/movies");
+            if (res.err) {
+                props.onError(res.err);
+            }
+            else if (res.res) {
+                props.onSuccess(res.res);
                 }})
         }
     }
