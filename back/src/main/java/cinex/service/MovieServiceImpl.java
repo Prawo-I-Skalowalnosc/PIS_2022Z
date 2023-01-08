@@ -29,7 +29,6 @@ public class MovieServiceImpl implements MovieService{
     
     @Override
     public List<Movie> findByTitle(String title) {
-
         return movieRepository.findByTitle(title);
     }
 

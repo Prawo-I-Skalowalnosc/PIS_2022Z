@@ -158,4 +158,18 @@ public class UserServiceTests {
         assertEquals(logged.getId(), user.get().getId());
         assertEquals(logged.getRole(), user.get().getRole());
     }
+
+    @Test
+    public void testLoadByUsername() {
+        var absent = userService.loadByUsername(getUser().getUsername());
+        assertFalse(absent.isPresent());
+
+        userRepository.save(getUser());
+
+        var present = userService.loadByUsername(getUser().getUsername());
+        assertTrue(present.isPresent());
+        assertEquals(present.get().getHash().strip(), getUser().getHash().strip());
+        assertEquals(present.get().getRatings().size(), 0);
+        assertEquals(present.get().getRole(), getUser().getRole());
+    }
 }
