@@ -1,8 +1,8 @@
 import {Global} from "../Config";
 import {MovieResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
-import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
 import {UserRate, UserRateResponse} from "../types/UserRate";
+import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
 import {SecurityHelper} from "../helpers/SecurityHelper";
 
 function fetchPost(body: any, url: string){
@@ -48,7 +48,7 @@ async function handleResponse(response: Response) {
     if (response.status === 401)
         return {err: {status: response.status, infoMessage: "Brak uprawnień", timestamp: new Date(), message: ""}};
 
-    const json = await response.json()
+    const json = await response.json();
 
     if (response.status === 200)
         return {res: json};
@@ -110,6 +110,11 @@ export class Requests {
 
     static async getUserRating(id : string): Promise<GenericResponse<number>> {
         const response = await fetchGet(`/movies/userRating?id=${id}`)
+        return handleResponse(response);
+    }
+
+    static async addMovie(request: MovieResponse): Promise<GenericResponse<MovieResponse>> {
+        const response = await fetchPost(request, "/movies/create")
         return handleResponse(response);
     }
 }

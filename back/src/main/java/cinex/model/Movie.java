@@ -47,6 +47,7 @@ public class Movie {
         rating = request.rating;
         genre = request.genre;
         country_of_origin = request.country_of_origin;
+        budget = request.budget;
         language = request.language;
         releaseDate = request.releaseDate != null ? request.releaseDate : new Date();
         length = request.length;
