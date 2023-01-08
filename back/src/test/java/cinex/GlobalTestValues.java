@@ -33,7 +33,7 @@ public class GlobalTestValues {
 
     public static User getUser() {
         return new User(UUID.randomUUID(), List.of(), username,
-                'A', RandomString.make(32) + "@abcdef.pl", new Date(), RandomString.make(32), RandomString.make(32));
+                'A', RandomString.make(32) + "@abcdef.pl", new Date(), "hasełko1234", "abb16f9e6a956ac207c727ea39c23fff");
     }
 
     public static MovieRating getMovieRating(Movie m, User u, Integer value){
