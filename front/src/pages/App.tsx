@@ -7,6 +7,7 @@ import MainMenuPage from "./MainMenuPage";
 import MoviePage from "./MoviePage";
 import {MovieGrid} from "../components/movie-grid/MovieGrid";
 import {NewMoviePage} from "./NewMoviePage";
+import {AdminRoute} from "../helpers/RouteHelper";
 
 export default function App() {
     return (
@@ -16,7 +17,9 @@ export default function App() {
             <Routes>
               <Route path="/" element={<MainMenuPage />} />
               <Route path="/movies" element={<MovieGrid />}/>
-              <Route path="/create" element={<NewMoviePage />} />
+              <Route path="/create" element={<AdminRoute/>}>
+                <Route path="/create" element={<NewMoviePage />} />
+              </Route>
               <Route path="/login" element={<LoginPage/>} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/movies/:id" element={<MoviePage />} />
