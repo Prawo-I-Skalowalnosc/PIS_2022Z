@@ -1,5 +1,6 @@
 package cinex.service;
 
+import cinex.controller.api.responses.RatingResponse;
 import cinex.model.Movie;
 import cinex.model.MovieRating;
 import cinex.model.User;
@@ -18,8 +19,9 @@ public class MovieRatingServiceImpl implements MovieRatingService{
         return movieRatingRepository.findByRaterAndMovie(rater, movie);
     }
     @Override
-    public MovieRating updateOrCreateRating(MovieRating movie_rating){
-        return movieRatingRepository.save(movie_rating);
+    public RatingResponse updateOrCreateRating(MovieRating movie_rating){
+        var isNew = getRating(movie_rating.getRater(), movie_rating.getMovie()).isEmpty();
+        return new RatingResponse(movieRatingRepository.save(movie_rating), isNew);
     }
 
     @Override

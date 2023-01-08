@@ -1,6 +1,7 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreateRatingRequest;
+import cinex.controller.api.responses.RatingResponse;
 import cinex.errors.AppException;
 import cinex.model.MovieRating;
 import cinex.security.SecurityHelper;
@@ -19,7 +20,7 @@ public class MovieRatingController {
     private MovieRatingService movieRatingService;
 
     @PutMapping("/addRating")
-    public void addRating(@RequestBody CreateRatingRequest request) throws AppException {
+    public RatingResponse addRating(@RequestBody CreateRatingRequest request) throws AppException {
         var opt_movie = movieService.findById(request.movieId);
 
         if (opt_movie.isEmpty())
@@ -31,12 +32,10 @@ public class MovieRatingController {
         if (user == null)
             throw new AppException("Nie jesteś zalogowany");
 
-        movieRatingService.updateOrCreateRating(new MovieRating(
-                movie,
-                user,
-                request.rating)
+        return movieRatingService.updateOrCreateRating(new MovieRating(
+            movie,
+            user,
+            request.rating)
         );
-
     }
-
 }
