@@ -1,13 +1,12 @@
 import React from 'react';
 import '../style/App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import MainMenuPage from "./MainMenuPage";
 import MoviePage from "./MoviePage";
 import {MovieGrid} from "../components/movie-grid/MovieGrid";
 import {NewMoviePage} from "./NewMoviePage";
-
 
 export default function App() {
     return (

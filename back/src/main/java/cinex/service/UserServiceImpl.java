@@ -16,6 +16,7 @@ import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -123,5 +124,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> loadByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+    
+    @Override
+    public Optional<User> findById(UUID id) {
+    	return userRepository.findById(id);
     }
 }
