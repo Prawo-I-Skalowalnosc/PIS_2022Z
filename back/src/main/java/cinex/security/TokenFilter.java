@@ -105,7 +105,9 @@ public class TokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private void unauthorizedResponse(HttpServletResponse response) {
+    private void unauthorizedResponse(HttpServletResponse response) throws IOException {
         response.setStatus(401);
+        response.getWriter().write("{}");
+        response.getWriter().flush();
     }
 }

@@ -38,6 +38,7 @@ public class Movie {
     private Integer length;
     private String poster_url;
 
+
     public Movie(CreateMovieRequest request) {
         ratings = List.of();
         people = List.of();
@@ -46,6 +47,7 @@ public class Movie {
         rating = request.rating;
         genre = request.genre;
         country_of_origin = request.country_of_origin;
+        budget = request.budget;
         language = request.language;
         releaseDate = request.releaseDate != null ? request.releaseDate : new Date();
         length = request.length;

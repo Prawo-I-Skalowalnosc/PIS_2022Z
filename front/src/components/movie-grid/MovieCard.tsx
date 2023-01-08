@@ -17,6 +17,7 @@ export function MovieCard(props: movieIconProps) {
                 sx={{ height: 1}}
                 image={ props.movie_info.poster_url }
                 title={ props.movie_info.title }
+                component={ "img" }
             />
         </Card>
     );

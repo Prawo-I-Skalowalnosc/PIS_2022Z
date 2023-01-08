@@ -10,6 +10,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.Optional;
 
+import java.util.UUID;
+
 import static cinex.service.UserServiceImpl.tokenSecret;
 
 public interface UserService {
@@ -39,4 +41,6 @@ public interface UserService {
             )
             .compact();
     }
+
+    public Optional<User> findById(UUID id);
 }
