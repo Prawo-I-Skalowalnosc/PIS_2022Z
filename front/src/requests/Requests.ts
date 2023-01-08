@@ -4,6 +4,7 @@ import {ErrorResponse} from "../types/ErrorResponse";
 import {UserRate, UserRateResponse} from "../types/UserRate";
 import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
 import {SecurityHelper} from "../helpers/SecurityHelper";
+import {PersonResponse} from "../types/Person";
 
 function fetchPost(body: any, url: string){
     return fetch(Global.backendUrl + url, {
@@ -63,6 +64,11 @@ export class Requests {
 
     static async allMovies(): Promise<GenericResponse<MovieResponse[]>> {
         const response = await fetchGet("/movies/all")
+        return handleResponse(response);
+    }
+
+    static async allPeople(): Promise<GenericResponse<PersonResponse[]>> {
+        const response = await fetchGet("/people/all")
         return handleResponse(response);
     }
 

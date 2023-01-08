@@ -39,6 +39,9 @@ public class Config {
                         "/movies/**"
                 ).permitAll();
                 authorize.antMatchers(
+                        "/people/**"
+                ).permitAll();
+                authorize.antMatchers(
                         HttpMethod.PUT,
                         "/movieRatings/addRating"
                 ).permitAll();
