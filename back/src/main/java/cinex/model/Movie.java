@@ -38,6 +38,7 @@ public class Movie {
     private Integer length;
     private String poster_url;
 
+
     public Movie(CreateMovieRequest request) {
         ratings = List.of();
         people = List.of();
