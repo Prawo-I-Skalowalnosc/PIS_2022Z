@@ -13,3 +13,9 @@ export type MovieResponse = {
 }
 
 export type MoviesResponse = MovieResponse[]
+
+export type PeopleResponse = {
+    directors: string[]
+    screenwriters: string[]
+    actors: string[]
+}

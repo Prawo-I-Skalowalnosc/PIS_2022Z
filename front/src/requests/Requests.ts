@@ -1,5 +1,5 @@
 import {Global} from "../Config";
-import {MovieResponse} from "../types/Movies"
+import {MovieResponse, PeopleResponse} from "../types/Movies"
 import {ErrorResponse} from "../types/ErrorResponse";
 import {UserRate, UserRateResponse} from "../types/UserRate";
 import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
@@ -125,7 +125,7 @@ export class Requests {
     }
 
     static async getUserRating(id : string): Promise<GenericResponse<number>> {
-        const response = await fetchGet(`/movieRatings/user/?id=${id}`)
+        const response = await fetchGet(`/movieRatings/user?id=${id}`)
         return handleResponse(response);
     }
 
@@ -138,4 +138,10 @@ export class Requests {
         const response = await fetchPost(request, "/people/create")
         return handleResponse(response);
     }
+
+    static async getPeople(id : string): Promise<GenericResponse<PeopleResponse>> {
+        const response = await fetchGet(`/movies/people?id=${id}`)
+        return handleResponse(response);
+    }
+
 }

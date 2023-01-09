@@ -1,8 +1,9 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "../../style/layout.css"
 import {SecurityHelper} from "../../helpers/SecurityHelper";
 
 const NavBar = () => {
+    const navigate = useNavigate();
     return <div>
         <nav className="navbar navbar-dark pis-navbar">
             <ul className="navbar-nav pis-navbar-nav">
@@ -31,7 +32,7 @@ const NavBar = () => {
                 {SecurityHelper.amILogged() && <li className="nav-item pis-nav-item">
                     <Link onClick={() => {
                         SecurityHelper.deleteContext();
-                        window.location.reload();
+                        navigate("/login")
                     }} className="nav-link pis-navbar-link" to="/">
                         <i className="bi bi-box-arrow-right"/> Wyloguj się
                     </Link>

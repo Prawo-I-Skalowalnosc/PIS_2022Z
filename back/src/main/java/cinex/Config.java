@@ -43,6 +43,7 @@ public class Config {
                 ).permitAll();
                 authorize.antMatchers(
                         "/movieRatings/**"
+                        "/movieRatings/user"
                 ).permitAll();
                 authorize.antMatchers(
                         HttpMethod.PUT,
