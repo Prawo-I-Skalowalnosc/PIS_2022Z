@@ -1,18 +1,10 @@
 package cinex.controller.api.responses;
 
 import cinex.model.Movie;
-import cinex.model.MovieRating;
-import cinex.model.Person;
 import cinex.model.PersonInMovie;
-import cinex.security.UserRoles;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.joining;
 
 public class PeopleResponse {
     public List<String> directors;

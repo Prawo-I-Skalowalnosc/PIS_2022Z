@@ -8,8 +8,8 @@ import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import { StarRating, StarShow } from '../components/Stars';
 import {Helmet} from "react-helmet";
 import {useParams} from "react-router-dom";
-import {MovieInfo} from "../components/movie-page/MovieInfo";
-import {MoviePeople} from "../components/movie-page/MoviePeople";
+import {MovieInfo} from "../components/page-movie/MovieInfo";
+import {MoviePeople} from "../components/page-movie/MoviePeople";
 import {SecurityHelper} from "../helpers/SecurityHelper";
 
 

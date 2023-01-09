@@ -6,8 +6,8 @@ import {MovieResponse} from "../types/Movies";
 import {Requests} from "../requests/Requests";
 import {COUNTRIES} from "../helpers/CountryList";
 import {GENRES} from "../helpers/GenreList";
-import "../style/register.css"
 import {ErrorResponse} from "../types/ErrorResponse";
+import "../style/register.css"
 
 interface NewMovieProps {
     onSuccess: (response: MovieResponse) => void,
@@ -52,8 +52,8 @@ export function NewMovieForm(props: NewMovieProps) {
                     <TextField
                         required
                         select
-                        name={"genre"}
                         label={"Gatunek"}
+                        name={"genre"}
                         sx={{mt: "1rem"}}
                         defaultValue={''}
                         onChange={(e) =>
@@ -64,8 +64,8 @@ export function NewMovieForm(props: NewMovieProps) {
                     </TextField>
                     <TextField
                         select
-                        name={"country_of_origin"}
                         label={"Kraj powstania"}
+                        name={"country_of_origin"}
                         sx={{mt: "1rem"}}
                         defaultValue={''}
                         onChange={(e) =>
@@ -76,35 +76,35 @@ export function NewMovieForm(props: NewMovieProps) {
                     </TextField>
                     <TextField
                         name={"budget"}
-                        type={"number"}
                         label={"Budżet ($)"}
+                        type={"number"}
                         sx={{mt: "1rem"}}
                         onChange={(e) =>
                             setMovieData({...movieData, budget: parseInt(e.target.value, 10)})}/>
                     <TextField
-                        name={"language"}
                         label={"Język filmu"}
+                        name={"language"}
                         sx={{mt: "1rem"}}
                         onChange={(e) =>
                             setMovieData({...movieData, language: e.target.value})}/>
                     <TextField
-                        name={"release_date"}
                         type={"date"}
                         label={"Data premiery"}
+                        name={"release_date"}
                         defaultValue={defaultDate}
                         sx={{mt: "1rem"}}
                         onChange={(e) =>
                             setMovieData({...movieData, releaseDate: e.target.value})}/>
                     <TextField
-                        name={"length"}
                         type={"number"}
                         label={"Długość trwania filmu (w minutach)"}
+                        name={"length"}
                         sx={{mt: "1rem"}}
                         onChange={(e) =>
                             setMovieData({...movieData, length: parseInt(e.target.value, 10)})}/>
                     <TextField
-                        name={"poster_url"}
                         label={"Adres URL plakatu filmu"}
+                        name={"poster_url"}
                         sx={{mt: "1rem"}}
                         onChange={(e) =>
                             setMovieData({...movieData, poster_url: e.target.value})}/>

@@ -13,13 +13,19 @@ const NavBar = () => {
             </ul>
             <ul className="navbar-nav pis-navbar-nav me-auto">
                 <li className="nav-item pis-nav-item">
-                <Link className="nav-link pis-navbar-link" to="/movies">FILMY</Link>
+                    <Link className="nav-link pis-navbar-link" to="/movies">FILMY</Link>
                 </li>
                 <li className="nav-item pis-nav-item">
-                <Link className="nav-link pis-navbar-link" to="/movies/rankings">RANKINGI</Link>
+                    <Link className="nav-link pis-navbar-link" to="/people">LUDZIE KINA</Link>
+                </li>
+                <li className="nav-item pis-nav-item">
+                    <Link className="nav-link pis-navbar-link" to="/movies/rankings">RANKINGI</Link>
                 </li>
                 <li className="nav-item pis-nav-item">
                     <Link className="nav-link pis-navbar-link" to="/create">DODAJ FILM</Link>
+                </li>
+                <li className="nav-item pis-nav-item">
+                    <Link className="nav-link pis-navbar-link" to="/newperson">DODAJ OSOBĘ</Link>
                 </li>
             </ul>
             <ul className="navbar-nav pis-navbar-nav ms-auto">

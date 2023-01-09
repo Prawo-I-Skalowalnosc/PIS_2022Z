@@ -110,6 +110,13 @@
     overflow: auto;
 }
 
+.pis-newperson-card {
+    padding: 1rem;
+    width: 40%;
+    height: 45%;
+    margin: auto;
+}
+
 .pis-newmovie-form {
     text-align: left;
 }

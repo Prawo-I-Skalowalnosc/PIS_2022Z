@@ -4,6 +4,7 @@ import {ErrorResponse} from "../types/ErrorResponse";
 import {UserRate, UserRateResponse} from "../types/UserRate";
 import {Credentials, LoginResponse, RegisterCredentials} from "../types/Credentials";
 import {SecurityHelper} from "../helpers/SecurityHelper";
+import {PersonResponse} from "../types/Person";
 
 function fetchPost(body: any, url: string){
     return fetch(Global.backendUrl + url, {
@@ -66,6 +67,16 @@ export class Requests {
         return handleResponse(response);
     }
 
+    static async allPeople(): Promise<GenericResponse<PersonResponse[]>> {
+        const response = await fetchGet("/people/all")
+        return handleResponse(response);
+    }
+
+    static async getPersonById(id : string): Promise<GenericResponse<PersonResponse>> {
+        const response = await fetchGet(`/people/byID?id=${id}`)
+        return handleResponse(response);
+    }
+
     static async getMovieById(id : string): Promise<GenericResponse<MovieResponse>> {
         const response = await fetchGet(`/movies/byID?id=${id}`)
         return handleResponse(response);
@@ -120,6 +131,11 @@ export class Requests {
 
     static async addMovie(request: MovieResponse): Promise<GenericResponse<MovieResponse>> {
         const response = await fetchPost(request, "/movies/create")
+        return handleResponse(response);
+    }
+
+    static async addPerson(request: PersonResponse): Promise<GenericResponse<PersonResponse>> {
+        const response = await fetchPost(request, "/people/create")
         return handleResponse(response);
     }
 

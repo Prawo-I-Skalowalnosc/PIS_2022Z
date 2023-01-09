@@ -1,5 +1,6 @@
 package cinex.model;
 
+import cinex.controller.api.requests.CreatePeopleRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,13 @@ public class Person {
 
     private String name;
     private String last_name;
+    private String photo_url;
+
+    public Person(CreatePeopleRequest request) {
+        movies = List.of();
+
+        name = request.name;
+        last_name = request.last_name;
+        photo_url = request.photo_url;
+    }
 }
