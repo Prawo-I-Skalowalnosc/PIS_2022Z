@@ -5,9 +5,9 @@ import {Helmet} from "react-helmet";
 import Layout from "../components/layout/Layout";
 import Stack from "@mui/material/Stack";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
-import NewMovieForm from "../components/NewMovieForm";
+import {NewPersonForm} from "../components/NewPersonForm";
 
-export function NewMoviePage() {
+export function NewPersonPage() {
     const [error, setError] = useState("");
     let navigate = useNavigate();
 
@@ -21,11 +21,11 @@ export function NewMoviePage() {
     return (
         <>
             <Helmet>
-                <title>Cinex ∙ Dodaj film</title>
+                <title>Cinex ∙ Dodaj osobę</title>
             </Helmet>
             <Layout>
                 <Stack>
-                    <NewMovieForm onSuccess={() => navigate("/movies")}
+                    <NewPersonForm onSuccess={() => navigate("/people")}
                                   onError={(res) => handleError(res)}/>
                     <div className="pis-register-error">
                         <ErrorAndInfo errorMsg={error} infoMsg={""}/>

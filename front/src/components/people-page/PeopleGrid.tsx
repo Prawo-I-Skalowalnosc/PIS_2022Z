@@ -32,7 +32,7 @@ export function PeopleGrid() {
         if (inputText === '') {
             return person;
         } else {
-            return `${person.name} ${person.last_name}`.includes(inputText);
+            return `${person.name} ${person.last_name}`.toLowerCase().includes(inputText);
         }
     })
 

@@ -51,7 +51,7 @@ public class Config {
                 ).hasAuthority(UserRoles.ADMIN.toString());
                 authorize.antMatchers(
                         HttpMethod.POST,
-                        "/newperson"
+                        "/people/create"
                 ).hasAuthority(UserRoles.ADMIN.toString());
                 authorize.anyRequest().authenticated();
             })

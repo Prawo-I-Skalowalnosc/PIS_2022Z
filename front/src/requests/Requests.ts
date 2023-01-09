@@ -123,4 +123,9 @@ export class Requests {
         const response = await fetchPost(request, "/movies/create")
         return handleResponse(response);
     }
+
+    static async addPerson(request: PersonResponse): Promise<GenericResponse<PersonResponse>> {
+        const response = await fetchPost(request, "/people/create")
+        return handleResponse(response);
+    }
 }

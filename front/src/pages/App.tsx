@@ -7,7 +7,7 @@ import MainMenuPage from "./MainMenuPage";
 import MoviePage from "./MoviePage";
 import {MovieGrid} from "../components/movie-grid/MovieGrid";
 import {NewMoviePage} from "./NewMoviePage";
-import {NewPersonPage} from "../components/new-person/NewPersonPage";
+import {NewPersonPage} from "./NewPersonPage";
 import {AdminRoute} from "../helpers/RouteHelper";
 import {PeopleGrid} from "../components/people-page/PeopleGrid";
 
