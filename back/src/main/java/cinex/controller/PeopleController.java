@@ -1,10 +1,10 @@
 package cinex.controller;
 
-import cinex.controller.api.requests.CreatePersonRequest;
-import cinex.controller.api.responses.PersonResponse;
+import cinex.controller.api.requests.CreatePeopleRequest;
+import cinex.controller.api.responses.PeopleResponse;
 import cinex.errors.AppException;
 import cinex.security.SecurityHelper;
-import cinex.service.PersonService;
+import cinex.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,28 +16,28 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/people")
-public class PersonController {
+public class PeopleController {
     @Autowired
-    private PersonService personService;
+    private PeopleService peopleService;
 
     @GetMapping("/all")
-    public List<PersonResponse> all() {
-        return personService.findAll().stream()
-                .map(PersonResponse::new)
+    public List<PeopleResponse> all() {
+        return peopleService.findAll().stream()
+                .map(PeopleResponse::new)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/byID")
-    public PersonResponse byID(@RequestParam UUID id) throws AppException{
-        var person = personService.findById(id);
+    public PeopleResponse byID(@RequestParam UUID id) throws AppException{
+        var person = peopleService.findById(id);
         if(person.isEmpty()) throw new AppException("Brak osoby w bazie");
-        return new PersonResponse(person.get());
+        return new PeopleResponse(person.get());
     }
 
     @PostMapping("/create")
-    public PersonResponse create(@RequestBody CreatePersonRequest request) throws AppException {
+    public PeopleResponse create(@RequestBody CreatePeopleRequest request) throws AppException {
         if (!Objects.requireNonNull(SecurityHelper.getLoggedUser()).isAdmin())
             throw new AppException("Nie masz uprawnień, aby dodać film");
-        return new PersonResponse(personService.create(request));
+        return new PeopleResponse(peopleService.create(request));
     }
 }

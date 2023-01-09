@@ -1,9 +1,9 @@
 package cinex.service;
 
-import cinex.controller.api.requests.CreatePersonRequest;
+import cinex.controller.api.requests.CreatePeopleRequest;
 import cinex.errors.AppException;
 import cinex.model.Person;
-import cinex.repository.PersonRepository;
+import cinex.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +12,23 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public class PeopleServiceImpl implements PeopleService {
 
     @Autowired
-    private PersonRepository personRepository;
+    private PeopleRepository peopleRepository;
 
     @Override
     public List<Person> findAll() {
-        return personRepository.findAll();
+        return peopleRepository.findAll();
     }
 
     @Override
     public Optional<Person> findById(UUID id){
-        return personRepository.findById(id);
+        return peopleRepository.findById(id);
     }
 
     @Override
-    public Person create(CreatePersonRequest request) throws AppException {
+    public Person create(CreatePeopleRequest request) throws AppException {
         if (request == null)
             throw new AppException("Nie podano danych nowej osoby");
 
@@ -40,7 +40,7 @@ public class PersonServiceImpl implements PersonService {
                 throw new AppException("Podano puste nazwisko");
 
             var person = new Person(request);
-            return personRepository.save(person);
+            return peopleRepository.save(person);
         }
         catch (Exception e) {
             throw new AppException("Błąd podczas dodawania osoby");
