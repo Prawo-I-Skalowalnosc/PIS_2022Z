@@ -42,17 +42,21 @@ public class Config {
                         "/people/**"
                 ).permitAll();
                 authorize.antMatchers(
+                        "/movieRatings/**"
+                ).permitAll();
+                authorize.antMatchers(
                         HttpMethod.PUT,
                         "/movieRatings/addRating"
                 ).permitAll();
+
                 authorize.antMatchers(
                         HttpMethod.POST,
                         "/movies/create"
-                ).hasAuthority(UserRoles.ADMIN.toString());
+                ).hasAuthority(UserRoles.MODERATOR.toString());
                 authorize.antMatchers(
                         HttpMethod.POST,
                         "/people/create"
-                ).hasAuthority(UserRoles.ADMIN.toString());
+                ).hasAuthority(UserRoles.MODERATOR.toString());
                 authorize.anyRequest().authenticated();
             })
             .httpBasic(Customizer.withDefaults())

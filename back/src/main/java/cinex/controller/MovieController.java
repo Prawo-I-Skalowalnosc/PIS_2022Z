@@ -1,14 +1,20 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreateMovieRequest;
+import cinex.errors.AppException;
+import cinex.model.Movie;
+import cinex.security.UserRoles;
 import cinex.controller.api.responses.MovieResponse;
 import cinex.errors.AppException;
 import cinex.security.SecurityHelper;
 import cinex.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import cinex.errors.AppException;
 
 import java.util.List;
+
+import static cinex.security.SecurityHelper.requireRoles;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -41,14 +47,14 @@ public class MovieController {
         if(movie.isEmpty()) throw new AppException("Brak filmu w bazie");
     	return new MovieResponse(movie.get());
     }
-    
+
     @GetMapping("/byTitle")
     public List<MovieResponse> byTitle(@RequestParam String title){
         return movieService.findByTitle(title).stream()
                 .map(MovieResponse::new)
                 .collect(Collectors.toList());
     }
-    
+
     @GetMapping("/upcoming")
     public List<MovieResponse> upcoming() {
         return  movieService.findUpcoming().stream()
@@ -72,7 +78,7 @@ public class MovieController {
 
     @PostMapping("/create")
     public MovieResponse create(@RequestBody CreateMovieRequest request) throws AppException {
-        if (!Objects.requireNonNull(SecurityHelper.getLoggedUser()).isAdmin())
+        if (!requireRoles(List.of(UserRoles.ADMIN, UserRoles.MODERATOR)))
             throw new AppException("Nie masz uprawnień, aby dodać film");
         return new MovieResponse(movieService.create(request));
     }

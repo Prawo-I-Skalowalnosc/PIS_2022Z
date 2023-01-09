@@ -29,7 +29,6 @@ public class MovieServiceImpl implements MovieService{
     
     @Override
     public List<Movie> findByTitle(String title) {
-
         return movieRepository.findByTitle(title);
     }
 
@@ -45,7 +44,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<Movie> findBest() {
-        return movieRepository.findAllByRatingIsNotNullOrderByRatingsDesc();
+        return movieRepository.findAllByRatingIsNotNullOrderByRatingDesc();
     }
 
 

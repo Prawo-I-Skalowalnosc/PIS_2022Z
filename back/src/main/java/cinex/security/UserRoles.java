@@ -2,7 +2,8 @@ package cinex.security;
 
 public enum UserRoles {
     ADMIN("admin"),
-    USER("user");
+    USER("user"),
+    MODERATOR("moderator");
 
     UserRoles(String name) {
         this.name = name;
@@ -12,5 +13,9 @@ public enum UserRoles {
     @Override
     public String toString() {
         return name;
+    }
+
+    static UserRoles newUserRole(String name) {
+        return UserRoles.valueOf(name);
     }
 }

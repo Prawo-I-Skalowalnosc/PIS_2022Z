@@ -119,8 +119,13 @@ export class Requests {
         return handleResponse(response);
     }
 
-    static async getUserRating(id : string): Promise<GenericResponse<number>> {
+    static async getUsersRating(id : string): Promise<GenericResponse<number>> {
         const response = await fetchGet(`/movies/userRating?id=${id}`)
+        return handleResponse(response);
+    }
+
+    static async getUserRating(id : string): Promise<GenericResponse<number>> {
+        const response = await fetchGet(`/movieRatings/user/?id=${id}`)
         return handleResponse(response);
     }
 

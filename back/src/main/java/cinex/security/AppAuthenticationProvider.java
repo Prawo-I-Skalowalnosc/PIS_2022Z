@@ -13,11 +13,16 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class AppAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserService userService;
+
+    public AppAuthenticationProvider(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -25,8 +30,8 @@ public class AppAuthenticationProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
 
         return userService.loadByUsername(login)
-            .filter(user -> Objects.equals(user.getHash(), password))
-            .map(user -> new UsernamePasswordAuthenticationToken(user, password, prepareAuthorities(user.isAdmin())))
+            .filter(user -> Objects.equals(user.getHash().trim(), password))
+            .map(user -> new UsernamePasswordAuthenticationToken(user, password, prepareAuthorities(user.getUserRoles())))
             .orElse(null);
     }
 
@@ -35,11 +40,7 @@ public class AppAuthenticationProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 
-    private List<GrantedAuthority> prepareAuthorities(boolean isAdmin) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(UserRoles.USER.toString()));
-        if (isAdmin)
-            authorities.add(new SimpleGrantedAuthority(UserRoles.ADMIN.toString()));
-        return authorities;
+    private List<GrantedAuthority> prepareAuthorities(List<UserRoles> roles) {
+        return roles.stream().map(x -> new SimpleGrantedAuthority(x.toString())).collect(Collectors.toList());
     }
 }
