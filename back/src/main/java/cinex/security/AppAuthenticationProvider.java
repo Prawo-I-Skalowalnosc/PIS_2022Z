@@ -19,13 +19,17 @@ public class AppAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserService userService;
 
+    public AppAuthenticationProvider(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String login = authentication.getName();
         String password = authentication.getCredentials().toString();
 
         return userService.loadByUsername(login)
-            .filter(user -> Objects.equals(user.getHash(), password))
+            .filter(user -> Objects.equals(user.getHash().trim(), password))
             .map(user -> new UsernamePasswordAuthenticationToken(user, password, prepareAuthorities(user.isAdmin())))
             .orElse(null);
     }

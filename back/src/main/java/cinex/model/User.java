@@ -44,5 +44,4 @@ public class User {
     public boolean isAdmin() {
         return role != 'U';
     }
-
 }
