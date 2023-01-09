@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,6 +25,13 @@ public class PersonController {
         return personService.findAll().stream()
                 .map(PersonResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/byID")
+    public PersonResponse byID(@RequestParam UUID id) throws AppException{
+        var person = personService.findById(id);
+        if(person.isEmpty()) throw new AppException("Brak osoby w bazie");
+        return new PersonResponse(person.get());
     }
 
     @PostMapping("/create")

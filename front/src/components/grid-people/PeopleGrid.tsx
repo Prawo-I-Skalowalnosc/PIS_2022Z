@@ -3,7 +3,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import Stack from "@mui/material/Stack";
 import {PersonCard} from "./PersonCard";
 import {Requests} from "../../requests/Requests";
-import {SearchField} from "../movie-grid/SearchField";
+import {SearchField} from "../grid-movies/SearchField";
 import {Helmet} from "react-helmet";
 import Layout from "../layout/Layout";
 import {useNavigate} from "react-router-dom";

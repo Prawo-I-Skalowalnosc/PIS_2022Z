@@ -72,6 +72,11 @@ export class Requests {
         return handleResponse(response);
     }
 
+    static async getPersonById(id : string): Promise<GenericResponse<PersonResponse>> {
+        const response = await fetchGet(`/people/byID?id=${id}`)
+        return handleResponse(response);
+    }
+
     static async getMovieById(id : string): Promise<GenericResponse<MovieResponse>> {
         const response = await fetchGet(`/movies/byID?id=${id}`)
         return handleResponse(response);

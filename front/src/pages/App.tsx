@@ -5,11 +5,12 @@ import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import MainMenuPage from "./MainMenuPage";
 import MoviePage from "./MoviePage";
-import {MovieGrid} from "../components/movie-grid/MovieGrid";
+import {MovieGrid} from "../components/grid-movies/MovieGrid";
 import {NewMoviePage} from "./NewMoviePage";
 import {NewPersonPage} from "./NewPersonPage";
 import {AdminRoute} from "../helpers/RouteHelper";
-import {PeopleGrid} from "../components/people-page/PeopleGrid";
+import {PeopleGrid} from "../components/grid-people/PeopleGrid";
+import PersonPage from "./PersonPage";
 
 export default function App() {
     return (
@@ -29,6 +30,7 @@ export default function App() {
               <Route path="/login" element={<LoginPage/>} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/movies/:id" element={<MoviePage />} />
+              <Route path="/people/:id" element={<PersonPage />} />
             </Routes>
           </BrowserRouter>
         </header>
