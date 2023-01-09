@@ -10,6 +10,7 @@ import {Helmet} from "react-helmet";
 import {useParams} from "react-router-dom";
 import {MovieInfo} from "../components/movie-page/MovieInfo";
 import {MoviePeople} from "../components/movie-page/MoviePeople";
+import {SecurityHelper} from "../helpers/SecurityHelper";
 
 
 export default function MoviePage() {
@@ -39,12 +40,14 @@ export default function MoviePage() {
                 setPeople(res.res);
             }
         });
-        Requests.getUserRating(id ?? '').then(res => {
-            if (res.res) {
-                setUserRating(res.res)
-            }
-        });
-    },[id, userRating, usersRating])
+        if (SecurityHelper.amILogged()) {
+            Requests.getUserRating(id ?? '').then(res => {
+                if (res.res) {
+                    setUserRating(res.res)
+                }
+            });
+        }
+    },[id])
 
     const getUsersRating = () => {
         Requests.getUsersRating(movie.id).then(res => {
@@ -84,6 +87,7 @@ export default function MoviePage() {
                 </div>}
                 {movie.length && people && <div className="container-fluid pis-moviepage-rating-cont">
                     <div className='pis-movie-page-ratings'>
+                        {SecurityHelper.amILogged() && <>
                         <div className='pis-stars-text'>Twoja ocena</div>
                             <StarRating
                                 movie_id = {movie.id} size={20} maxRating={5} currRating={userRating}
@@ -93,7 +97,7 @@ export default function MoviePage() {
                                 }}
                                 onError={(response) => setError(response.infoMessage)}
                                 resetInfo={() => {setInfo(""); setError("")}}
-                            />
+                            /></>}
                             <div className='pis-stars-text'>Ocena krytyków</div><StarShow rating={movie.rating * 5} size={20} maxRating={5} />
                             <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {usersRating} size={20} maxRating={5} />
                         </div>
