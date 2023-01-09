@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -37,13 +36,10 @@ public class TokenFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         final String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (request.getMethod().equals("GET") || request.getRequestURI().startsWith("/account/")) {
+        if ((request.getMethod().equals("GET") && !request.getRequestURI().startsWith("/movieRatings/user")) || request.getRequestURI().startsWith("/account/")) {
             doFilter(request, response, filterChain);
             return;
         }
-
-        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
-        grantedAuthorityList.add(new SimpleGrantedAuthority(UserRoles.USER.toString()));
 
         var chunks = token.split("\\.");
         if (chunks.length != 3) {
@@ -59,8 +55,7 @@ public class TokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        String name, password;
-        boolean isAdmin;
+        String name, password, roles;
 
         try {
             var decoder = Base64.getDecoder();
@@ -69,9 +64,9 @@ public class TokenFilter extends OncePerRequestFilter {
 
             name = json.getString("name");
             password = json.getString("password");
-            isAdmin = json.getBoolean("admin");
+            roles = json.getString("admin");
 
-            if (name.isBlank() || password.isBlank()) {
+            if (name.isBlank() || password.isBlank() || roles.isBlank()) {
                 unauthorizedResponse(response);
                 return;
             }
@@ -92,8 +87,16 @@ public class TokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (isAdmin)
-            grantedAuthorityList.add(new SimpleGrantedAuthority(UserRoles.ADMIN.toString()));
+        var grantedAuthorityList = new ArrayList<SimpleGrantedAuthority>();
+        var separated = new ArrayList<>(List.of(roles.split("\\s*")));
+
+        separated.forEach(x -> {
+            try {
+                UserRoles.valueOf(x);
+                grantedAuthorityList.add(new SimpleGrantedAuthority(x));
+            }
+            catch (IllegalArgumentException ignored) {}
+        });
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                 user, token, grantedAuthorityList);

@@ -17,8 +17,9 @@ export default function MoviePage() {
     const [error, setError] = useState("");
     const [info, setInfo] = useState("");
     const [movie, setMovie] = useState<MovieResponse>({} as MovieResponse);
-    const [people, setPeople] = useState({});
-    const [userRating, setUserRating] = useState(1);
+    const [people/*, setPeople*/] = useState({});
+    const [usersRating, setUsersRating] = useState(1);
+    const [userRating, setUserRating] = useState(0.0);
 
     useEffect(() => {
         Requests.getMovieById(id ?? '').then(res => {
@@ -27,17 +28,29 @@ export default function MoviePage() {
                 setError(res.err.infoMessage);
             } else if (res.res) {
                 setMovie(res.res);
-                setUserRating(res.res.userRating);
+                setUsersRating(res.res.userRating);
             }
         });
-        // TODO pobieranie z bazy ludzi
-        setPeople({});
+        Requests.getUserRating(id ?? '').then(res => {
+            if (res.err) {
+                setError(res.err.infoMessage);
+            } else if (res.res) {
+                setUserRating(res.res)
+            }
+        });
     },[id])
 
-    const getUserRating = () => {
-        Requests.getUserRating(movie.id).then(r => {
-            if (r.res)
-                setUserRating(r.res)
+    const getUsersRating = () => {
+        Requests.getUsersRating(movie.id).then(res => {
+            if (res.res)
+                setUsersRating(res.res)
+        })
+        Requests.getUserRating(id ?? '').then(res => {
+            if (res.err) {
+                setError(res.err.infoMessage);
+            } else if (res.res) {
+                setUserRating(res.res)
+            }
         })
     }
 
@@ -69,16 +82,16 @@ export default function MoviePage() {
                     <div className='pis-movie-page-ratings'>
                         <div className='pis-stars-text'>Twoja ocena</div>
                             <StarRating
-                                movie_id = {movie.id} size={20} maxRating={5}
+                                movie_id = {movie.id} size={20} maxRating={5} currRating={userRating}
                                 onSuccess={(response) => {
-                                    getUserRating();
+                                    getUsersRating();
                                     response.isNew ? setInfo("Dodano nową ocenę") : setInfo("Zaktualizowano ocenę")
                                 }}
                                 onError={(response) => setError(response.infoMessage)}
                                 resetInfo={() => {setInfo(""); setError("")}}
                             />
                             <div className='pis-stars-text'>Ocena krytyków</div><StarShow rating={movie.rating * 5} size={20} maxRating={5} />
-                            <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {userRating} size={20} maxRating={5} />
+                            <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {usersRating} size={20} maxRating={5} />
                         </div>
                 </div>}
             </div>

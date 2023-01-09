@@ -45,7 +45,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<Movie> findBest() {
-        return movieRepository.findAllByRatingIsNotNullOrderByRatingsDesc();
+        return movieRepository.findAllByRatingIsNotNullOrderByRatingDesc();
     }
 
 

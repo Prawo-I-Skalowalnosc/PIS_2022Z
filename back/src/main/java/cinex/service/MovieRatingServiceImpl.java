@@ -14,10 +14,12 @@ import java.util.Optional;
 public class MovieRatingServiceImpl implements MovieRatingService{
     @Autowired
     private MovieRatingRepository movieRatingRepository;
+
     @Override
     public Optional<MovieRating> getRating(User rater, Movie movie) {
         return movieRatingRepository.findByRaterAndMovie(rater, movie);
     }
+
     @Override
     public RatingResponse updateOrCreateRating(MovieRating movie_rating){
         var isNew = getRating(movie_rating.getRater(), movie_rating.getMovie()).isEmpty();
