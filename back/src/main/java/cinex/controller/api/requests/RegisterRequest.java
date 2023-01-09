@@ -1,9 +1,9 @@
 package cinex.controller.api.requests;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+@NoArgsConstructor
 public class RegisterRequest extends LoginRequest {
     @NotNull
     public String confirmPassword;
