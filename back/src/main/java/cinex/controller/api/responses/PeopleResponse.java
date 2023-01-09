@@ -26,15 +26,13 @@ public class PeopleResponse {
         this.actors = new ArrayList<>();
 
         for (PersonInMovie person : movie.getPeople()) {
-            switch (person.getRole()) {
-                case "DIRECTOR":
-                    this.directors.add(getFullName(person));
-                case "SCREENWRITER":
-                    this.screenwriters.add(getFullName(person));
-                case "ACTOR":
-                default:
-                    this.actors.add(getFullName(person));
-            }
+            var role = person.getRole();
+            if (role.equalsIgnoreCase("DIRECTOR"))
+                this.directors.add(getFullName(person));
+            else if (role.equalsIgnoreCase("SCREENWRITER"))
+                this.screenwriters.add(getFullName(person));
+            else
+                this.actors.add(getFullName(person));
         }
     }
 

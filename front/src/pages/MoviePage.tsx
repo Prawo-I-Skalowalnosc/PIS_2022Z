@@ -40,13 +40,11 @@ export default function MoviePage() {
             }
         });
         Requests.getUserRating(id ?? '').then(res => {
-            if (res.err) {
-                setError(res.err.infoMessage);
-            } else if (res.res) {
+            if (res.res) {
                 setUserRating(res.res)
             }
         });
-    },[id])
+    },[id, userRating, usersRating])
 
     const getUsersRating = () => {
         Requests.getUsersRating(movie.id).then(res => {
@@ -54,9 +52,7 @@ export default function MoviePage() {
                 setUsersRating(res.res)
         })
         Requests.getUserRating(id ?? '').then(res => {
-            if (res.err) {
-                setError(res.err.infoMessage);
-            } else if (res.res) {
+            if (res.res) {
                 setUserRating(res.res)
             }
         })
