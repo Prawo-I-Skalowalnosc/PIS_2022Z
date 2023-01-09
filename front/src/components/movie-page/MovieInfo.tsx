@@ -34,7 +34,7 @@ export function MovieInfo(props: MovieInfoProps) {
             </tr>
             <tr>
                 <th className="pis-movieinfo-header">Budżet</th>
-                <td className="pis-movieinfo-content">{FormatNumber(props.movie.budget, 2)}$</td>
+                <td className="pis-movieinfo-content">{FormatNumber(props.movie.budget, 5)}$</td>
             </tr>
             </tbody>
         </table>

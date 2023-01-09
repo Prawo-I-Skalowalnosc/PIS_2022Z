@@ -36,7 +36,7 @@ public class TokenFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         final String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if ((request.getMethod().equals("GET") && !request.getRequestURI().startsWith("/movieRatings/user")) || request.getRequestURI().startsWith("/account/")) {
+        if (request.getMethod().equals("GET") || request.getRequestURI().startsWith("/account/")) {
             doFilter(request, response, filterChain);
             return;
         }

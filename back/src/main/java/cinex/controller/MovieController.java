@@ -1,6 +1,7 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreateMovieRequest;
+import cinex.controller.api.responses.PeopleResponse;
 import cinex.errors.AppException;
 import cinex.model.Movie;
 import cinex.security.UserRoles;
@@ -89,5 +90,12 @@ public class MovieController {
         if(movie.isEmpty())
             throw new AppException("Brak filmu w bazie");
         return new MovieResponse(movie.get()).userRating;
+    }
+
+    @GetMapping("/people")
+    public PeopleResponse people(@RequestParam UUID id) throws AppException{
+        var movie = movieService.findById(id);
+        if(movie.isEmpty()) throw new AppException("Brak filmu w bazie");
+        return new PeopleResponse(movie.get());
     }
 }

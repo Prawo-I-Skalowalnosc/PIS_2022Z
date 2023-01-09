@@ -3,7 +3,7 @@ import '../style/App.css';
 import '../style/moviePage.css';
 import Layout from "../components/layout/Layout";
 import {Requests} from "../requests/Requests";
-import {MovieResponse} from "../types/Movies";
+import {MovieResponse, PeopleResponse} from "../types/Movies";
 import {ErrorAndInfo} from "../components/ErrorAndInfo";
 import { StarRating, StarShow } from '../components/Stars';
 import {Helmet} from "react-helmet";
@@ -17,7 +17,7 @@ export default function MoviePage() {
     const [error, setError] = useState("");
     const [info, setInfo] = useState("");
     const [movie, setMovie] = useState<MovieResponse>({} as MovieResponse);
-    const [people/*, setPeople*/] = useState({});
+    const [people, setPeople] = useState<PeopleResponse>({} as PeopleResponse);
     const [usersRating, setUsersRating] = useState(1);
     const [userRating, setUserRating] = useState(0.0);
 
@@ -29,6 +29,14 @@ export default function MoviePage() {
             } else if (res.res) {
                 setMovie(res.res);
                 setUsersRating(res.res.userRating);
+            }
+        });
+        Requests.getPeople(id ?? '').then(res => {
+            if (res.err) {
+                setPeople({} as PeopleResponse)
+                setError(res.err.infoMessage);
+            } else if (res.res) {
+                setPeople(res.res);
             }
         });
         Requests.getUserRating(id ?? '').then(res => {
@@ -76,7 +84,7 @@ export default function MoviePage() {
                     </div>
                 </div>}
                 {movie.length && people && <div className="container-fluid pis-moviepage-people-cont">
-                    <MoviePeople /*people={{}}*//>
+                    <MoviePeople people={people}/>
                 </div>}
                 {movie.length && people && <div className="container-fluid pis-moviepage-rating-cont">
                     <div className='pis-movie-page-ratings'>
