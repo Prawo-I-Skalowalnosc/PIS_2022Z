@@ -13,7 +13,7 @@ export default function PersonPage() {
     let { id } = useParams();
     const [person, setPerson] = useState({} as PersonResponse);
     const [error, setError] = useState("");
-    const [info, setInfo] = useState("");
+    const [info] = useState("");
 
     useEffect(() => {
         Requests.getPersonById(id ?? '').then(res => {
