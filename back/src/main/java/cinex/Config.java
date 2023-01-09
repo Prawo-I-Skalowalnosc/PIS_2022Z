@@ -49,6 +49,10 @@ public class Config {
                         HttpMethod.POST,
                         "/movies/create"
                 ).hasAuthority(UserRoles.ADMIN.toString());
+                authorize.antMatchers(
+                        HttpMethod.POST,
+                        "/newperson"
+                ).hasAuthority(UserRoles.ADMIN.toString());
                 authorize.anyRequest().authenticated();
             })
             .httpBasic(Customizer.withDefaults())
