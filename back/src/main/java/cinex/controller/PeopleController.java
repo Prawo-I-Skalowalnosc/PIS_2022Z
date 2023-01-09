@@ -1,7 +1,7 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreatePeopleRequest;
-import cinex.controller.api.responses.PeopleResponse;
+import cinex.controller.api.responses.PersonResponse;
 import cinex.errors.AppException;
 import cinex.security.UserRoles;
 import cinex.service.PeopleService;
@@ -22,23 +22,23 @@ public class PeopleController {
     private PeopleService peopleService;
 
     @GetMapping("/all")
-    public List<PeopleResponse> all() {
+    public List<PersonResponse> all() {
         return peopleService.findAll().stream()
-                .map(PeopleResponse::new)
+                .map(PersonResponse::new)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/byID")
-    public PeopleResponse byID(@RequestParam UUID id) throws AppException{
+    public PersonResponse byID(@RequestParam UUID id) throws AppException{
         var person = peopleService.findById(id);
         if(person.isEmpty()) throw new AppException("Brak osoby w bazie");
-        return new PeopleResponse(person.get());
+        return new PersonResponse(person.get());
     }
 
     @PostMapping("/create")
-    public PeopleResponse create(@RequestBody CreatePeopleRequest request) throws AppException {
+    public PersonResponse create(@RequestBody CreatePeopleRequest request) throws AppException {
         if (!requireRoles(List.of(UserRoles.ADMIN, UserRoles.MODERATOR)))
             throw new AppException("Nie masz uprawnień, aby dodać osobę");
-        return new PeopleResponse(peopleService.create(request));
+        return new PersonResponse(peopleService.create(request));
     }
 }

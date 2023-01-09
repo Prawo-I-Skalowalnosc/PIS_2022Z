@@ -42,7 +42,6 @@ public class Config {
                         "/people/**"
                 ).permitAll();
                 authorize.antMatchers(
-                        "/movieRatings/**"
                         "/movieRatings/user"
                 ).permitAll();
                 authorize.antMatchers(
