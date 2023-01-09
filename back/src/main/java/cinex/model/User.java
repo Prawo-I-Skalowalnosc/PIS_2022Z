@@ -1,5 +1,6 @@
 package cinex.model;
 
+import cinex.security.UserRoles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import org.apache.commons.codec.binary.Hex;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -36,12 +38,28 @@ public class User {
         this.username = username;
         this.email = email;
         this.join_date = new Date();
-        this.role = 'U';    //TODO: placeholder, zmienić jak będą zaimplementowane role (U-user)
+        this.role = 'U';
         this.hash = Hex.encodeHexString(hash);
         this.salt = Hex.encodeHexString(salt);
     }
 
     public boolean isAdmin() {
         return role != 'U';
+    }
+
+    public List<UserRoles> getUserRoles() {
+        var roles = new ArrayList<UserRoles>();
+
+        switch (role) {
+            case 'A':
+                roles.add(UserRoles.ADMIN);
+            case 'M':
+                roles.add(UserRoles.MODERATOR);
+            case 'U':
+            default:
+                roles.add(UserRoles.USER);
+        }
+
+        return roles;
     }
 }

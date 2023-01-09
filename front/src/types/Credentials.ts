@@ -13,7 +13,7 @@ export type LoginResponse = {
     token : string
     message : string
     username : string
-    isAdmin : boolean
+    roles : []
 }
 
 export type RegisterResponse = {

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class AppAuthenticationProvider implements AuthenticationProvider {
@@ -30,7 +31,7 @@ public class AppAuthenticationProvider implements AuthenticationProvider {
 
         return userService.loadByUsername(login)
             .filter(user -> Objects.equals(user.getHash().trim(), password))
-            .map(user -> new UsernamePasswordAuthenticationToken(user, password, prepareAuthorities(user.isAdmin())))
+            .map(user -> new UsernamePasswordAuthenticationToken(user, password, prepareAuthorities(user.getUserRoles())))
             .orElse(null);
     }
 
@@ -39,11 +40,7 @@ public class AppAuthenticationProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 
-    private List<GrantedAuthority> prepareAuthorities(boolean isAdmin) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(UserRoles.USER.toString()));
-        if (isAdmin)
-            authorities.add(new SimpleGrantedAuthority(UserRoles.ADMIN.toString()));
-        return authorities;
+    private List<GrantedAuthority> prepareAuthorities(List<UserRoles> roles) {
+        return roles.stream().map(x -> new SimpleGrantedAuthority(x.toString())).collect(Collectors.toList());
     }
 }

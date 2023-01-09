@@ -3,6 +3,8 @@ package cinex.controller.api.responses;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginResponse {
@@ -10,5 +12,5 @@ public class LoginResponse {
     public String token;
     public String message;
     public String username;
-    public boolean isAdmin;
+    public List<String> roles;
 }
