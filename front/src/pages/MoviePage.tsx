@@ -17,7 +17,7 @@ export default function MoviePage() {
     const [error, setError] = useState("");
     const [info, setInfo] = useState("");
     const [movie, setMovie] = useState<MovieResponse>({} as MovieResponse);
-    const [people, setPeople] = useState({});
+    const [people/*, setPeople*/] = useState({});
     const [usersRating, setUsersRating] = useState(1);
     const [userRating, setUserRating] = useState(0.0);
 
@@ -93,7 +93,6 @@ export default function MoviePage() {
                             <div className='pis-stars-text'>Ocena krytyków</div><StarShow rating={movie.rating * 5} size={20} maxRating={5} />
                             <div className='pis-stars-text'>Ocena użytkowników</div><StarShow rating= {usersRating} size={20} maxRating={5} />
                         </div>
-                    {userRating}
                 </div>}
             </div>
         </Layout>
