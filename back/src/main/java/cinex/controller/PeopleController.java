@@ -3,15 +3,16 @@ package cinex.controller;
 import cinex.controller.api.requests.CreatePeopleRequest;
 import cinex.controller.api.responses.PeopleResponse;
 import cinex.errors.AppException;
-import cinex.security.SecurityHelper;
+import cinex.security.UserRoles;
 import cinex.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import static cinex.security.SecurityHelper.requireRoles;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -36,8 +37,8 @@ public class PeopleController {
 
     @PostMapping("/create")
     public PeopleResponse create(@RequestBody CreatePeopleRequest request) throws AppException {
-        if (!Objects.requireNonNull(SecurityHelper.getLoggedUser()).isAdmin())
-            throw new AppException("Nie masz uprawnień, aby dodać film");
+        if (!requireRoles(List.of(UserRoles.ADMIN, UserRoles.MODERATOR)))
+            throw new AppException("Nie masz uprawnień, aby dodać osobę");
         return new PeopleResponse(peopleService.create(request));
     }
 }

@@ -26,5 +26,13 @@ export function AdminRoute () {
     return <Outlet/>;
 }
 
+export function ModeratorRoute () {
+
+    if (!SecurityHelper.amIInRole("moderator")) {
+        return <Navigate to="/login"/>;
+    }
+    return <Outlet/>;
+}
+
 
 

@@ -8,7 +8,7 @@ import MoviePage from "./MoviePage";
 import {MovieGrid} from "../components/grid-movies/MovieGrid";
 import {NewMoviePage} from "./NewMoviePage";
 import {NewPersonPage} from "./NewPersonPage";
-import {AdminRoute} from "../helpers/RouteHelper";
+import {ModeratorRoute} from "../helpers/RouteHelper";
 import {PeopleGrid} from "../components/grid-people/PeopleGrid";
 import PersonPage from "./PersonPage";
 
@@ -21,10 +21,10 @@ export default function App() {
               <Route path="/" element={<MainMenuPage />} />
               <Route path="/movies" element={<MovieGrid />}/>
               <Route path="/people" element={<PeopleGrid />}/>
-              <Route path="/create" element={<AdminRoute />}>
+              <Route path="/create" element={<ModeratorRoute />}>
                 <Route path="/create" element={<NewMoviePage />} />
               </Route>
-              <Route path="/newperson" element={<AdminRoute />}>
+              <Route path="/newperson" element={<ModeratorRoute />}>
                 <Route path="/newperson" element={<NewPersonPage />} />
               </Route>
               <Route path="/login" element={<LoginPage/>} />
