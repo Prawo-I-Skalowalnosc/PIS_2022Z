@@ -1,6 +1,7 @@
 import {MovieResponse} from "../../types/Movies";
 import '../../style/moviePage.css';
 import React from "react";
+import {FormatNumber} from "../../helpers/FormatHelper";
 
 
 interface MovieInfoProps {
@@ -33,7 +34,7 @@ export function MovieInfo(props: MovieInfoProps) {
             </tr>
             <tr>
                 <th className="pis-movieinfo-header">Budżet</th>
-                <td className="pis-movieinfo-content">{props.movie.budget}$</td>
+                <td className="pis-movieinfo-content">{FormatNumber(props.movie.budget, 2)}$</td>
             </tr>
             </tbody>
         </table>
