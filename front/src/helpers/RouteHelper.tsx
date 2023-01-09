@@ -20,7 +20,7 @@ export function AdminRoute () {
     //    </Route>*/}
     //  przykład oznaczania strony wymagającej zalogowania, inaczej przekierowuje na /login
 
-    if (!SecurityHelper.amIAdmin()) {
+    if (!SecurityHelper.amIInRole("admin")) {
         return <Navigate to="/login"/>;
     }
     return <Outlet/>;

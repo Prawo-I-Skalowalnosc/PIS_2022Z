@@ -1,6 +1,7 @@
 package cinex.controller;
 
 import cinex.controller.api.requests.CreateRatingRequest;
+import cinex.controller.api.responses.MovieResponse;
 import cinex.controller.api.responses.RatingResponse;
 import cinex.errors.AppException;
 import cinex.model.MovieRating;
@@ -9,6 +10,9 @@ import cinex.service.MovieService;
 import cinex.service.MovieRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import static cinex.security.SecurityHelper.*;
+
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -37,5 +41,17 @@ public class MovieRatingController {
             user,
             request.rating)
         );
+    }
+    @GetMapping("/user")
+    public float userRating(@RequestParam UUID id) throws AppException{
+        var movie = movieService.findById(id);
+        if(movie.isEmpty()) throw new AppException("Brak filmu w bazie");
+        System.out.println(movie.get().getId());
+        var user = getLoggedUser();
+        var rating = movieRatingService.getRating(user, movie.get());
+        if (rating.isPresent())
+            return rating.get().getValue();
+        return 0.0F;
+
     }
 }
