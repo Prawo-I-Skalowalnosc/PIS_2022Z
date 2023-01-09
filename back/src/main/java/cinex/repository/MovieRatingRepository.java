@@ -14,4 +14,5 @@ import java.util.UUID;
 public interface MovieRatingRepository extends JpaRepository<MovieRating, UUID> {
     Optional<MovieRating> findByRaterAndMovie(User rater, Movie movie);
     List<MovieRating> findByRater(User rater);
+    List<MovieRating> findByMovieTitle(String movie_title);
 }

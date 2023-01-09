@@ -4,11 +4,16 @@ import cinex.controller.api.requests.CreateMovieRequest;
 import cinex.model.Movie;
 import cinex.model.MovieRating;
 import cinex.model.User;
+import cinex.security.UserRoles;
 import cinex.service.UserService;
 import net.bytebuddy.utility.RandomString;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class GlobalTestValues {
@@ -33,10 +38,18 @@ public class GlobalTestValues {
 
     public static User getUser() {
         return new User(UUID.randomUUID(), List.of(), username,
-                'A', RandomString.make(32) + "@abcdef.pl", new Date(), RandomString.make(32), RandomString.make(32));
+                'A', RandomString.make(32) + "@abcdef.pl", new Date(), "hasełko1234", "abb16f9e6a956ac207c727ea39c23fff");
     }
 
     public static MovieRating getMovieRating(Movie m, User u, Integer value){
         return new MovieRating(m, u, value);
+    }
+
+    public static Authentication getAuth() {
+        var optUser = Optional.of(getUser());
+        var password = getUser().getHash();
+        var grantedAuthorityList = List.of(new SimpleGrantedAuthority(UserRoles.ADMIN.toString()));
+
+        return new UsernamePasswordAuthenticationToken(optUser.get().getUsername(), password, grantedAuthorityList);
     }
 }
